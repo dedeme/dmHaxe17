@@ -1,0 +1,10 @@
+-cp ../../src/lib
+-cp ../../src/auth
+-cp /deme/dmHaxe17/lib/basic_0.1.0/src
+-cp /deme/dmHaxe17/lib/server_2.0.0/src
+
+-js ../../scripts/auth/index.js
+-D shallow-expose
+-dce full
+
+-main AuthS

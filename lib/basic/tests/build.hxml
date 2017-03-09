@@ -1,0 +1,25 @@
+-cp src
+-cp ../src
+
+# Uncomment the desirable target
+# JavaScript target
+-js www/index.js
+-dce full
+
+# SWF 9 target
+# -swf9 out/dmtest.swf
+
+# ActionScript3 target
+# -as3 out
+
+# Neko target
+# neko out/dm.n
+
+# PHP target
+# -php out
+
+# C++ target
+# -cpp out
+
+# Uncomment and place your main class with package
+-main Main
