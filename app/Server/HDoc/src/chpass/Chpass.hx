@@ -3,6 +3,7 @@
  * GNU General Public License - V3 <http://www.gnu.org/licenses/>
  */
 
+/// Change password main file.
 import dm.Client;
 import dm.I18n._;
 import dm.Cryp;

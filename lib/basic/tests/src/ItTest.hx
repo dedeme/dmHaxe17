@@ -33,9 +33,9 @@ class ItTest {
     t.eq ("[1]", It.from(i1).toString());
     t.eq ("[1, 2, 3]", It.from(i2).toString());
 
-    t.eq ("", It.from(i0).toArray().toString());
-    t.eq ("1", It.from(i1).toArray().toString());
-    t.eq ("1,2,3", It.from(i2).toArray().toString());
+    t.eq ("", It.from(i0).to().toString());
+    t.eq ("1", It.from(i1).to().toString());
+    t.eq ("1,2,3", It.from(i2).to().toString());
 
     t.eq ("[]", It.fromStr("").toString());
     t.eq ("[a]", It.fromStr("a").toString());
@@ -122,12 +122,26 @@ class ItTest {
     t.eq(1, It.from(s1).count(ftrue));
     t.eq(3, It.from(s2).count(ftrue));
 
-    t.eq(0, It.from(i0).find(even).length);
-    t.eq(0, It.from(i1).find(even).length);
-    t.eq(2, It.from(i2).find(even)[0]);
-    t.eq(0, It.from(i0).find(neven).length);
-    t.eq(1, It.from(i1).find(neven)[0]);
-    t.eq(1, It.from(i2).find(neven)[0]);
+    t.eq(0, It.from(i0).finds(even).length);
+    t.eq(0, It.from(i1).finds(even).length);
+    t.eq(2, It.from(i2).finds(even)[0]);
+    t.eq(0, It.from(i0).finds(neven).length);
+    t.eq(1, It.from(i1).finds(neven)[0]);
+    t.eq(1, It.from(i2).finds(neven)[0]);
+
+    t.eq(null, It.from(i0).find(even));
+    t.eq(null, It.from(i1).find(even));
+    t.eq(2, It.from(i2).find(even));
+    t.eq(null, It.from(i0).find(neven));
+    t.eq(1, It.from(i1).find(neven));
+    t.eq(1, It.from(i2).find(neven));
+
+    t.eq(null, It.from(i0).findLast(even));
+    t.eq(null, It.from(i1).findLast(even));
+    t.eq(2, It.from(i2).findLast(even));
+    t.eq(null, It.from(i0).findLast(neven));
+    t.eq(1, It.from(i1).findLast(neven));
+    t.eq(3, It.from(i2).findLast(neven));
 
     t.eq(-1, It.from(i0).indexf(even));
     t.eq(-1, It.from(i1).indexf(even));
@@ -142,13 +156,6 @@ class ItTest {
     t.eq(-1, It.from(i2).index(5));
     t.eq(0, It.from(i2).index(1));
     t.eq(2, It.from(i2).index(3));
-
-    t.eq(0, It.from(i0).findLast(even).length);
-    t.eq(0, It.from(i1).findLast(even).length);
-    t.eq(2, It.from(i2).findLast(even)[0]);
-    t.eq(0, It.from(i0).findLast(neven).length);
-    t.eq(1, It.from(i1).findLast(neven)[0]);
-    t.eq(3, It.from(i2).findLast(neven)[0]);
 
     t.eq(-1, It.from(i0).lastIndexf(even));
     t.eq(-1, It.from(i1).lastIndexf(even));
@@ -195,10 +202,10 @@ class ItTest {
     , It.from(i2).sort(ficp).reverse().sort(ficp).toString());
 
     var arr = (["pérez", "pera", "p zarra", "pizarra"]);
-    var arr2 = It.sortStr(It.from(arr)).toArray();
+    var arr2 = It.sortStr(It.from(arr)).to();
     t.eq(["p zarra", "pera", "pizarra", "pérez"].toString(), arr2.toString());
 
-    arr2 = It.sortStrLocale(It.from(arr)).toArray();
+    arr2 = It.sortStrLocale(It.from(arr)).to();
     t.eq(["p zarra", "pera", "pérez", "pizarra"].toString(), arr2.toString());
 
     t.eq("[]", It.from(s0).shuffle().toString());
@@ -289,15 +296,15 @@ class ItTest {
     t.eq (It.from(s2).toString(), "[one, two, three]");
     t.eq (It.from(i1).toString(), "[1]");
     t.eq (It.from(i0).toString(), "[]");
-    t.eq (It.from(i0).add (1).toString (), "[1]");
-    t.eq (It.from(i0).add0 (1).toString (), "[1]");
-    t.eq (It.from(i2).add (1).toString (), "[1, 2, 3, 1]");
-    t.eq (It.from(i2).add0 (1).toString (), "[1, 1, 2, 3]");
+    t.eq (It.from(i0).add (1).toString(), "[1]");
+    t.eq (It.from(i0).add0 (1).toString(), "[1]");
+    t.eq (It.from(i2).add (1).toString(), "[1, 2, 3, 1]");
+    t.eq (It.from(i2).add0 (1).toString(), "[1, 1, 2, 3]");
     t.eq (
-      It.from (s0).addIt (It.from (s1)).addIt (It.from (s2)).toString ()
+      It.from (s0).addIt (It.from (s1)).addIt (It.from (s2)).toString()
     , "[one, one, two, three]"
     );
-    t.eq (It.from(i2).add (1).toArray ().length, 4);
+    t.eq (It.from(i2).add (1).to().length, 4);
     t.eq (It.from(i2).add (1).toList ().length, 4);
     t.eq (It.from(It.from(i2).add0 (1).toList ()).toString(), "[1, 1, 2, 3]");
 
@@ -324,50 +331,50 @@ class ItTest {
     t.eq (sum, 8);
 
     // drop
-    t.eq (It.from(s2).drop (0).toString (), "[one, two, three]");
+    t.eq (It.from(s2).drop (0).toString(), "[one, two, three]");
     var itS = It.from(s2);
-    t.eq (itS.drop (1).toString (), "[two, three]");
-    t.eq (It.from(s2).drop (10).toString (), "[]");
-    t.eq (It.from(i2).drop (0).toString (), "[1, 2, 3]");
+    t.eq (itS.drop (1).toString(), "[two, three]");
+    t.eq (It.from(s2).drop (10).toString(), "[]");
+    t.eq (It.from(i2).drop (0).toString(), "[1, 2, 3]");
 
     // dropWhile
     t.eq (It.from (i0).dropWhile (function (n) {
       return n < 2;
-    }).toString (), "[]");
+    }).toString(), "[]");
     t.eq (It.from (i2).dropWhile (function (n) {
       return n < 2;
-    }).toString (), "[2, 3]");
+    }).toString(), "[2, 3]");
     t.eq (It.from (i2).dropWhile (function (n) {
       return n < 12;
-    }).toString (), "[]");
+    }).toString(), "[]");
 
     // dropUntil
     t.eq (It.from (i0).dropUntil (function (n) {
       return n > 2;
-    }).toString (), "[]");
+    }).toString(), "[]");
     t.eq (It.from (i2).dropUntil (function (n) {
       return n > 2;
-    }).toString (), "[3]");
+    }).toString(), "[3]");
     t.eq (It.from (i2).dropUntil (function (n) {
       return n > 12;
-    }).toString (), "[]");
+    }).toString(), "[]");
 
     // insert
     t.eq (It.from (i0).insert (9, function (n) {
       return n > 1;
-    }).toString (), "[9]");
+    }).toString(), "[9]");
     t.eq (It.from (i2).insert (9, function (n) {
       return n > -1;
     }).toString (), "[9, 1, 2, 3]");
     t.eq (It.from (i2).insert (9, function (n) {
       return n > 1;
-    }).toString (), "[1, 9, 2, 3]");
+    }).toString(), "[1, 9, 2, 3]");
     t.eq (It.from (i2).insert (9, function (n) {
       return n > 12;
-    }).toString (), "[1, 2, 3, 9]");
+    }).toString(), "[1, 2, 3, 9]");
 
     // insetIx
-    t.eq (It.from (i0).insertIx (2, 9).toString (), "[9]");
+    t.eq (It.from (i0).insertIx (2, 9).toString(), "[9]");
     t.eq (It.from (i2).insertIx (-1, 9).toString (), "[9, 1, 2, 3]");
     t.eq (It.from (i2).insertIx (1, 9).toString (), "[1, 9, 2, 3]");
     t.eq (It.from (i2).insertIx (12, 9).toString (), "[1, 2, 3, 9]");
@@ -402,15 +409,17 @@ class ItTest {
     }).each (function (n) { sum += n; });
     t.eq (sum, 4);
 
+    // finds
+    t.eq (0, It.from (i0).finds(function (n) { return n % 2 == 1; }).length);
+    t.eq (1, It.from (i2).finds(function (n) { return n % 2 == 1; })[0]);
+
     // find
-    t.eq (0, It.from (i0).find (function (n) { return n % 2 == 1; }).length);
-    t.eq (1, It.from (i2).find (function (n) { return n % 2 == 1; })[0]);
+    t.eq (null, It.from (i0).find(It.f(_1 % 2 == 1)));
+    t.eq (1, It.from (i2).find(It.f(_1 % 2 == 1)));
 
     // findLast
-    t.eq (0,
-      It.from (i0).findLast (function (n) { return n % 2 == 1; }).length
-    );
-    t.eq (3, It.from (i2).findLast (function (n) { return n % 2 == 1; })[0]);
+    t.eq (null, It.from (i0).findLast(It.f(_1 % 2 == 1)));
+    t.eq (3, It.from (i2).findLast (It.f(_1 % 2 == 1)));
 
     // folder
     t.eq (It.from (i0).reduce (0, function (r, n) {
@@ -451,7 +460,7 @@ class ItTest {
     // map
     t.eq (It.from (i0).map (function (n) {
       return n * 2;
-    }).toString (), "[]");
+    }).toString(), "[]");
     t.eq (It.from (i2).map (function (n) {
       return n * 2;
     }).toString (), "[2, 4, 6]");
@@ -531,22 +540,22 @@ class ItTest {
     t.eq (It.join (It.fromStr ("abc"), ""), "abc");
 
     // range0, range, rangeStep
-    t.eq (It.range (-1).toString (), "[]");
-    t.eq (It.range (0).toString (), "[]");
-    t.eq (It.range (2).toString (), "[0, 1]");
-    t.eq (It.range (-1, -1).toString (), "[]");
-    t.eq (It.range (0, -1).toString (), "[]");
-    t.eq (It.range (0, 2).toString (), "[0, 1]");
-    t.eq (It.range (-1, 1).toString (), "[-1, 0]");
-    t.eq (It.range (-1, -1, 1).toString (), "[]");
-    t.eq (It.range (0, -1, 1).toString (), "[]");
-    t.eq (It.range (0, 2, 1).toString (), "[0, 1]");
-    t.eq (It.range (-1, 1, 1).toString (), "[-1, 0]");
-    t.eq (It.range (-1, -1, -1).toString (), "[]");
-    t.eq (It.range (0, -1, -1).toString (), "[0]");
-    t.eq (It.range (1, -2, -1).toString (), "[1, 0, -1]");
-    t.eq (It.range (-1, 1, -1).toString (), "[]");
-    t.eq (It.range (1, 2, 0).take (3).toString (), "[]");
+    t.eq (It.range (-1).toString(), "[]");
+    t.eq (It.range (0).toString(), "[]");
+    t.eq (It.range (2).toString(), "[0, 1]");
+    t.eq (It.range (-1, -1).toString(), "[]");
+    t.eq (It.range (0, -1).toString(), "[]");
+    t.eq (It.range (0, 2).toString(), "[0, 1]");
+    t.eq (It.range (-1, 1).toString(), "[-1, 0]");
+    t.eq (It.range (-1, -1, 1).toString(), "[]");
+    t.eq (It.range (0, -1, 1).toString(), "[]");
+    t.eq (It.range (0, 2, 1).toString(), "[0, 1]");
+    t.eq (It.range (-1, 1, 1).toString(), "[-1, 0]");
+    t.eq (It.range (-1, -1, -1).toString(), "[]");
+    t.eq (It.range (0, -1, -1).toString(), "[0]");
+    t.eq (It.range (1, -2, -1).toString(), "[1, 0, -1]");
+    t.eq (It.range (-1, 1, -1).toString(), "[]");
+    t.eq (It.range (1, 2, 0).take (3).toString(), "[]");
 
     // size
     t.eq (It.from (s0).size (), 0);
@@ -563,37 +572,37 @@ class ItTest {
     ]);
 
     // reverse
-    t.eq (It.from (i0).reverse().toString (), "[]");
-    t.eq (It.from (i1).reverse().toString (), "[1]");
-    t.eq (It.from (i2).reverse().toString (), "[3, 2, 1]");
+    t.eq (It.from (i0).reverse().toString(), "[]");
+    t.eq (It.from (i1).reverse().toString(), "[1]");
+    t.eq (It.from (i2).reverse().toString(), "[3, 2, 1]");
 
     // sort, suffle
     t.eq (It.from ([2,3,1,2,2,1]).sort(function (e1, e2) {
       return e1 - e2;
-    }).toString (), "[1, 1, 2, 2, 2, 3]");
+    }).toString(), "[1, 1, 2, 2, 2, 3]");
     t.eq (It.from ([2,3,1,2,2,1]).sort(function (e1, e2) {
       return e2 - e1;
-    }).toString (), "[3, 2, 2, 2, 1, 1]");
+    }).toString(), "[3, 2, 2, 2, 1, 1]");
     t.eq (It.from ([]).sort(function (e1, e2) {
       return e1 - e2;
-    }).toString (), "[]");
+    }).toString(), "[]");
     t.eq (It.range (-1, 3).shuffle().sort(function (e1, e2) {
       return e1 - e2;
-    }).toString (), "[-1, 0, 1, 2]");
+    }).toString(), "[-1, 0, 1, 2]");
 
     // zip / Unzip
-    t.eq (It.zip (It.from (s0), It.from (s2)).toString (), "[]");
-    t.eq (It.unzip (It.zip (It.from (s0), It.from (s2)))._1.toString (), "[]");
-    t.eq (It.unzip (It.zip (It.from (s0), It.from (s2)))._2.toString (), "[]");
-    t.eq (It.zip3 (It.from (s0), It.from (s1), It.from (s2)).toString (), "[]");
+    t.eq (It.zip (It.from (s0), It.from (s2)).toString(), "[]");
+    t.eq (It.unzip (It.zip (It.from (s0), It.from (s2)))._1.toString(), "[]");
+    t.eq (It.unzip (It.zip (It.from (s0), It.from (s2)))._2.toString(), "[]");
+    t.eq (It.zip3 (It.from (s0), It.from (s1), It.from (s2)).toString(), "[]");
     t.eq (It.unzip3 (It.zip3 (It.from (s0), It.from (s2), It.from (s2))
-    )._3.toString (), "[]");
+    )._3.toString(), "[]");
     t.eq (It.zip (It.from (s1), It.from (s2)).toString ()
     , "[{\n\t_1 : one, \n\t_2 : one\n}]");
     t.eq (It.unzip(It.zip (It.from (s2), It.from (s2))
-    )._1.toString (), "[one, two, three]");
+    )._1.toString(), "[one, two, three]");
     t.eq (It.unzip3(It.zip3 (It.from (s2), It.from (s2), It.from (s2))
-    )._3.toString (), "[one, two, three]");
+    )._3.toString(), "[one, two, three]");
 
     t.log();
   }

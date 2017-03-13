@@ -1,0 +1,10 @@
+-cp ../../src/lib
+-cp ../../src/index
+-cp /deme/dmHaxe17/lib/basic_0.1.0/src
+-cp /deme/dmHaxe17/lib/server_2.0.0/src
+
+-js ../../scripts/index/index.js
+-D shallow-expose
+-dce full
+
+-main IndexS

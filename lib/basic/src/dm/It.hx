@@ -6,6 +6,7 @@
 /// Contains class [It] which is an iterator that iterates over collections
 package dm;
 
+import haxe.macro.Expr;
 import haxe.io.Bytes;
 import haxe.io.BytesBuffer;
 import dm.Tuple;
@@ -246,22 +247,32 @@ class It<T> {
     );
   }
 
-  /// Returns those elements that gives <b>true</b> with [f].
-  public function find(f : T -> Bool) : Array<T> {
+  /// Returns the first element that gives <b>true</b> with [f] ot null.
+  public function find(f : T -> Bool) : Null<T> {
+    var r;
+    while (hasNext()) {
+      r = next();
+      if (f(r)) return r;
+    }
+    return null;
+  }
+
+  /// Returns those element that gives <b>true</b> with [f], in reverse order
+  public function findLast(f : T -> Bool) : Null<T> {
+    var r = null;
+    while (hasNext()) {
+      var e = next();
+      if (f(e)) r = e;
+    }
+    return r;
+  }
+
+  /// Returns those elements that give <b>true</b> with [f].
+  public function finds(f : T -> Bool) : Array<T> {
     var arr = [];
     while (hasNext()) {
       var r = next();
       if (f(r)) arr.push(r);
-    }
-    return arr;
-  }
-
-  /// Returns those element that gives <b>true</b> with [f], in reverse order
-  public function findLast(f : T -> Bool) : Array<T> {
-    var arr = [];
-    while (hasNext()) {
-      var r = next();
-      if (f(r)) arr.unshift(r);
     }
     return arr;
   }
@@ -753,6 +764,41 @@ class It<T> {
         return new Tp3(it1.next(), it2.next(), it3.next());
       }
     );
+  }
+
+  /// Simple lambda-procedure without argurment
+  macro public static function p0(e:Expr) {
+    return macro function () $e;
+  }
+
+  /// Simple lambda-procedure with one argurment
+  macro public static function p(e:Expr) {
+    return macro function (_1) $e;
+  }
+
+  /// Simple lambda-procedure with two argurment
+  macro public static function p2(e:Expr) {
+    return macro function (_1, _2) $e;
+  }
+
+  /// Simple lambda-procedure with three argurment
+  macro public static function p3(e:Expr) {
+    return macro function (_1, _2, _3) $e;
+  }
+
+  /// Simple lambda with one argurment
+  macro public static function f(e:Expr) {
+    return macro function (?_1) { return $e; };
+  }
+
+  /// Simple lambda with two argurment
+  macro public static function f2(e:Expr) {
+    return macro function (?_1, ?_2) { return $e; };
+  }
+
+  /// Simple lambda with three argurment
+  macro public static function f3(e:Expr) {
+    return macro function (?_1, ?_2, ?_3) { return $e; };
   }
 
 }

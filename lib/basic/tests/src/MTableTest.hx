@@ -17,9 +17,9 @@ class MTableTest {
     tb.addArray(["Peter", 23]);
     t.eq(1, tb.readArray().size());
     t.eq(1, tb.read().size());
-    t.eq("[[0,\"Peter\",23]]", Json.fromArray(tb.readArray().toArray()));
+    t.eq("[[0,\"Peter\",23]]", Json.from(tb.readArray().to()));
     t.eq("[{\"h\":{\"rowId\":0,\"name\":\"Peter\",\"age\":23}}]",
-      Json.fromArray(tb.read().toArray()));
+      Json.from(tb.read().to()));
     tb.add(["name" => "Clare", "age" => 25]);
     tb.add(["name" => "John"]);
 

@@ -99,12 +99,13 @@ class Io {
   /// Returns 'true' if path exists in the file system and is a directory
   public static function isDirectory(path:String):Bool {
     return file(path).isDirectory();
-  };
+  }
 
   /// Returns name of files and directories in 'd'
-  public static function dirNames(d):Array<String> {
-    return file(d).list();
-  };
+  public static function dirNames(d):It<String> {
+    var fs:Array<String> = file(d).list();
+    return It.range(fs.length).map(It.f(fs[_1]));
+  }
 
   /// Returns data from 'dir'
   public static function dir(path:String):It<DirEntry> {

@@ -144,7 +144,6 @@ class ConfW {
           .att("class", "link")
           .html(_("Change Password")))
       );
-
     Q("#nameIn").e.focus();
   }
 

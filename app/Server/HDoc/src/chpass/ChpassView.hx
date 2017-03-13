@@ -3,6 +3,11 @@
  * GNU General Public License - V3 <http://www.gnu.org/licenses/>
  */
 
+/**
+ * Change password view.<p>
+ * If this file is integrated in another project, must be modified the
+ * 25 line: 'var storeId = "HDoc_chpass";'
+ */
 import dm.Ui;
 import dm.Ui.Q;
 import dm.DateDm;

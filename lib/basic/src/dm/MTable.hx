@@ -83,19 +83,18 @@ class MTable {
   }
 
   /// Returns the row with "rowId" or null if "rowId" does not exist.
-  public function getArray (rowId:Int):Array<Dynamic> {
-    var r = readArray().find(function (row) { return row[0] == rowId; });
-    return r.length == 0 ? null : r[0];
+  public function getArray (rowId:Int):Null<Array<Dynamic>> {
+    return readArray().find(function (row) { return row[0] == rowId; });
   }
 
   /// Returns the row with "rowId" or null if "rowId" does not exist.
-  public function get (rowId:Int):Map<String, Dynamic> {
+  public function get (rowId:Int):Null<Map<String, Dynamic>> {
     var r = readArray().find(function (row) { return row[0] == rowId; });
-    return r.length == 0 ? null : {
+    return r == null ? null : {
       var m = new Map<String, Dynamic>();
       m.set("rowId", rowId);
       It.range(fieldNames.length).each(function (ix) {
-        m.set(fieldNames[ix], r[0][ix + 1]);
+        m.set(fieldNames[ix], r[ix + 1]);
       });
       return m;
     }

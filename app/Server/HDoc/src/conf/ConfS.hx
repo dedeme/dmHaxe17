@@ -37,12 +37,11 @@ class ConfS {
   ///
   public static function sel (data:String):String {
     return Global.server().rp(data, function (rq:SelRq):String {
-      PathsEntry.mkNoDb().modify(function (p:PathsEntry) {
-        if (p.name == rq.name) {
-          return new PathsEntry(p.name, p.path, rq.selected);
-        }
-        return p;
-      });
+      PathsEntry.mkNoDb().modify(It.f(
+        _1.name == rq.name
+          ? new PathsEntry(_1.name, _1.path, rq.selected)
+          : _1
+      ));
       return "";
     });
   }
@@ -51,9 +50,7 @@ class ConfS {
   ///
   public static function del (data:String):String {
     return Global.server().rp(data, function (rq:DelRq):String {
-      PathsEntry.mkNoDb().del(function (e:PathsEntry) {
-        return e.name == rq.name;
-      });
+      PathsEntry.mkNoDb().del(It.f(_1.name == rq.name));
       return "";
     });
   }
@@ -62,12 +59,11 @@ class ConfS {
   ///
   public static function modify (data:String):String {
     return Global.server().rp(data, function (rq:ModifyRq):String {
-      PathsEntry.mkNoDb().modify(function (p:PathsEntry) {
-        if (p.name == rq.oldName) {
-          return new PathsEntry(rq.newName, rq.path, p.visible);
-        }
-        return p;
-      });
+      PathsEntry.mkNoDb().modify(It.f(
+        _1.name == rq.oldName
+          ? new PathsEntry(rq.newName, rq.path, _1.visible)
+          : _1
+      ));
       return "";
     });
   }

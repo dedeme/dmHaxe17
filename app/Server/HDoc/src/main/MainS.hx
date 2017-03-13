@@ -16,18 +16,17 @@ class MainS {
       pagePath
     ];
   }
+
   @:expose("pagePath")
-  /// Initialization function
+  /// Reads page path
   public static function pagePath (data : String):String {
     if (!Io.isDirectory(server.root)) {
       server.init();
       var conf = ConfEntry.mkNoDb();
       conf.add(new ConfEntry("", true, "en"));
       PathsEntry.mkNoDb();
+      Io.mkdir(Io.cat([server.root, "data", "index"]));
     }
-    return server.rp(data, function (d) {
-      var conf = ConfEntry.mkNoDb();
-      return conf.read().next().path;
-    });
+    return server.rp(data, dm.It.f(ConfEntry.mkNoDb().read().next().path));
   }
 }

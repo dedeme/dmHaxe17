@@ -57,9 +57,9 @@ class StrTest {
     t.yes(!StringTools.endsWith("abc", "b"));
 
     var arr = ["pérez", "pera", "p zarra", "pizarra"];
-    var arr2 = It.from(arr).sort(Str.compare).toArray();
+    var arr2 = It.from(arr).sort(Str.compare).to();
     t.eq(["p zarra", "pera", "pizarra", "pérez"].toString(), arr2.toString());
-    arr2 = It.from(arr).sort(Str.localeCompare).toArray();
+    arr2 = It.from(arr).sort(Str.localeCompare).to();
     t.eq(["p zarra", "pera", "pérez", "pizarra"].toString(), arr2.toString());
 
     t.log();

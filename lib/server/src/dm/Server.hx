@@ -36,17 +36,15 @@ class Server {
     return expiration / 360000;
   }
 
-  function readUser(user:String):Array<UserEntry> {
+  function readUser(user:String):Null<UserEntry> {
     var s = Io.read(userDb);
     if (s == "") {
-      return [];
+      return null;
     }
     var d = s.split("\n");
-    return It.from(d).map(function (e) {
-      return UserEntry.restore(e);
-    }).find(function (us) {
-      return us.user == user;
-    });
+    return It.from(d)
+      .map(It.f(UserEntry.restore(_1)))
+      .find(It.f(_1.user == user));
   }
 
   function writeUser(userEntry:UserEntry) {
@@ -60,10 +58,8 @@ class Server {
 
   /// If 'user' already exists, returns 'false'
   public function addUser(user:String, pass:String, level:String):Bool {
-    var entry = readUser(user);
-    if (entry.length > 0) {
-      return false;
-    }
+    if (readUser(user) != null) return false;
+
     var p = Cryp.key(pass, 120);
     var uentry = new UserEntry(user, p, level);
     writeUser(uentry);
@@ -84,11 +80,9 @@ class Server {
   };
 
   public function changePass(user:String, oldPass:String, newPass:String):Bool {
-    var entries = readUser(user);
-    if (entries.length == 0) {
-      return false;
-    }
-    var entry = entries[0];
+    var entry = readUser(user);
+    if (entry == null) return false;
+
     if (entry.pass != Cryp.key(oldPass, 120)) {
       return false;
     }
@@ -99,28 +93,24 @@ class Server {
   }
 
   public function changeLevel(user:String, level:String):Bool {
-    var entries = readUser(user);
-    if (entries.length == 0) {
-      return false;
-    }
-    var entry = entries[0];
+    var entry = readUser(user);
+    if (entry == null) return false;
+
     var newUser = new UserEntry(user, entry.pass, level);
     this.delUser(user);
     this.writeUser(newUser);
     return true;
   };
 
-  public function readSession(sessionId:String):Array<SessionEntry> {
+  public function readSession(sessionId:String):Null<SessionEntry> {
     var s = Io.read(sessionDb);
     if (s == "") {
-      return [];
+      return null;
     }
     var d = s.split("\n");
-    return It.from(d).map(function (e) {
-      return SessionEntry.restore(e);
-    }).find(function (ss) {
-      return ss.sessionId == sessionId;
-    });
+    return It.from(d)
+      .map(It.f(SessionEntry.restore(_1)))
+      .find(It.f(_1.sessionId == sessionId));
   }
 
   // str - SessionEntry -
@@ -164,14 +154,13 @@ class Server {
     if (rq.sessionId == null) {
       rp = new ClientResponse("", true, true, "Unkown");
     } else {
-      var ss = readSession(rq.sessionId);
+      var s = readSession(rq.sessionId);
       var now = Date.now().getTime();
-      if (ss.length == 0) {
+      if (s == null) {
         rp = new ClientResponse("", true, true, "Unkown");
-      } else if (ss[0].expiration < now) {
+      } else if (s.expiration < now) {
         rp = new ClientResponse("", false, true, "Expired");
       } else {
-        var s = ss[0];
         var sn = new SessionEntry(
           s.sessionId, s.expiration + s.step, s.step, s.user, s.level
         );
@@ -196,18 +185,18 @@ class Server {
     var rp:ClientResponse;
     var pass = Cryp.key(rq.pass, 120);
     var uentry = readUser(rq.user);
-    if (uentry.length > 0 && uentry[0].pass == pass) {
+    if (uentry != null && uentry.pass == pass) {
       var ex = rq.persistent ? 31536000000 : expiration;
       var sentry = new SessionEntry(
         Cryp.genK(120),
         Date.now().getTime() + ex,
         ex,
-        uentry[0].user,
-        uentry[0].level
+        uentry.user,
+        uentry.level
       );
       writeSession(sentry);
       rp = new ClientResponse("", false, false,
-        new AuthResponse(uentry[0].level, sentry.sessionId));
+        new AuthResponse(uentry.level, sentry.sessionId));
     } else {
       rp = new ClientResponse("", false, false, new AuthResponse("-1", ""));
     }
@@ -230,7 +219,7 @@ class Server {
         addUser("admin", Cryp.key("deme", 120), "0");
       }
     }
-  };
+  }
 
 }
 

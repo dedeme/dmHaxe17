@@ -37,7 +37,8 @@ class Dom {
         .add(Q("tr")
           .add(Q("td")
             .add((selected == ""
-              ? Q("a").att("class", "frame").att("href", "../conf/index.html")
+              ? Q("a").att("class", "frame")
+                .att("href", "../conf/index.html")
               : Q("a").att("href", "../conf/index.html")
               )
               .add(img("asterisk").att("align", "top")))

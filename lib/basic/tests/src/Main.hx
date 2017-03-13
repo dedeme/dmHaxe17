@@ -18,5 +18,7 @@ class Main {
     RndTest.run();
     MTableTest.run();
     StoreTest.run();
+    LsTest.run();
+
   }
 }

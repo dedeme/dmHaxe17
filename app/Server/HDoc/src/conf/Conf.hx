@@ -21,7 +21,7 @@ class Conf {
   ///
   public static function main() {
     client = Global.client();
-    client.send("lib/index.js", "getConfPaths", {}, function (rp:Dynamic) {
+    client.send("lib/index.js", "getConfPaths", "", function (rp:Dynamic) {
       var cp = ConfData.restore(rp);
       conf = cp.conf;
       var table = cp.paths;
@@ -33,6 +33,7 @@ class Conf {
       });
 
       Dom.show(client, table, "");
+      dm.Ui.QQ("title").next().text("HDoc : Conf");
       new ConfW(table).show();
     });
   }
@@ -85,9 +86,7 @@ class Conf {
       alert(vpath);
     } else {
       var rq:AddRq = {name:name, path:path};
-      client.send("conf/index.js", "add", rq, function (rp:String) {
-        main();
-      });
+      client.send("conf/index.js", "add", rq, It.p({ main(); }));
     }
   }
 
@@ -95,10 +94,8 @@ class Conf {
   public static function changeShowAll () {
     if (!client.controlPageId()) return;
 
-    var nconf = new ConfEntry(conf.path, !conf.visible, conf.lang);
-    client.send("lib/index.js", "setConf", nconf.serialize(), function (rp) {
-      main();
-    });
+    var nc = new ConfEntry(conf.path, !conf.visible, conf.lang);
+    client.send("lib/index.js", "setConf", nc.serialize(), It.p({ main(); }));
   }
 
   ///
@@ -110,9 +107,7 @@ class Conf {
       return;
     }
     var rq:SelRq = {name:name, selected:value};
-    client.send("conf/index.js", "sel", rq, function (rp) {
-      main();
-    });
+    client.send("conf/index.js", "sel", rq, It.p({ main(); }));
   }
 
   ///
@@ -128,9 +123,7 @@ class Conf {
 
     if (js.Browser.window.confirm(I18n.format(_("Delete %0?"), [name]))) {
       var rq:DelRq = {name:name};
-      client.send("conf/index.js", "del", rq, function (rp:String) {
-        main();
-      });
+      client.send("conf/index.js", "del", rq, It.p({ main(); }));
     }
   }
 
@@ -159,9 +152,7 @@ class Conf {
         main();
       } else {
         var rq:ModifyRq = {oldName:oldName, newName:newName, path:newPath};
-        client.send("conf/index.js", "modify", rq, function (rp:String) {
-          main();
-        });
+        client.send("conf/index.js", "modify", rq, It.p({ main(); }));
       }
     }
   }
@@ -171,10 +162,8 @@ class Conf {
     if (!client.controlPageId()) return;
 
     var lang = conf.lang == "en" ? "es" : "en";
-    var nconf = new ConfEntry(conf.path, conf.visible, lang);
-    client.send("lib/index.js", "setConf", nconf.serialize(), function (rp) {
-      main();
-    });
+    var nc = new ConfEntry(conf.path, conf.visible, lang);
+    client.send("lib/index.js", "setConf", nc.serialize(), It.p({ main(); }));
   }
 
   public static function changePass () {

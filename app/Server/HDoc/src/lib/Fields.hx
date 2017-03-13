@@ -4,6 +4,7 @@
  */
 
 import dm.NoDb;
+import dm.B41;
 import dm.It;
 import Global;
 
@@ -85,6 +86,47 @@ class PathsEntry {
   }
 }
 
+enum IndexEnum {
+  IndexFile(name:String, time:Float, help:String);
+  IndexDir(name:String, entries:Array<IndexEnum>);
+}
+
+class IndexEntry {
+  public var tree(default, null):IndexEnum;
+  public function new(tree:IndexEnum) {
+    this.tree = tree;
+  }
+
+  static function serializeIndexEnum(ie:IndexEnum):Array<Dynamic> {
+    return switch(ie) {
+      case IndexFile(name, time, help): [name, time, help];
+      case IndexDir(name, entries): [
+        name, It.from(entries).map(It.f(serializeIndexEnum(_1))).to()
+      ];
+    }
+  }
+  static function restoreIndexEnum(s:Array<Dynamic>):IndexEnum {
+    return s.length == 3
+      ? IndexFile(s[0], s[1], s[2])
+      : IndexDir(s[0], It.from(s[1]).map(It.f(restoreIndexEnum(_1))).to());
+  }
+  public function serialize():Array<Dynamic> {
+    return [serializeIndexEnum(tree)];
+  }
+  public static function restore(s:Array<Dynamic>):IndexEntry {
+    return new IndexEntry(restoreIndexEnum(s[0]));
+  }
+
+  public static function mkNoDb(pack:String):NoDb<IndexEntry> {
+    return new NoDb(
+      Global.server(),
+      "data/index/" + B41.compress(pack),
+      function (o:IndexEntry) { return o.serialize(); },
+      restore
+    );
+  }
+}
+
 /// Row of path data passed to the client, Used in 'ConfData'
 class PathsData {
   public var name(default, null):String;
@@ -132,17 +174,13 @@ class ConfData {
   public function serialize():Array<Dynamic> {
     return [
       conf.serialize(),
-      It.from(paths).map(function (p) {
-        return p.serialize();
-      }).to()
+      It.from(paths).map(It.f(_1.serialize())).to()
     ];
   }
   public static function restore(s:Array<Dynamic>):ConfData {
     return new ConfData(
       ConfEntry.restore(s[0]),
-      It.from(s[1]).map(function (s) {
-        return PathsData.restore(s);
-      }).to()
+      It.from(s[1]).map(It.f(PathsData.restore(_1))).to()
     );
   }
 }
