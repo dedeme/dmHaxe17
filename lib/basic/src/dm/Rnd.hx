@@ -22,8 +22,8 @@ class Rnd {
 
 
   /// Returns a random dm.Dec between n1 (inclusive) and n2 (inclusive) with
-  ///   'd' : decimals. (n2 can be less than n1)
-  ///   n   : Must be > 0, otherwise is changed to 0
+  /// 'd' decimals. (n2 can be less than n1)
+  ///   d   : Must be > 0, otherwise is changed to 0
   ///   n1  : A limit
   ///   n2  : Another limit
   public static function dec (d:Int, n1:Float, n2:Float):Dec {

@@ -33,7 +33,7 @@ class Logout {
               .add(Q("tr")
                 .add(Q("td")
                   .att("style", "padding:0px 10px 0px 10px;")
-                  .html(_("view.Logout-message"))))))
+                  .html(_("Logout-message"))))))
       );
     });
   }

@@ -3,9 +3,10 @@
  * GNU General Public License - V3 <http://www.gnu.org/licenses/>
  */
 
+/// Utilities to access to DOM
 package dm;
 
-///
+/// Actions types to use with DomObject.on
 enum ActionType {
   BLUR; CHANGE; CLICK; DBLCLICK; FOCUS; KEYDOWN; KEYPRESS; KEYUP;
   LOAD; MOUSEDOWN; MOUSEMOVE; MOUSEOUT; MOUSEOVER; MOUSEUP; MOUSEWHEEL;

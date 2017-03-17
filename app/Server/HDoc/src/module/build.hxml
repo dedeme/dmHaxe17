@@ -1,11 +1,10 @@
--cp src/lib
--cp src/main
+-cp ../../src/lib
+-cp ../../src/module
 -cp /deme/dmHaxe17/lib/basic_0.1.0/src
 -cp /deme/dmHaxe17/lib/server_2.0.0/src
 -cp /deme/dmHaxe17/lib/widgets_0.0.1/src
 
--js ../../www/main/index.js
--D js-flatten
+-js ../../www/module/index.js
 -dce full
 
--main Main
+-main Module

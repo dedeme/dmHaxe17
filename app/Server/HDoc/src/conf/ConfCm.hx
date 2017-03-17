@@ -5,19 +5,14 @@
 
 import dm.Client;
 
-///
 typedef PageIdRp = { id:String }
 
-///
 typedef SelRq = { name:String, selected:Bool }
 
-///
 typedef AddRq = { name:String, path:String }
 
-///
 typedef DelRq = { name:String }
 
-///
 typedef ModifyRq = {
   oldName:String, newName:String, path:String
 }

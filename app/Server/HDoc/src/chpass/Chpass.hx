@@ -23,7 +23,7 @@ class Chpass {
   public static function main() {
     var chpass = new Chpass();
     chpass.client.send("lib/index.js", "getConf", {}, function (rp:Dynamic) {
-      var conf = ConfEntry.restore(rp);
+      var conf = ConfEntry.restore(rp[0]);
       Global.setLanguage(conf.lang);
 
       chpass.view = new ChpassView(chpass);

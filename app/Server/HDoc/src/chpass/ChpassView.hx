@@ -144,7 +144,7 @@ class ChpassView {
                 "font-family: sans;font-size: 14px;" +
                 "padding: 4px;border-radius: 4px;")
               .add(Q("tr")
-                .add(Q("td").html(_("Chpass.body-changePasswordError"))))))
+                .add(Q("td").html(_("Fail trying to change password"))))))
       );
     }
 

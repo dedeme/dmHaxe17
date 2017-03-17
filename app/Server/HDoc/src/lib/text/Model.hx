@@ -71,10 +71,19 @@ class HelpFinal extends HelpElement {
   }
 }
 
+interface ContainerHelp {
+  public function addParameter(p:HelpFinal):Void;
+  public function addMethod(m:HelpFinal):Void;
+  public function addConstructor(c:HelpFinal):Void;
+  public function addVariable(v:HelpFinal):Void;
+  public function addFunction(f:HelpFinal):Void;
+  public function addMacro(m:HelpFinal):Void;
+}
+
 /// Interface data.<p>
 /// The constructor creates an empty class which will have to
 /// be completed when the code file is read.
-class InterfaceHelp extends HelpFinal {
+class InterfaceHelp extends HelpFinal implements ContainerHelp {
   public var parameters(default, null):Array<HelpFinal>;
   public var methods(default, null):Array<HelpFinal>;
 
@@ -86,6 +95,24 @@ class InterfaceHelp extends HelpFinal {
   /// Number of elements plus one.
   public function count() {
     return 1 + parameters.length + methods.length;
+  }
+  public function addParameter(p:HelpFinal):Void  {
+    parameters.push(p);
+  }
+  public function addMethod(m:HelpFinal):Void {
+    methods.push(m);
+  }
+  public function addConstructor(c:HelpFinal):Void {
+    throw "InterfaceHelp does not have constructors";
+  }
+  public function addVariable(v:HelpFinal):Void {
+    throw "InterfaceHelp does not have variables";
+  }
+  public function addFunction(f:HelpFinal):Void {
+    throw "InterfaceHelp does not have functions";
+  }
+  public function addMacro(m:HelpFinal):Void {
+    throw "InterfaceHelp does not have macros";
   }
 }
 
@@ -110,6 +137,18 @@ class ClassHelp extends InterfaceHelp {
     return super.count() + constructors.length + variables.length +
       functions.length + macros.length;
   }
+  override public function addConstructor(c:HelpFinal):Void {
+    constructors.push(c);
+  }
+  override public function addVariable(v:HelpFinal):Void {
+    variables.push(v);
+  }
+  override public function addFunction(f:HelpFinal):Void {
+    functions.push(f);
+  }
+  override public function addMacro(m:HelpFinal):Void {
+    macros.push(m);
+  }
 }
 
 /// Abstract data.<p>
@@ -125,7 +164,9 @@ class AbstractHelp extends ClassHelp {
 /// The constructor creates an empty class which will have to be
 /// completed when the code file is read.
 class ModuleHelp extends HelpElement {
-  public var interfaces (default, null):Array<InterfaceHelp>;
+  public var code(default, null):StringBuf;
+  public var imports(default, null):Array<String>;
+  public var interfaces(default, null):Array<InterfaceHelp>;
   public var classes(default, null):Array<ClassHelp>;
   public var abstracts(default, null):Array<AbstractHelp>;
   public var enums (default, null):Array<HelpFinal>;
@@ -135,6 +176,8 @@ class ModuleHelp extends HelpElement {
   /// It can be changed with 'setHelp()'
   public function new (name:String) {
     super (name, "");
+    code = new StringBuf();
+    imports = new Array<String>();
     interfaces = new Array<InterfaceHelp> ();
     classes = new Array<ClassHelp> ();
     abstracts = new Array<AbstractHelp> ();
@@ -144,7 +187,8 @@ class ModuleHelp extends HelpElement {
 
   /// Modifies help value
   public function setHelp (help:String) {
-    this.help = help;
+    if (this.help == "")
+      this.help = help;
   }
 
   /// Count all the elements which appear in the initial index.

@@ -3,7 +3,7 @@
  * GNU General Public License - V3 <http://www.gnu.org/licenses/>
  */
 
-/// Contains class [It] which is an iterator that iterates over collections
+/// Contains class [It] which is an iterator over collections
 package dm;
 
 import haxe.macro.Expr;
@@ -11,7 +11,6 @@ import haxe.io.Bytes;
 import haxe.io.BytesBuffer;
 import dm.Tuple;
 
-/// Class
 class It<T> {
   var fhasNext: Void -> Bool;
   var fnext: Void -> T;
@@ -662,9 +661,9 @@ class It<T> {
   /**
    * Integer iterator.
    *  Its values are:
-   *  * If [end] = null and [step] = null => from 0 to [begin] step 1
-   *  * If [step] = null => from [begin] to [end] step 1
-   *  * Else => from [begin] to [end] step [step
+   *    * If [end] = null and [step] = null => from 0 to [begin] step 1
+   *    * If [step] = null => from [begin] to [end] step 1
+   *    * Else => from [begin] to [end] step [step]
    */
   public static function range(begin : Int, ?end : Int, ?step : Int)
   : It<Int> {
@@ -764,26 +763,6 @@ class It<T> {
         return new Tp3(it1.next(), it2.next(), it3.next());
       }
     );
-  }
-
-  /// Simple lambda-procedure without argurment
-  macro public static function p0(e:Expr) {
-    return macro function () $e;
-  }
-
-  /// Simple lambda-procedure with one argurment
-  macro public static function p(e:Expr) {
-    return macro function (_1) $e;
-  }
-
-  /// Simple lambda-procedure with two argurment
-  macro public static function p2(e:Expr) {
-    return macro function (_1, _2) $e;
-  }
-
-  /// Simple lambda-procedure with three argurment
-  macro public static function p3(e:Expr) {
-    return macro function (_1, _2, _3) $e;
   }
 
   /// Simple lambda with one argurment

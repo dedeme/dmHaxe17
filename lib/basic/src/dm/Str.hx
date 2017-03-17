@@ -159,6 +159,29 @@ class Str {
     }
     return bf.toString();
   }
+
+  /// Replace using a regular expression
+  inline public static function replace(
+    s:String, exp:EReg, repl:String)
+  :String {
+    return exp.replace(s, repl);
+  }
+
+  /// Remove starting and trailing spaces
+  inline public static function trim(s:String):String {
+    return StringTools.trim(s);
+  }
+
+  /// Returns 'true' if 's' starts with 'sub'
+  inline public static function startsWith(s:String, sub:String):Bool {
+    return StringTools.startsWith(s, sub);
+  }
+
+  /// Returns 'true' if 's' ends with 'sub'
+  inline public static function endsWith(s:String, sub:String):Bool {
+    return StringTools.endsWith(s, sub);
+  }
+
 }
 
 /// Implements a buffer that alows to delete its contents.<p>

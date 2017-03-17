@@ -6,7 +6,7 @@
 import Fields;
 
 typedef ListRp = {
-  error : Bool,   // If path does no exist
+  error : Bool,           // If path does no exist
   packs : Array<Dynamic>, // it is an Array<PathsData serialized>
   tree  : Array<Dynamic>  // It is an IndexEntry serialized
- }
+}

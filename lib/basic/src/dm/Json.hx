@@ -3,7 +3,7 @@
  * GNU General Public License - V3 <http://www.gnu.org/licenses/>
  */
 
-/// Cryptographic functions
+/// JSON functions
 package dm;
 
 import dm.Json;

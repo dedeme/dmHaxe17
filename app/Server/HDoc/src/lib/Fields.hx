@@ -3,6 +3,8 @@
  * GNU General Public License - V3 <http://www.gnu.org/licenses/>
  */
 
+/// Several fields for Server and communications.
+
 import dm.NoDb;
 import dm.B41;
 import dm.It;
@@ -184,9 +186,3 @@ class ConfData {
     );
   }
 }
-
-///
-typedef FileRq = { path:String }
-
-///
-typedef FileRp = { error:Bool, code:String }

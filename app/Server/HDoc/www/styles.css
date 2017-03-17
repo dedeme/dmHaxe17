@@ -7,7 +7,7 @@ A{
   text-decoration: none; font-family: sans;
   color: #000080; font-weight: normal;font-size:14px;
 }
-TT{color:#400030; font-size: 14px}
+TT{color:#400030; font-size: 12px}
 pre {
   background-color: rgb(245, 245, 248);
   border: 1px solid rgb(110,130,150);
@@ -118,4 +118,3 @@ table tr td dt code {
 sup {
     font-size:6px;
 }
-

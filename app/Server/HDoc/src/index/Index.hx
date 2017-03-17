@@ -18,12 +18,11 @@ class Index {
     client.send("index/index.js", "list", pack, function (rp:ListRp) {
       if (rp.error) Dom.go("../main/index.html");
 
-      trace(dm.Json.from(rp));
-
       IndexView.show(
         client,
         It.from(rp.packs).map(It.f(PathsData.restore(_1))).to(),
-        pack
+        pack,
+        IndexEntry.restore(rp.tree).tree
       );
     });
   }

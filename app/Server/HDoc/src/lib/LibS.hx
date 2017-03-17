@@ -17,8 +17,7 @@ class LibS {
       getPaths,
       getConf,
       setConf,
-      getConfPaths,
-      readFile
+      getConfPaths
     ];
   }
 
@@ -62,16 +61,6 @@ class LibS {
         ce,
         FnS.getPaths().to()
       ).serialize();
-    });
-  }
-
-  @:expose("readFile")
-  ///
-  public static function readFile(data:String):String {
-    return Global.server().rp(data, function (rq:FileRq):FileRp {
-      return FnS.isInRoot(rq.path) && Io.exists(rq.path)
-        ? { error : false, code : Io.read(rq.path) }
-        : { error : true, code : "" };
     });
   }
 

@@ -62,6 +62,8 @@ class StrTest {
     arr2 = It.from(arr).sort(Str.localeCompare).to();
     t.eq(["p zarra", "pera", "pérez", "pizarra"].toString(), arr2.toString());
 
+    t.eq ("a b", Str.replace("a  \t\n  b", ~/\s+/g, " "));
+
     t.log();
 
     // Old tests

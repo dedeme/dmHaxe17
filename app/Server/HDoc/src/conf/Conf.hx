@@ -86,7 +86,7 @@ class Conf {
       alert(vpath);
     } else {
       var rq:AddRq = {name:name, path:path};
-      client.send("conf/index.js", "add", rq, It.p({ main(); }));
+      client.send("conf/index.js", "add", rq, function (x) { main(); });
     }
   }
 
@@ -95,7 +95,8 @@ class Conf {
     if (!client.controlPageId()) return;
 
     var nc = new ConfEntry(conf.path, !conf.visible, conf.lang);
-    client.send("lib/index.js", "setConf", nc.serialize(), It.p({ main(); }));
+    client.send("lib/index.js", "setConf", nc.serialize(),
+      function (x) { main(); });
   }
 
   ///
@@ -107,7 +108,7 @@ class Conf {
       return;
     }
     var rq:SelRq = {name:name, selected:value};
-    client.send("conf/index.js", "sel", rq, It.p({ main(); }));
+    client.send("conf/index.js", "sel", rq, function (x) { main(); });
   }
 
   ///
@@ -123,7 +124,7 @@ class Conf {
 
     if (js.Browser.window.confirm(I18n.format(_("Delete %0?"), [name]))) {
       var rq:DelRq = {name:name};
-      client.send("conf/index.js", "del", rq, It.p({ main(); }));
+      client.send("conf/index.js", "del", rq, function (x) { main(); });
     }
   }
 
@@ -152,7 +153,7 @@ class Conf {
         main();
       } else {
         var rq:ModifyRq = {oldName:oldName, newName:newName, path:newPath};
-        client.send("conf/index.js", "modify", rq, It.p({ main(); }));
+        client.send("conf/index.js", "modify", rq, function (x) { main(); });
       }
     }
   }
@@ -163,7 +164,8 @@ class Conf {
 
     var lang = conf.lang == "en" ? "es" : "en";
     var nc = new ConfEntry(conf.path, conf.visible, lang);
-    client.send("lib/index.js", "setConf", nc.serialize(), It.p({ main(); }));
+    client.send("lib/index.js", "setConf", nc.serialize(),
+      function (x) { main(); });
   }
 
   public static function changePass () {

@@ -10,6 +10,7 @@ import Fields;
 /// Server utilities
 class FnS {
 
+  /// Set the field path of Conf
   public static function setConfPath(path:String) {
     var tconf = ConfEntry.mkNoDb();
     var vconf = tconf.read().next();

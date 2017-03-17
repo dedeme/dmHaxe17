@@ -1,134 +1,127 @@
 # File generated file by haxe_maker
 
-# ORPHAN
-Directory '%0' can not be read = El directorio '%0' no puede ser leido
+# chpass/Chpass.hx : 38
+Current password is missing = Falta por indicar la contraseña actual
 
-# ORPHAN
-File '%0' can not be read = El archivo '%0' no puede ser leido
+# chpass/Chpass.hx : 44
+New password is missing = Falta por indicar la nueva contraseña
 
-# ORPHAN
+# auth/AuthView.hx : 99
+Password = Contraseña
+
+# auth/Auth.hx : 43
+Password is missing = Falta por indicar la contraseña
+
+# chpass/Chpass.hx : 73
+Password successfully changed = La contraseña se cambió adecuadamente
+
+# lib/Expired.hx : 34
+Session is expired. = La sesión ha expirado.
+
+# auth/Auth.hx : 39
+User name is missing = Falta por indicar el nombre del usuario
+
+# auth/AuthView.hx : 136
+Wrong password = La contraseña es incorrecta
+
+# lib/Expired.hx : 17
+here = aquí
+
+# auth/AuthView.hx : 64
+# chpass/ChpassView.hx : 71
+# chpass/ChpassView.hx : 129
+Accept = Aceptar
+
+# chpass/ChpassView.hx : 66
+# chpass/ChpassView.hx : 125
+Cancel = Cancelar
+
+# chpass/ChpassView.hx : 182
+# conf/ConfW.hx : 145
+Change Password = Cambiar la contraseña
+
+# auth/AuthView.hx : 151
+# chpass/ChpassView.hx : 162
+Check gray squares = Marcar los cuadrados grises
+
+# lib/Expired.hx : 36
+Click %0 to continue. = Hacer click en %0 para continuar.
+
+# chpass/ChpassView.hx : 114
+Confirm password = Confirmar la contraseña
+
+# chpass/Chpass.hx : 50
+Confirm password is missing = Falta la confirmación de la contraseña
+
+# conf/Conf.hx : 31
+Current page is expired.\nPress [Accept] to reload. = La página actual ha expirado.\nPulse [Aceptar] para recargarla.
+
+# chpass/ChpassView.hx : 102
+Current password = Contraseña actual
+
+# chpass/ChpassView.hx : 147
+Fail trying to change password = Fallo intentando cambiar la contraseña
+
+# auth/AuthView.hx : 75
+# chpass/ChpassView.hx : 84
+Grey squares checks are wrong = Las casillas grises están mal marcadas
+
+# auth/AuthView.hx : 114
+Keep connected = Mantenerse conectado
+
+# auth/AuthView.hx : 171
+Login = Identificación
+
+# chpass/ChpassView.hx : 108
+New password = Nueva contraseña
+
+# chpass/Chpass.hx : 56
+New password and confirm password do not match = La nueva contraseña y su confirmación no coinciden.
+
+# logout/Logout.hx : 36
+Logout-message = <p>%0 ha terminado.</p><p><b>¡Hasta pronto!</b></p>
+
+# conf/ConfW.hx : 74
 Name = Nombre
 
-# ORPHAN
+# conf/ConfW.hx : 75
 Path = Ruta
 
-# TODO
-# auth/AuthView.hx : 64
-# chpass/ChpassView.hx : 66
-# chpass/ChpassView.hx : 124
-Accept = 
-
-# TODO
-# chpass/ChpassView.hx : 61
-# chpass/ChpassView.hx : 120
-Cancel = 
-
-# TODO
-# conf/ConfW.hx : 145
-Change Password = 
-
-# TODO
-# auth/AuthView.hx : 151
-# chpass/ChpassView.hx : 157
-Check gray squares = 
-
-# TODO
-# lib/Expired.hx : 36
-Click %0 to continue. = 
-
-# TODO
-# chpass/ChpassView.hx : 109
-Confirm password = 
-
-# TODO
-# chpass/Chpass.hx : 49
-Confirm password is missing = 
-
-# TODO
-# conf/Conf.hx : 31
-Current page is expired.\nPress [Accept] to reload. = 
-
-# TODO
-# chpass/ChpassView.hx : 97
-Current password = 
-
-# TODO
-# chpass/Chpass.hx : 37
-Current password is missing = 
-
-# TODO
-# auth/AuthView.hx : 75
-# chpass/ChpassView.hx : 79
-Grey squares checks are wrong = 
-
-# TODO
-# chpass/ChpassView.hx : 103
-New password = 
-
-# TODO
-# chpass/Chpass.hx : 55
-New password and confirm password do not match = 
-
-# TODO
-# chpass/Chpass.hx : 43
-New password is missing = 
-
-# TODO
-# auth/AuthView.hx : 99
-Password = 
-
-# TODO
-# auth/Auth.hx : 43
-Password is missing = 
-
-# TODO
-# chpass/Chpass.hx : 72
-Password successfully changed = 
-
-# TODO
 # auth/AuthView.hx : 94
-User = 
-
-# TODO
-# auth/Auth.hx : 39
-User name is missing = 
-
-# TODO
-# logout/Logout.hx : 36
-view.Logout-message = 
+User = Usuario
 
 # conf/ConfW.hx : 140
 Change Language to %0 = Change Language to %0
 
-# conf/Conf.hx : 129
+# conf/Conf.hx : 125
 Delete %0? = ¿Eliminar %0?
 
 # conf/ConfW.hx : 38
 Libraries = Librerías
 
-# conf/Conf.hx : 49
-# conf/Conf.hx : 51
-# conf/Conf.hx : 53
+# conf/Conf.hx : 50
+# conf/Conf.hx : 52
+# conf/Conf.hx : 54
 Name '%0' contains '%1' = El nombre '%0' contiene '%1'
 
-# conf/Conf.hx : 55
+# conf/Conf.hx : 56
 Name '%0' contains blanks = El nombre '%0' contiene espacios en blanco
 
-# conf/Conf.hx : 59
+# conf/Conf.hx : 60
 Name '%0' is repeated = El nombre está repetido
 
-# conf/Conf.hx : 47
+# conf/Conf.hx : 48
 Name is missing = Falta el nombre
 
-# conf/Conf.hx : 67
+# conf/Conf.hx : 68
 Path can not end with '/' = La ruta no puede terminar con '/'
 
-# conf/Conf.hx : 65
+# conf/Conf.hx : 66
 Path is missing = Falta la ruta
 
 # conf/ConfW.hx : 132
 There are no libraries = No hay librerías
 
-# conf/Conf.hx : 109
+# conf/Conf.hx : 107
 This source can not be selected, because it does not exist = Esta fuente no puede ser seleccionada por que no existe
 

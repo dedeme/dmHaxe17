@@ -17,7 +17,11 @@ class Main {
       } else if (path.indexOf("@") == -1) {
         Dom.go("../index/index.html?" + path);
       } else {
-        throw "Bad page path.";
+        if (path.indexOf("&") == -1) {
+          Dom.go("../module/index.html?" + path);
+        } else {
+          Dom.go("../code/index.html?" + path);
+        }
       }
     });
   }

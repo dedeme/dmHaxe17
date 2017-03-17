@@ -3,6 +3,34 @@
 class I18nData {
   public static function en():String {
     return "" +
+      "Current password is missing = 'Current password' is missing\n" +
+      "Accept = Accept\n" +
+      "Cancel = Cancel\n" +
+      "Change Password = Change Password\n" +
+      "Check gray squares = Check gray squares\n" +
+      "Fail trying to change password = Fail trying to change password\n" +
+      "Click %0 to continue. = Click %0 to continue.\n" +
+      "Confirm password = Confirm password\n" +
+      "Confirm password is missing = 'Confirm password' is missing\n" +
+      "Current page is expired.\nPress [Accept] to reload. = Current page is expired.\nPress [Accept] to reload.\n" +
+      "Current password = Current password\n" +
+      "Grey squares checks are wrong = Grey squares checks are wrong\n" +
+      "Keep connected = Keep connected\n" +
+      "Login = Login\n" +
+      "Name = Name\n" +
+      "New password = New password\n" +
+      "New password and confirm password do not match = New password and confirm password do not match\n" +
+      "New password is missing = 'New password' is missing\n" +
+      "Password = Password\n" +
+      "Password is missing = Password is missing\n" +
+      "Password successfully changed = Password successfully changed\n" +
+      "Session is expired. = Session is expired.\n" +
+      "User = User\n" +
+      "User name is missing = User name is missing\n" +
+      "Wrong password = Wrong password\n" +
+      "here = here\n" +
+      "Logout-message = <p>%0 has finished.</p><p><b>Good by!</b></p>\n" +
+      "Path = Path\n" +
       "Change Language to %0 = Cambiar el idioma a %0\n" +
       "Delete %0? = Delete %0?\n" +
       "Libraries = Libraries\n" +
@@ -19,6 +47,34 @@ class I18nData {
 
   public static function es():String {
     return "" +
+      "Current password is missing = Falta por indicar la contraseña actual\n" +
+      "New password is missing = Falta por indicar la nueva contraseña\n" +
+      "Password = Contraseña\n" +
+      "Password is missing = Falta por indicar la contraseña\n" +
+      "Password successfully changed = La contraseña se cambió adecuadamente\n" +
+      "Session is expired. = La sesión ha expirado.\n" +
+      "User name is missing = Falta por indicar el nombre del usuario\n" +
+      "Wrong password = La contraseña es incorrecta\n" +
+      "here = aquí\n" +
+      "Accept = Aceptar\n" +
+      "Cancel = Cancelar\n" +
+      "Change Password = Cambiar la contraseña\n" +
+      "Check gray squares = Marcar los cuadrados grises\n" +
+      "Click %0 to continue. = Hacer click en %0 para continuar.\n" +
+      "Confirm password = Confirmar la contraseña\n" +
+      "Confirm password is missing = Falta la confirmación de la contraseña\n" +
+      "Current page is expired.\nPress [Accept] to reload. = La página actual ha expirado.\nPulse [Aceptar] para recargarla.\n" +
+      "Current password = Contraseña actual\n" +
+      "Fail trying to change password = Fallo intentando cambiar la contraseña\n" +
+      "Grey squares checks are wrong = Las casillas grises están mal marcadas\n" +
+      "Keep connected = Mantenerse conectado\n" +
+      "Login = Identificación\n" +
+      "New password = Nueva contraseña\n" +
+      "New password and confirm password do not match = La nueva contraseña y su confirmación no coinciden.\n" +
+      "Logout-message = <p>%0 ha terminado.</p><p><b>¡Hasta pronto!</b></p>\n" +
+      "Name = Nombre\n" +
+      "Path = Ruta\n" +
+      "User = Usuario\n" +
       "Change Language to %0 = Change Language to %0\n" +
       "Delete %0? = ¿Eliminar %0?\n" +
       "Libraries = Librerías\n" +

@@ -1,134 +1,127 @@
 # File generated file by haxe_maker
 
-# ORPHAN
-Directory '%0' can not be read = Directory '%0' can not be read
+# chpass/Chpass.hx : 38
+Current password is missing = 'Current password' is missing
 
-# ORPHAN
-File '%0' can not be read = File '%0' can not be read
+# auth/AuthView.hx : 64
+# chpass/ChpassView.hx : 71
+# chpass/ChpassView.hx : 129
+Accept = Accept
 
-# ORPHAN
+# chpass/ChpassView.hx : 66
+# chpass/ChpassView.hx : 125
+Cancel = Cancel
+
+# chpass/ChpassView.hx : 182
+# conf/ConfW.hx : 145
+Change Password = Change Password
+
+# auth/AuthView.hx : 151
+# chpass/ChpassView.hx : 162
+Check gray squares = Check gray squares
+
+# chpass/ChpassView.hx : 147
+Fail trying to change password = Fail trying to change password
+
+# lib/Expired.hx : 36
+Click %0 to continue. = Click %0 to continue.
+
+# chpass/ChpassView.hx : 114
+Confirm password = Confirm password
+
+# chpass/Chpass.hx : 50
+Confirm password is missing = 'Confirm password' is missing
+
+# conf/Conf.hx : 31
+Current page is expired.\nPress [Accept] to reload. = Current page is expired.\nPress [Accept] to reload.
+
+# chpass/ChpassView.hx : 102
+Current password = Current password
+
+# auth/AuthView.hx : 75
+# chpass/ChpassView.hx : 84
+Grey squares checks are wrong = Grey squares checks are wrong
+
+# auth/AuthView.hx : 114
+Keep connected = Keep connected
+
+# auth/AuthView.hx : 171
+Login = Login
+
+# conf/ConfW.hx : 74
 Name = Name
 
-# ORPHAN
-Path = Path
+# chpass/ChpassView.hx : 108
+New password = New password
 
-# TODO
-# auth/AuthView.hx : 64
-# chpass/ChpassView.hx : 66
-# chpass/ChpassView.hx : 124
-Accept = 
+# chpass/Chpass.hx : 56
+New password and confirm password do not match = New password and confirm password do not match
 
-# TODO
-# chpass/ChpassView.hx : 61
-# chpass/ChpassView.hx : 120
-Cancel = 
+# chpass/Chpass.hx : 44
+New password is missing = 'New password' is missing
 
-# TODO
-# conf/ConfW.hx : 145
-Change Password = 
-
-# TODO
-# auth/AuthView.hx : 151
-# chpass/ChpassView.hx : 157
-Check gray squares = 
-
-# TODO
-# lib/Expired.hx : 36
-Click %0 to continue. = 
-
-# TODO
-# chpass/ChpassView.hx : 109
-Confirm password = 
-
-# TODO
-# chpass/Chpass.hx : 49
-Confirm password is missing = 
-
-# TODO
-# conf/Conf.hx : 31
-Current page is expired.\nPress [Accept] to reload. = 
-
-# TODO
-# chpass/ChpassView.hx : 97
-Current password = 
-
-# TODO
-# chpass/Chpass.hx : 37
-Current password is missing = 
-
-# TODO
-# auth/AuthView.hx : 75
-# chpass/ChpassView.hx : 79
-Grey squares checks are wrong = 
-
-# TODO
-# chpass/ChpassView.hx : 103
-New password = 
-
-# TODO
-# chpass/Chpass.hx : 55
-New password and confirm password do not match = 
-
-# TODO
-# chpass/Chpass.hx : 43
-New password is missing = 
-
-# TODO
 # auth/AuthView.hx : 99
-Password = 
+Password = Password
 
-# TODO
 # auth/Auth.hx : 43
-Password is missing = 
+Password is missing = Password is missing
 
-# TODO
-# chpass/Chpass.hx : 72
-Password successfully changed = 
+# chpass/Chpass.hx : 73
+Password successfully changed = Password successfully changed
 
-# TODO
+# lib/Expired.hx : 34
+Session is expired. = Session is expired.
+
 # auth/AuthView.hx : 94
-User = 
+User = User
 
-# TODO
 # auth/Auth.hx : 39
-User name is missing = 
+User name is missing = User name is missing
 
-# TODO
+# auth/AuthView.hx : 136
+Wrong password = Wrong password
+
+# lib/Expired.hx : 17
+here = here
+
 # logout/Logout.hx : 36
-view.Logout-message = 
+Logout-message = <p>%0 has finished.</p><p><b>Good by!</b></p>
+
+# conf/ConfW.hx : 75
+Path = Path
 
 # conf/ConfW.hx : 140
 Change Language to %0 = Cambiar el idioma a %0
 
-# conf/Conf.hx : 129
+# conf/Conf.hx : 125
 Delete %0? = Delete %0?
 
 # conf/ConfW.hx : 38
 Libraries = Libraries
 
-# conf/Conf.hx : 49
-# conf/Conf.hx : 51
-# conf/Conf.hx : 53
+# conf/Conf.hx : 50
+# conf/Conf.hx : 52
+# conf/Conf.hx : 54
 Name '%0' contains '%1' = Name '%0' contains '%1'
 
-# conf/Conf.hx : 55
+# conf/Conf.hx : 56
 Name '%0' contains blanks = Name '%0' contains blanks
 
-# conf/Conf.hx : 59
+# conf/Conf.hx : 60
 Name '%0' is repeated = Name '%0' is repeated
 
-# conf/Conf.hx : 47
+# conf/Conf.hx : 48
 Name is missing = Name is missing
 
-# conf/Conf.hx : 67
+# conf/Conf.hx : 68
 Path can not end with '/' = Path can not end with '/'
 
-# conf/Conf.hx : 65
+# conf/Conf.hx : 66
 Path is missing = Path is missing
 
 # conf/ConfW.hx : 132
 There are no libraries = There are no libraries
 
-# conf/Conf.hx : 109
+# conf/Conf.hx : 107
 This source can not be selected, because it does not exist = This source can not be selected, because it does not exist
 
