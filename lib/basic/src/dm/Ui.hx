@@ -296,7 +296,7 @@ class Ui {
     list     : Entries of select. Default selected goes marked with '+'
       (e.g. ["1", "+2", "3"])
   */
-  public static function select (
+  public static function select(
     idPrefix:String,
     list:Array<String>
   ):DomObject {
@@ -316,15 +316,25 @@ class Ui {
     return r;
   }
 
+  /// Emits a beep
+  public static function beep() {
+    var au = new js.html.audio.AudioContext();
+    var o = au.createOscillator();
+    o.frequency.value = 990;
+    o.connect(au.destination);
+    o.start(0);
+    haxe.Timer.delay(function() {o.stop(0);}, 80);
+  }
+
   /// Returns x position of mouse in browser window
-    public static function winX (e:js.html.MouseEvent):Int {
+  public static function mouseX(e:js.html.MouseEvent):Int {
     return js.Browser.document.documentElement.scrollLeft +
       js.Browser.document.body.scrollLeft +
       e.clientX;
   }
 
   /// Returns y position of mouse in browser window
-  public static function winY (e:js.html.MouseEvent):Int {
+  public static function mouseY(e:js.html.MouseEvent):Int {
     return js.Browser.document.documentElement.scrollTop +
       js.Browser.document.body.scrollTop +
       e.clientY;

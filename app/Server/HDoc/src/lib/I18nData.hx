@@ -3,61 +3,53 @@
 class I18nData {
   public static function en():String {
     return "" +
-      "Current password is missing = 'Current password' is missing\n" +
       "Accept = Accept\n" +
       "Cancel = Cancel\n" +
+      "Change Language to %0 = Cambiar el idioma a %0\n" +
       "Change Password = Change Password\n" +
       "Check gray squares = Check gray squares\n" +
-      "Fail trying to change password = Fail trying to change password\n" +
       "Click %0 to continue. = Click %0 to continue.\n" +
       "Confirm password = Confirm password\n" +
       "Confirm password is missing = 'Confirm password' is missing\n" +
       "Current page is expired.\nPress [Accept] to reload. = Current page is expired.\nPress [Accept] to reload.\n" +
       "Current password = Current password\n" +
+      "Current password is missing = 'Current password' is missing\n" +
+      "Delete %0? = Delete %0?\n" +
+      "Fail trying to change password = Fail trying to change password\n" +
       "Grey squares checks are wrong = Grey squares checks are wrong\n" +
+      "here = here\n" +
       "Keep connected = Keep connected\n" +
+      "Libraries = Libraries\n" +
       "Login = Login\n" +
+      "Logout-message = <p>%0 has finished.</p><p><b>Good by!</b></p>\n" +
       "Name = Name\n" +
+      "Name '%0' contains '%1' = Name '%0' contains '%1'\n" +
+      "Name '%0' contains blanks = Name '%0' contains blanks\n" +
+      "Name '%0' is repeated = Name '%0' is repeated\n" +
+      "Name is missing = Name is missing\n" +
       "New password = New password\n" +
       "New password and confirm password do not match = New password and confirm password do not match\n" +
       "New password is missing = 'New password' is missing\n" +
       "Password = Password\n" +
       "Password is missing = Password is missing\n" +
       "Password successfully changed = Password successfully changed\n" +
+      "Path = Path\n" +
+      "Path can not end with '/' = Path can not end with '/'\n" +
+      "Path is missing = Path is missing\n" +
       "Session is expired. = Session is expired.\n" +
+      "There are no libraries = There are no libraries\n" +
+      "This source can not be selected, because it does not exist = This source can not be selected, because it does not exist\n" +
       "User = User\n" +
       "User name is missing = User name is missing\n" +
       "Wrong password = Wrong password\n" +
-      "here = here\n" +
-      "Logout-message = <p>%0 has finished.</p><p><b>Good by!</b></p>\n" +
-      "Path = Path\n" +
-      "Change Language to %0 = Cambiar el idioma a %0\n" +
-      "Delete %0? = Delete %0?\n" +
-      "Libraries = Libraries\n" +
-      "Name '%0' contains '%1' = Name '%0' contains '%1'\n" +
-      "Name '%0' contains blanks = Name '%0' contains blanks\n" +
-      "Name '%0' is repeated = Name '%0' is repeated\n" +
-      "Name is missing = Name is missing\n" +
-      "Path can not end with '/' = Path can not end with '/'\n" +
-      "Path is missing = Path is missing\n" +
-      "There are no libraries = There are no libraries\n" +
-      "This source can not be selected, because it does not exist = This source can not be selected, because it does not exist\n" +
       "";
   }
 
   public static function es():String {
     return "" +
-      "Current password is missing = Falta por indicar la contraseña actual\n" +
-      "New password is missing = Falta por indicar la nueva contraseña\n" +
-      "Password = Contraseña\n" +
-      "Password is missing = Falta por indicar la contraseña\n" +
-      "Password successfully changed = La contraseña se cambió adecuadamente\n" +
-      "Session is expired. = La sesión ha expirado.\n" +
-      "User name is missing = Falta por indicar el nombre del usuario\n" +
-      "Wrong password = La contraseña es incorrecta\n" +
-      "here = aquí\n" +
       "Accept = Aceptar\n" +
       "Cancel = Cancelar\n" +
+      "Change Language to %0 = Change Language to %0\n" +
       "Change Password = Cambiar la contraseña\n" +
       "Check gray squares = Marcar los cuadrados grises\n" +
       "Click %0 to continue. = Hacer click en %0 para continuar.\n" +
@@ -65,27 +57,35 @@ class I18nData {
       "Confirm password is missing = Falta la confirmación de la contraseña\n" +
       "Current page is expired.\nPress [Accept] to reload. = La página actual ha expirado.\nPulse [Aceptar] para recargarla.\n" +
       "Current password = Contraseña actual\n" +
+      "Current password is missing = Falta por indicar la contraseña actual\n" +
+      "Delete %0? = ¿Eliminar %0?\n" +
       "Fail trying to change password = Fallo intentando cambiar la contraseña\n" +
       "Grey squares checks are wrong = Las casillas grises están mal marcadas\n" +
+      "here = aquí\n" +
       "Keep connected = Mantenerse conectado\n" +
+      "Libraries = Librerías\n" +
       "Login = Identificación\n" +
-      "New password = Nueva contraseña\n" +
-      "New password and confirm password do not match = La nueva contraseña y su confirmación no coinciden.\n" +
       "Logout-message = <p>%0 ha terminado.</p><p><b>¡Hasta pronto!</b></p>\n" +
       "Name = Nombre\n" +
-      "Path = Ruta\n" +
-      "User = Usuario\n" +
-      "Change Language to %0 = Change Language to %0\n" +
-      "Delete %0? = ¿Eliminar %0?\n" +
-      "Libraries = Librerías\n" +
       "Name '%0' contains '%1' = El nombre '%0' contiene '%1'\n" +
       "Name '%0' contains blanks = El nombre '%0' contiene espacios en blanco\n" +
       "Name '%0' is repeated = El nombre está repetido\n" +
       "Name is missing = Falta el nombre\n" +
+      "New password = Nueva contraseña\n" +
+      "New password and confirm password do not match = La nueva contraseña y su confirmación no coinciden.\n" +
+      "New password is missing = Falta por indicar la nueva contraseña\n" +
+      "Password = Contraseña\n" +
+      "Password is missing = Falta por indicar la contraseña\n" +
+      "Password successfully changed = La contraseña se cambió adecuadamente\n" +
+      "Path = Ruta\n" +
       "Path can not end with '/' = La ruta no puede terminar con '/'\n" +
       "Path is missing = Falta la ruta\n" +
+      "Session is expired. = La sesión ha expirado.\n" +
       "There are no libraries = No hay librerías\n" +
       "This source can not be selected, because it does not exist = Esta fuente no puede ser seleccionada por que no existe\n" +
+      "User = Usuario\n" +
+      "User name is missing = Falta por indicar el nombre del usuario\n" +
+      "Wrong password = La contraseña es incorrecta\n" +
       "";
   }
 

@@ -9,29 +9,28 @@ package dm;
 import dm.It;
 
 /**
-  This class should be used:
-    1. Creating o generating a file like:
-      class I18nData {
-        public static function en ():String {
-          return  "" +
-            "Change = Change\n" +
-            ...
-        }
-
-        public static function es ():String {
-          return  "" +
-            "Change = Cambiar\n" +
-            ...
-        }
-      }
-    2. When a application is started it is necessary to call 'init()':
-      ...
-      var tx = vars.conf().lang() == "en" ? I18nData.en() : I18nData.es();
-      I18n.init(tx.split("\n"));
-      ...
-    3. Afther that it is possible to call '_()'.
-  'format()' is a helper function for working with templates.
-*/
+ * This class should be used:
+ *   1. Creating o generating a file like:
+ *     class I18nData {
+ *       public static function en ():String {
+ *         return "" +
+ *           "Change = Change\n" +
+ *           ...
+ *       }
+ *       public static function es ():String {
+ *         return "" +
+ *           "Change = Cambiar\n" +
+ *           ...
+ *       }
+ *     }
+ *   2. When a application is started it is necessary to call 'init()':
+ *     ...
+ *     var tx = vars.conf().lang() == "en" ? I18nData.en() : I18nData.es();
+ *     I18n.init(tx.split("\n"));
+ *     ...
+ *   3. Afther that it is possible to call '_()'.
+ * 'format()' is a helper function for working with templates.
+ */
 class I18n {
 
   static var dic:Map<String, String>;

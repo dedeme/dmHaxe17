@@ -1,32 +1,5 @@
 # File generated file by haxe_maker
 
-# chpass/Chpass.hx : 38
-Current password is missing = Falta por indicar la contraseña actual
-
-# chpass/Chpass.hx : 44
-New password is missing = Falta por indicar la nueva contraseña
-
-# auth/AuthView.hx : 99
-Password = Contraseña
-
-# auth/Auth.hx : 43
-Password is missing = Falta por indicar la contraseña
-
-# chpass/Chpass.hx : 73
-Password successfully changed = La contraseña se cambió adecuadamente
-
-# lib/Expired.hx : 34
-Session is expired. = La sesión ha expirado.
-
-# auth/Auth.hx : 39
-User name is missing = Falta por indicar el nombre del usuario
-
-# auth/AuthView.hx : 136
-Wrong password = La contraseña es incorrecta
-
-# lib/Expired.hx : 17
-here = aquí
-
 # auth/AuthView.hx : 64
 # chpass/ChpassView.hx : 71
 # chpass/ChpassView.hx : 129
@@ -35,6 +8,9 @@ Accept = Aceptar
 # chpass/ChpassView.hx : 66
 # chpass/ChpassView.hx : 125
 Cancel = Cancelar
+
+# conf/ConfW.hx : 140
+Change Language to %0 = Change Language to %0
 
 # chpass/ChpassView.hx : 182
 # conf/ConfW.hx : 145
@@ -59,6 +35,12 @@ Current page is expired.\nPress [Accept] to reload. = La página actual ha expir
 # chpass/ChpassView.hx : 102
 Current password = Contraseña actual
 
+# chpass/Chpass.hx : 38
+Current password is missing = Falta por indicar la contraseña actual
+
+# conf/Conf.hx : 125
+Delete %0? = ¿Eliminar %0?
+
 # chpass/ChpassView.hx : 147
 Fail trying to change password = Fallo intentando cambiar la contraseña
 
@@ -66,38 +48,23 @@ Fail trying to change password = Fallo intentando cambiar la contraseña
 # chpass/ChpassView.hx : 84
 Grey squares checks are wrong = Las casillas grises están mal marcadas
 
+# lib/Expired.hx : 17
+here = aquí
+
 # auth/AuthView.hx : 114
 Keep connected = Mantenerse conectado
 
+# conf/ConfW.hx : 38
+Libraries = Librerías
+
 # auth/AuthView.hx : 171
 Login = Identificación
-
-# chpass/ChpassView.hx : 108
-New password = Nueva contraseña
-
-# chpass/Chpass.hx : 56
-New password and confirm password do not match = La nueva contraseña y su confirmación no coinciden.
 
 # logout/Logout.hx : 36
 Logout-message = <p>%0 ha terminado.</p><p><b>¡Hasta pronto!</b></p>
 
 # conf/ConfW.hx : 74
 Name = Nombre
-
-# conf/ConfW.hx : 75
-Path = Ruta
-
-# auth/AuthView.hx : 94
-User = Usuario
-
-# conf/ConfW.hx : 140
-Change Language to %0 = Change Language to %0
-
-# conf/Conf.hx : 125
-Delete %0? = ¿Eliminar %0?
-
-# conf/ConfW.hx : 38
-Libraries = Librerías
 
 # conf/Conf.hx : 50
 # conf/Conf.hx : 52
@@ -113,15 +80,48 @@ Name '%0' is repeated = El nombre está repetido
 # conf/Conf.hx : 48
 Name is missing = Falta el nombre
 
+# chpass/ChpassView.hx : 108
+New password = Nueva contraseña
+
+# chpass/Chpass.hx : 56
+New password and confirm password do not match = La nueva contraseña y su confirmación no coinciden.
+
+# chpass/Chpass.hx : 44
+New password is missing = Falta por indicar la nueva contraseña
+
+# auth/AuthView.hx : 99
+Password = Contraseña
+
+# auth/Auth.hx : 43
+Password is missing = Falta por indicar la contraseña
+
+# chpass/Chpass.hx : 73
+Password successfully changed = La contraseña se cambió adecuadamente
+
+# conf/ConfW.hx : 75
+Path = Ruta
+
 # conf/Conf.hx : 68
 Path can not end with '/' = La ruta no puede terminar con '/'
 
 # conf/Conf.hx : 66
 Path is missing = Falta la ruta
 
+# lib/Expired.hx : 34
+Session is expired. = La sesión ha expirado.
+
 # conf/ConfW.hx : 132
 There are no libraries = No hay librerías
 
 # conf/Conf.hx : 107
 This source can not be selected, because it does not exist = Esta fuente no puede ser seleccionada por que no existe
+
+# auth/AuthView.hx : 94
+User = Usuario
+
+# auth/Auth.hx : 39
+User name is missing = Falta por indicar el nombre del usuario
+
+# auth/AuthView.hx : 136
+Wrong password = La contraseña es incorrecta
 
