@@ -233,7 +233,7 @@ class Ui {
   ///   name : Image name without extension ('.png' will be used).
   ///          It must be placed in a directory named 'img'.
   public static function img (name:String):DomObject {
-    return Q("img").att("src", "img/" + name + ".png").att("border", "0");
+    return Q("img").att("src", "img/" + name + ".png");
   }
 
   /// Creates a image with border='0' and a 'opacity:0.4'.

@@ -6,11 +6,16 @@
 import dm.DateDm;
 
 class Model {
+  /// Saved in store
   public static var last:SudokuData;
-  public static var copy:SudokuData;
+  /// Saved in store
   public static var data:Data = null;
+  /// User definied new sudoku
+  public static var copy:SudokuData;
   /// Its value is 'true' if the program is in the main page.
   public static var page = MainPage;
+  /// If its value is 'true' sudoku has wrong numbers on red.
+  public static var correction = false;
 
   /// Sequence steps according to next rules:
   ///   1. Starts calling 'next()'. If next() result is true, calls forward().
@@ -81,6 +86,11 @@ class Model {
   }
 
   public static function formatScs(s:Float):String {
+    var arr = convertScs(s);
+    return arr[0] + ":" + arr[1] + ":" + arr[2];
+  }
+
+  public static function convertScs(s:Float):Array<String> {
     function n2 (n:Float):String {
       var r = Std.string(n);
       if (r.length < 2) return "0" + r;
@@ -88,8 +98,9 @@ class Model {
     }
     var m = Math.floor(s / 60);
     var h = Math.floor(m / 60);
-    return h + ":" + n2(m - h * 60) + ":" + n2(s - m * 60);
+    return [Std.string(h), n2(m - h * 60), n2(s - m * 60)];
   }
+
 }
 
 enum PageType { MainPage; CopyPage; LoadPage; SolvePage; WinPage; }
@@ -103,13 +114,15 @@ typedef SudokuData = {
   cell  :Array<Int>,  // activated [row, column]
   sudoku:Array<Array<Int>>,
   base  :Array<Array<Int>>,
-  user :Array<Array<Int>>
+  user  :Array<Array<Int>>,
+  pencil:Array<Array<Bool>>
 }
 
 typedef Data = {
-  memo : Array<SudokuData>,
-  lang : String, // "en" or "es"
-  level: Int // 1 to 5 inclusive
+  memo  : Array<SudokuData>,
+  lang  : String, // "en" or "es"
+  level : Int, // 1 to 5 inclusive
+  pencil: Bool // If pencil is activated
 }
 
 /// Counter for bidimentsional arrays

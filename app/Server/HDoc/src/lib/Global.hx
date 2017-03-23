@@ -45,8 +45,8 @@ class Global {
   /// Sets language
   public static function setLanguage(lang) {
     Store.put(langStore, lang);
-    var tx = lang == "en" ? I18nData.en() : I18nData.es();
-    I18n.init(tx.split("\n"));
+    var dic = lang == "en" ? I18nData.en() : I18nData.es();
+    I18n.init(dic);
   }
 
   /// Return a new Client.

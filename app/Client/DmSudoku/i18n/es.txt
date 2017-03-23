@@ -1,0 +1,94 @@
+# File generated file by haxe_maker
+
+# main/View.hx : 152
+<br>View-mkEndMenu.%0%1%2<br> = <br>¡¡¡Felicidades!!!<br>Sudoku correctamente resuelto en<br>%0h, %1m y %2s.<br><br>
+
+# main/View.hx : 112
+# main/View.hx : 138
+Accept = Aceptar
+
+# main/View.hx : 114
+# main/View.hx : 126
+Cancel = Cancelar
+
+# main/View.hx : 62
+Change language = Cambiar el lenguaje
+
+# main/View.hx : 74
+Change to pen = Cambiar a bolígrafo
+
+# main/View.hx : 75
+Change to pencil = Cambiar a lápiz
+
+# main/View.hx : 81
+Clear all = Limpiar todo
+
+# main/Main.hx : 164
+Clear all.\nContinue? = Limplar todo.\n¿Continuar?
+
+# main/View.hx : 80
+Clear pencil = Borrar el lapiz
+
+# main/Main.hx : 163
+Clear pencil.\nContinue? = Borrar el lápiz.\n¿Continuar?
+
+# main/View.hx : 154
+Continue = Continuar
+
+# main/View.hx : 51
+Copy = Copiar
+
+# main/View.hx : 111
+Copy external sudoku = Copiar un sudoku externo
+
+# main/View.hx : 64
+Down level = Bajar un nivel
+
+# main/View.hx : 48
+New = Nuevo
+
+# main/View.hx : 100
+New sudoku = Nuevo sudoku
+
+# main/View.hx : 54
+Open = Recuperar
+
+# main/View.hx : 125
+Open sudoku = Recuperar sudoku
+
+# main/View.hx : 57
+Save = Guardar
+
+# main/View.hx : 85
+Search mistakes = Buscar errores
+
+# main/View.hx : 88
+Solve = Soluccionar
+
+# main/Main.hx : 182
+Solve sudoku.\nContinue? = Soluccionar el sudoku.\n¿Continuar?
+
+# main/View.hx : 137
+Solved sudoku = Sudoky resuelto
+
+# main/Main.hx : 208
+Sudoku has %0 numbers and the (minimun-maximun) allowed is (25-50) = El sudoku tiene %0 números y el (mínimo-máximo) permitido es (25-50)
+
+# main/Main.hx : 140
+Sudoku has been saved = El sudoku ha sido guardado
+
+# main/Main.hx : 219
+Sudoku has more than one solution.\nContinue? = El sudoku tiene más de una solucción.\n¿Continuar?
+
+# main/Main.hx : 215
+Sudoku has no sulution = El sudoku no tiene solución
+
+# main/Main.hx : 200
+There are %0 errors in data = Hay %0 errores en los datos
+
+# main/View.hx : 68
+Up level = Subir un nivel
+
+# main/View.hx : 251
+Without records = Sin registros
+

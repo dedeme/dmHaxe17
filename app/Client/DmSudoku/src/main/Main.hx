@@ -10,6 +10,8 @@ import dm.Json;
 import dm.I18n;
 import dm.I18n._;
 import dm.Ui;
+import dm.Tracker;
+import dm.Worker;
 import Sudoku;
 import Model;
 
@@ -18,6 +20,7 @@ class Main {
   static var alert = dm.Ui.alert;
   static var lastId = "__Sudoku_store_last";
   static var dataId = "__Sudoku_store_data";
+  static var sudokuMaker: Worker;
 
   static function saveData() {
     Store.put(dataId, Json.from(Model.data));
@@ -29,12 +32,22 @@ class Main {
 
   /// Entry point
   public static function main() {
+    sudokuMaker = new Worker("sudokuMaker.js");
+    sudokuMaker.onmessage(function(e) {
+      var rp = e.data;
+      Model.last = rp;
+      saveLast();
+      View.mainShow();
+    });
+
+
     var jdata = Store.get(dataId);
     if (jdata == null) {
       Model.data = {
         memo  : [],
-        lang  : "en",
-        level : 3,
+        lang  : "es",
+        level : 4,
+        pencil: false
       }
       saveData();
     } else {
@@ -48,19 +61,16 @@ class Main {
     } else {
       Model.last = Json.to(jlast);
     }
-//Store.del(lastId);
-
-    var dic = Model.data.lang == "es" ? I18nData.en() : I18nData.es();
-    I18n.init(dic.split("\n"));
+//Store.del(lastId);Store.del(dataId);
+    var dic = Model.data.lang == "es" ? I18nData.es() : I18nData.en();
+    I18n.init(dic);
 
     View.dom();
 
     js.Browser.document.addEventListener('keydown', function(event) {
-      var sData:SudokuData = null;
-      var pageGo:Void->Void = null;
-      var sData = switch (Model.page) {
+      var sData:SudokuData = switch (Model.page) {
         case MainPage: Model.last;
-        case CopyPage: sData = Model.copy;
+        case CopyPage: Model.copy;
         case _ : null;
       }
 
@@ -97,9 +107,8 @@ class Main {
   // Main menu ---------------------------------------------
 
   public static function newSudoku(ev) {
-    Model.last = Sudoku.mkLevel(Model.data.level);
-    saveLast();
-    View.mainShow();
+    sudokuMaker.postMessage(Model.data.level);
+    View.newShow();
   }
 
   public static function copySudoku(ev) {
@@ -110,7 +119,8 @@ class Main {
       cell : [0, 0],
       sudoku : Sudoku.mkEmpty().board,
       base : Sudoku.mkEmpty().board,
-      user : Sudoku.mkEmpty().board
+      user : Sudoku.mkEmpty().board,
+      pencil : It.range(9).map(It.f(It.range(9).map(It.f(false)).to())).to()
     };
     View.copyShow();
   }
@@ -120,7 +130,7 @@ class Main {
   }
 
   public static function saveSudoku(ev) {
-    var data = Model.last;
+    var data:SudokuData = Json.to(Json.from(Model.last));
     Model.data.memo = It.from(Model.data.memo)
       .filter(It.f(data.id != _1.id))
       .add0(data)
@@ -142,15 +152,30 @@ class Main {
     View.mkMainMenu();
   }
 
+  public static function changeDevice(ev) {
+    Model.data.pencil = !Model.data.pencil;
+    saveData();
+    View.mkMainMenu();
+  }
+
   public static function clearSudoku(ev) {
-    if (Ui.confirm(_("Clear sudoku.\nContinue?"))) {
+    var tx = Model.data.pencil
+      ? _("Clear pencil.\nContinue?")
+      : _("Clear all.\nContinue?");
+    if (Ui.confirm(tx)) {
       View.board.clear();
       saveLast();
     }
   }
 
   public static function helpSudoku(ev) {
-    View.board.markErrors();
+    if (Model.correction) {
+      Model.correction = false;
+      View.mainShow();
+    } else {
+      Model.correction = true;
+      View.board.markErrors();
+    }
   }
 
   public static function solveSudoku(ev) {
@@ -162,7 +187,7 @@ class Main {
   public static function changeLang(ev) {
     Model.data.lang = Model.data.lang == "en" ? "es" : "en";
     saveData();
-    View.mainShow();
+    main();
   }
 
   // Copy menu ---------------------------------------------
@@ -172,15 +197,15 @@ class Main {
     var sudoku = new Sudoku(s);
     if (sudoku.errors().length > 0) {
       alert(I18n.format(
-        "There are %0 errors in data", [Std.string(sudoku.errors().length)]
+        _("There are %0 errors in data"), [Std.string(sudoku.errors().length)]
       ));
       View.board.markErrors();
       return;
     }
     var cells = sudoku.cellsSet();
-    if (cells < 27 || cells > 50 ) {
+    if (cells < 25 || cells > 50 ) {
       alert(I18n.format(
-        "Sudoku has %0 numbers and the (minimun-maximun) allowed is (27-50)",
+        _("Sudoku has %0 numbers and the (minimun-maximun) allowed is (25-50)"),
         [Std.string(sudoku.cellsSet())]
       ));
       return;
@@ -207,8 +232,8 @@ class Main {
       cell : [0, ix],
       sudoku : sudoku.solve().board,
       base : It.from(s).map(It.f(It.from(_1).map(It.f(_1)).to())).to(),
-      user : s
-
+      user : s,
+      pencil : It.range(9).map(It.f(It.range(9).map(It.f(false)).to())).to()
     }
     saveLast();
     View.mainShow();
@@ -221,7 +246,12 @@ class Main {
   // Load menu ---------------------------------------------
 
   public static function loadSelect(data:SudokuData) {
-    Model.last = data;
+    Model.last = Json.to(Json.from(data));
+    Model.data.memo = It.from(Model.data.memo)
+      .filter(It.f(_1.id != data.id))
+      .add0(data)
+      .to();
+    saveLast();
     saveData();
     View.mainShow();
   }
@@ -231,11 +261,6 @@ class Main {
   }
 
   // Solve menu --------------------------------------------
-
-  public static function solveNewSudoku() {
-    Model.last = Sudoku.mkLevel(Model.data.level);
-    saveLast();
-  }
 
   public static function solveAccept(ev) {
     View.mainShow();
@@ -258,6 +283,34 @@ class Main {
     }
   }
 
+  // Control end -------------------------------------------
 
+  public static function controlEnd() {
+    var finished = It.zip(
+      It.from(Model.last.sudoku),
+      It.from(Model.last.user)).all(It.f(
+        It.from(_1._1).eq(It.from(_1._2))
+      ));
+    if (finished) {
+      View.endShow();
+    }
+  }
 
+  // Numbers -----------------------------------------------
+
+  public static function typeNumber(n:Int) {
+    var sData:SudokuData = switch (Model.page) {
+      case MainPage: Model.last;
+      case CopyPage: Model.copy;
+      case _ : null;
+    }
+
+    if (sData != null) {
+      var board = View.board;
+      switch(n) {
+        case 0: board.set(sData.cell[0], sData.cell[1], -1);
+        case _: board.set(sData.cell[0], sData.cell[1], n);
+      }
+    }
+  }
 }

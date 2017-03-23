@@ -69,6 +69,12 @@ class DomObject {
   }
 
   ///
+  public function addStyle(tx:String):DomObject {
+    e.setAttribute("style", getStyle() + ";" + tx);
+    return this;
+  }
+
+  ///
   public function getAtt (key:String):Dynamic {
     return e.getAttribute(key);
   }

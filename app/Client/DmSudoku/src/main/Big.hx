@@ -43,11 +43,13 @@ class Big {
         if (data.base[r][c] == -1) {
           if (r == row && c == col) {
             cells[r][c].style(
-              findBorder(r, c) + "background-color : rgb(230, 240, 250);"
+              findBorder(r, c) + "background-color : rgb(230, 240, 250);" +
+              "color:" + (data.pencil[r][c] ? "#a08000" : "#000000")
             );
           } else {
             cells[r][c].style(
-              findBorder(r, c) + "background-color : rgb(250, 250, 250);"
+              findBorder(r, c) + "background-color : rgb(250, 250, 250);" +
+              "color:" + (data.pencil[r][c] ? "#a08000" : "#000000")
             );
           }
         } else {
@@ -74,6 +76,7 @@ class Big {
   }
 
   public function set(row:Int, col:Int, n:Int) {
+    Model.last.pencil[row][col] = Model.data.pencil;
     data.user[row][col] = n;
     Main.sudokuClick(row, col);
   }
@@ -81,7 +84,10 @@ class Big {
   public function clear() {
     for (r in 0...9) {
       for (c in 0...9) {
-        if (data.base[r][c] == -1) {
+        var del = data.base[r][c] == -1 && (Model.data.pencil
+          ? Model.last.pencil[r][c]
+          : true);
+        if (del) {
           data.user[r][c] = -1;
           cells[r][c].html("&nbsp;");
         }

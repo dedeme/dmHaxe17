@@ -245,21 +245,17 @@ class Sudoku {
     return su;
   }
 
+  /// 'l' go from 1 to 5 inclusives
   public static function mkLevel(l:Int): SudokuData {
     var s = mkRandom();
     var base = mkEmpty();
     var user = mkEmpty();
-    var c = 0;
-    var loop = 0;
+
+    var limit = l == 1 ? 0 : 25 + l;
     while (true) {
-      var levelBox = Rnd.mkBox([new Tp2(true, l), new Tp2(false, 9 - l)]);
       for (r in 0...9) {
-        var n = levelBox.next() ? 4 : 3;
-
-        var arr = [0, 1, 2, 3, 4, 5, 6, 7, 8];
-
-        var ixBox = new Box(arr);
-        for (i in 0...n) {
+        var ixBox = new Box([0, 1, 2, 3, 4, 5, 6, 7, 8]);
+        for (i in 0...4) {
           var c = ixBox.next();
           var n = s.board[r][c];
           base.board[r][c] = n;
@@ -267,16 +263,46 @@ class Sudoku {
         }
       }
       if (base.solutions() == 1) break;
-      ++c;
-      if (c == 500) {
-        ++loop;
-        ++l;
-        c = 0;
-      }
       base = mkEmpty();
       user = mkEmpty();
     }
-trace(loop + " -> " + c);
+
+    var i = 36;
+    for (r in 0...9) {
+      for (c in 0...9) {
+        var v = base.board[r][c];
+        if (v != -1) {
+          base.board[r][c] = -1;
+          if (base.solutions() == 1) {
+            user.board[r][c] = -1;
+            --i;
+            if (i == limit) break;
+          } else {
+            base.board[r][c] = v;
+          }
+        }
+      }
+      if (i == limit) break;
+    }
+
+    var pbox = new Box([0, 1, 2]);
+    var rbox = new Box([0, 1, 2]);
+    var s0 = [];
+    var b0 = [];
+    var u0 = [];
+    for (i in 0...3) {
+      var part = pbox.next();
+      for (j in 0...3) {
+        var row = rbox.next();
+        s0.push(s.board[part * 3 + row]);
+        b0.push(base.board[part * 3 + row]);
+        u0.push(user.board[part * 3 + row]);
+      }
+    }
+    s = new Sudoku(s0);
+    base = new Sudoku(b0);
+    user = new Sudoku(u0);
+
     var ix = 0;
     while (base.board[0][ix] != -1) {
       ++ix;
@@ -288,7 +314,8 @@ trace(loop + " -> " + c);
       cell : [0, ix],
       sudoku : s.board,
       base : base.board,
-      user : user.board
+      user : user.board,
+      pencil : It.range(9).map(It.f(It.range(9).map(It.f(false)).to())).to()
     }
   }
 

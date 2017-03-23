@@ -55,9 +55,9 @@ class Rnd {
     /// Current elements of Box
     public var box(default, null):Array<T>;
 
-    /// 'es' are elements of Box.
+    /// 'es' are elements of Box. Box create a new 'es' array.
     public function new (es:Array<T>) {
-      this.es = es;
+      this.es = It.from(es).to();
       box = It.from(es).shuffle().to();
     }
 
