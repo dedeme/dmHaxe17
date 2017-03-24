@@ -17,7 +17,9 @@ import Model;
 
 /// Entry class
 class Main {
+  public static var version = "0.0.1";
   static var alert = dm.Ui.alert;
+  static var versionId = "__Sudoku_store_version";
   static var lastId = "__Sudoku_store_last";
   static var dataId = "__Sudoku_store_data";
   static var sudokuMaker: Worker;
@@ -34,29 +36,62 @@ class Main {
   public static function main() {
     sudokuMaker = new Worker("sudokuMaker.js");
     sudokuMaker.onmessage(function(e) {
-      var rp = e.data;
-      Model.last = rp;
-      saveLast();
-      View.mainShow();
+      var rp : WorkerResponse = e.data;
+      if (rp.isCache) {
+        Model.data.cache[rp.level - 1] = rp.sudokuData;
+        saveData();
+      } else {
+        Model.last = rp.sudokuData;
+        saveLast();
+        View.mainShow();
+      }
     });
 
+    var storeVersion = Store.get(versionId);
+    var versionOk = true;
+    if (storeVersion == null || storeVersion != version) {
+      Store.put(versionId, version);
+      versionOk = false;
+    }
 
     var jdata = Store.get(dataId);
-    if (jdata == null) {
+    if (!versionOk || jdata == null) {
       Model.data = {
-        memo  : [],
-        lang  : "es",
-        level : 4,
-        pencil: false
+        cache   : [null, null, null, null, null],
+        memo    : [],
+        lang    : "es",
+        level   : 5,    // Conected with initial definition of Model.last
+        pencil  : false
       }
       saveData();
     } else {
       Model.data = Json.to(jdata);
     }
-
+trace(versionOk);
+trace(jdata);
     var jlast = Store.get(lastId);
-    if (jlast == null) {
-      Model.last = Sudoku.mkLevel(Model.data.level);
+    if (!versionOk || jlast == null) {
+      var sudoku = [
+        [2,8,5,6,3,9,1,4,7],
+        [9,1,7,4,2,8,6,3,5],
+        [3,6,4,5,1,7,8,2,9],
+        [8,9,6,2,4,5,3,7,1],
+        [1,4,2,7,8,3,9,5,6],
+        [5,7,3,1,9,6,2,8,4],
+        [4,3,8,9,7,1,5,6,2],
+        [6,2,9,8,5,4,7,1,3],
+        [7,5,1,3,6,2,4,9,8]];
+      var base = [
+        [-1,-1,-1,-1,3,-1,-1,-1,7],
+        [9,-1,-1,4,-1,-1,6,-1,-1],
+        [-1,-1,-1,-1,-1,7,-1,-1,-1],
+        [8,-1,-1,-1,-1,5,3,-1,1],
+        [1,-1,-1,-1,8,-1,9,5,-1],
+        [5,7,-1,1,-1,-1,-1,8,-1],
+        [-1,3,-1,9,-1,-1,5,6,-1],
+        [6,-1,9,8,-1,-1,-1,-1,3],
+        [-1,5,1,3,-1,2,-1,-1,-1]];
+      Model.last = Sudoku.mkDef({sudoku : sudoku, base : base});
       saveLast();
     } else {
       Model.last = Json.to(jlast);
@@ -102,12 +137,26 @@ class Main {
       View.timeCell.html(Model.formatScs(Model.last.time));
     }
 
+    var cache = Model.data.cache;
+    for (i in 0...5) {
+      if (cache[i] == null) {
+        var rq:WorkerRequest = {
+          isCache : true,
+          level   : i + 1
+        }
+        sudokuMaker.postMessage(rq);
+      }
+    }
   }
 
   // Main menu ---------------------------------------------
 
   public static function newSudoku(ev) {
-    sudokuMaker.postMessage(Model.data.level);
+    var rq:WorkerRequest = {
+      isCache : false,
+      level   : Model.data.level
+    }
+    sudokuMaker.postMessage(rq);
     View.newShow();
   }
 
@@ -121,7 +170,7 @@ class Main {
       base : Sudoku.mkEmpty().board,
       user : Sudoku.mkEmpty().board,
       pencil : It.range(9).map(It.f(It.range(9).map(It.f(false)).to())).to()
-    };
+    }
     View.copyShow();
   }
 

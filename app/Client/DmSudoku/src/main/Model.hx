@@ -107,6 +107,11 @@ enum PageType { MainPage; CopyPage; LoadPage; SolvePage; WinPage; }
 
 enum CursorMove { CursorUp; CursorDown; CursorLeft; CursorRight; }
 
+typedef SudokuDef = {
+  sudoku:Array<Array<Int>>,
+  base  :Array<Array<Int>>
+}
+
 typedef SudokuData = {
   id    :Float,
   date  :Array<Int>,  // DateDm serialized
@@ -119,10 +124,22 @@ typedef SudokuData = {
 }
 
 typedef Data = {
-  memo  : Array<SudokuData>,
-  lang  : String, // "en" or "es"
-  level : Int, // 1 to 5 inclusive
-  pencil: Bool // If pencil is activated
+  cache  : Array<SudokuDef>,
+  memo   : Array<SudokuData>,
+  lang   : String, // "en" or "es"
+  level  : Int, // 1 to 5 inclusive
+  pencil : Bool // If pencil is activated
+}
+
+typedef WorkerRequest = {
+  isCache : Bool,
+  level   : Int
+}
+
+typedef WorkerResponse = {
+  isCache    : Bool,
+  level      : Int,
+  sudokuData : SudokuData
 }
 
 /// Counter for bidimentsional arrays

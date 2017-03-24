@@ -289,7 +289,9 @@ var SudokuMaker = function() { };
 SudokuMaker.__name__ = true;
 SudokuMaker.main = function() {
 	dm_Worker.onRequest(function(e) {
-		dm_Worker.postRequest(Sudoku.mkLevel(e.data));
+		var rq = e.data;
+		var rp = { isCache : rq.isCache, level : rq.level, sudokuData : Sudoku.mkLevel(rq.level)};
+		dm_Worker.postRequest(rp);
 	});
 };
 var dm_DateDm = function(day,month,year) {

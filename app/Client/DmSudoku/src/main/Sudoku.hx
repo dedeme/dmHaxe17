@@ -245,8 +245,28 @@ class Sudoku {
     return su;
   }
 
+  /// Make a sudoku from a SudokuDefinition
+  public static function mkDef(def:SudokuDef):SudokuData {
+    var user = It.from(def.base).map(It.f(It.from(_1).to())).to();
+
+    var ix = 0;
+    while (user[0][ix] != -1) {
+      ++ix;
+    }
+    return {
+      id: Date.now().getTime(),
+      date : DateDm.now().serialize(),
+      time : 0,
+      cell : [0, ix],
+      sudoku : def.sudoku,
+      base : def.base,
+      user : user,
+      pencil : It.range(9).map(It.f(It.range(9).map(It.f(false)).to())).to()
+    }
+  }
+
   /// 'l' go from 1 to 5 inclusives
-  public static function mkLevel(l:Int): SudokuData {
+  public static function mkLevel(l:Int):SudokuData {
     var s = mkRandom();
     var base = mkEmpty();
     var user = mkEmpty();

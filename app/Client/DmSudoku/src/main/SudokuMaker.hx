@@ -4,13 +4,20 @@
  */
 
 import dm.Worker;
+import Model;
 
 class SudokuMaker {
 
   /// Worker entry point
   public static function main() {
     Worker.onRequest(function (e) {
-      Worker.postRequest(Sudoku.mkLevel(e.data));
+      var rq : WorkerRequest = e.data;
+      var rp : WorkerResponse = {
+        isCache    : rq.isCache,
+        level      : rq.level,
+        sudokuData : Sudoku.mkLevel(rq.level)
+      }
+      Worker.postRequest(rp);
     });
   }
 }

@@ -24,7 +24,7 @@ class Dom {
             .add(Q("td")
               .style("text-align: right;font-size: 10px;" +
                 "color:#808080;font-size:x-small;")
-              .html("- © ºDeme. DmSudoku (0.0.1) -"))))
+              .html("- © ºDeme. DmSudoku (" + Main.version + ") -"))))
     );
   }
 }
