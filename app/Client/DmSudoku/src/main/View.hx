@@ -26,6 +26,7 @@ class View {
   public static var board(default, null):Big;
 
   public static var timeCell(default,null) = Q("td").klass("lastR");
+  public static var newLink:DomObject = Q("span");
 
   static var menu = Q("div");
   static var body = Q("div");
@@ -44,9 +45,7 @@ class View {
     menu.removeAll().add(
       Q("table").att("align", "center").add(Q("tr")
         .add(Q("td").klass("menu")
-          .add(Ui.link(Main.newSudoku)
-            .add(imgMenu("filenew", _("New")))
-          )
+          .add(newLink)
           .add(Ui.link(Main.copySudoku)
             .add(imgMenu("edit-copy", _("Copy")))
           )

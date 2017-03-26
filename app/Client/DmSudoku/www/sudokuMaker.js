@@ -291,7 +291,7 @@ SudokuMaker.main = function() {
 	dm_Worker.onRequest(function(e) {
 		var rq = e.data;
 		var rp = { isCache : rq.isCache, level : rq.level, sudokuData : Sudoku.mkLevel(rq.level)};
-		dm_Worker.postRequest(rp);
+		dm_Worker.sendResponse(rp);
 	});
 };
 var dm_DateDm = function(day,month,year) {
@@ -413,7 +413,7 @@ dm_Worker.__name__ = true;
 dm_Worker.onRequest = function(f) {
 	onmessage=f;
 };
-dm_Worker.postRequest = function(rp) {
+dm_Worker.sendResponse = function(rp) {
 	postMessage(rp);
 };
 var haxe__$Int64__$_$_$Int64 = function(high,low) {

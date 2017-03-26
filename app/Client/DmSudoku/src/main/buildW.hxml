@@ -4,7 +4,7 @@
 -cp /deme/dmHaxe17/lib/server_2.0.0/src
 -cp /deme/dmHaxe17/lib/widgets_0.0.1/src
 
--js ../../www/main/sudokuMaker.js
+-js ../../www/sudokuMaker.js
 -dce full
 
 -main SudokuMaker

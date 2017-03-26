@@ -1,94 +1,96 @@
 # File generated file by haxe_maker
 
-# main/View.hx : 152
+# main/View.hx : 151
 <br>View-mkEndMenu.%0%1%2<br> = <br>¡¡¡Felicidades!!!<br>Sudoku correctamente resuelto en<br>%0h, %1m y %2s.<br><br>
 
-# main/View.hx : 112
-# main/View.hx : 138
+# main/View.hx : 111
+# main/View.hx : 137
 Accept = Aceptar
 
-# main/View.hx : 114
-# main/View.hx : 126
+# main/View.hx : 113
+# main/View.hx : 125
 Cancel = Cancelar
 
-# main/View.hx : 62
+# main/View.hx : 61
 Change language = Cambiar el lenguaje
 
-# main/View.hx : 74
+# main/View.hx : 73
 Change to pen = Cambiar a bolígrafo
 
-# main/View.hx : 75
+# main/View.hx : 74
 Change to pencil = Cambiar a lápiz
 
-# main/View.hx : 81
+# main/View.hx : 80
 Clear all = Limpiar todo
 
-# main/Main.hx : 164
+# main/Main.hx : 226
 Clear all.\nContinue? = Limplar todo.\n¿Continuar?
 
-# main/View.hx : 80
+# main/View.hx : 79
 Clear pencil = Borrar el lapiz
 
-# main/Main.hx : 163
+# main/Main.hx : 225
 Clear pencil.\nContinue? = Borrar el lápiz.\n¿Continuar?
 
-# main/View.hx : 154
+# main/View.hx : 153
 Continue = Continuar
 
-# main/View.hx : 51
+# main/View.hx : 50
 Copy = Copiar
 
-# main/View.hx : 111
+# main/View.hx : 110
 Copy external sudoku = Copiar un sudoku externo
 
-# main/View.hx : 64
+# main/View.hx : 63
 Down level = Bajar un nivel
 
-# main/View.hx : 48
+# main/Main.hx : 88
+# main/Main.hx : 98
+# main/Main.hx : 145
 New = Nuevo
 
-# main/View.hx : 100
+# main/View.hx : 99
 New sudoku = Nuevo sudoku
 
-# main/View.hx : 54
+# main/View.hx : 53
 Open = Recuperar
 
-# main/View.hx : 125
+# main/View.hx : 124
 Open sudoku = Recuperar sudoku
 
-# main/View.hx : 57
+# main/View.hx : 56
 Save = Guardar
 
-# main/View.hx : 85
+# main/View.hx : 84
 Search mistakes = Buscar errores
 
-# main/View.hx : 88
+# main/View.hx : 87
 Solve = Soluccionar
 
-# main/Main.hx : 182
+# main/Main.hx : 244
 Solve sudoku.\nContinue? = Soluccionar el sudoku.\n¿Continuar?
 
-# main/View.hx : 137
+# main/View.hx : 136
 Solved sudoku = Sudoky resuelto
 
-# main/Main.hx : 208
+# main/Main.hx : 270
 Sudoku has %0 numbers and the (minimun-maximun) allowed is (25-50) = El sudoku tiene %0 números y el (mínimo-máximo) permitido es (25-50)
 
-# main/Main.hx : 140
+# main/Main.hx : 202
 Sudoku has been saved = El sudoku ha sido guardado
 
-# main/Main.hx : 219
+# main/Main.hx : 281
 Sudoku has more than one solution.\nContinue? = El sudoku tiene más de una solucción.\n¿Continuar?
 
-# main/Main.hx : 215
+# main/Main.hx : 277
 Sudoku has no sulution = El sudoku no tiene solución
 
-# main/Main.hx : 200
+# main/Main.hx : 262
 There are %0 errors in data = Hay %0 errores en los datos
 
-# main/View.hx : 68
+# main/View.hx : 67
 Up level = Subir un nivel
 
-# main/View.hx : 251
+# main/View.hx : 250
 Without records = Sin registros
 

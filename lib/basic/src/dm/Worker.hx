@@ -11,7 +11,7 @@
  *  <b>class</b> SudokuMaker {
  *    <b>public static function</b> main() {
  *      Worker.onRequest(<b>function</b> (e) {
- *        Worker.postResponse(Sudoku.mkLevel(e.data));
+ *        Worker.sendResponse(Sudoku.mkLevel(e.data));
  *      });
  *  }
  * <i>On client</i>: Object worker is used.
@@ -19,7 +19,7 @@
  *  <b>static var</b> sudokuMaker: Worker;
  *  <b>public static function</b> main() {
  *    sudokuMaker = <b>new</b> Worker("sudokuMaker.js");
- *    sudokuMaker.onmessage(<b>function</b>(e) {
+ *    sudokuMaker.onResponse(<b>function</b>(e) {
  *      var rp = e.data;
  *      Model.last = rp;
  *      saveLast();
@@ -29,59 +29,60 @@
  *  }
  *  ...
  *  <b>public static function</b> newSudoku(ev) {
- *    sudokuMaker.postMessage(Model.data.level);
+ *    sudokuMaker.sendRequest(Model.data.level);
  *    View.newShow();
  *  }
  * <i>Sequence:</i>
  * <ol>
  * <li>The client program creates an object 'Worker" and sets a function to
  * process responses from server.</li>
- * <li>In same moment 'newSudoku()' is called.</li>
- * <li>'newSudoku()' sends the message 'Model.data.level' to the sever through
- * the 'Worker'.</li>
+ * <li>In some moment 'newSudoku()' is called.</li>
+ * <li>'newSudoku()' sends the request to the sever through the method
+ * sendRequest of 'Worker'.</li>
  * <li>The server receives the message in the function assigned with
  * Worker.onRequest().</li>
- * <li>Server sends a response using Worker.postResponse().</li>
+ * <li>Server sends a response using Worker.sendResponse().</li>
  * <li>Finally the client receive the response in the function indicated in
  * the first point and process it.</li>
+ * </ol>
  */
 package dm;
 
-/// Class to run thread.
+/// Class to run thread. Worker is the client part.
 class Worker {
   var jsWorker:Dynamic;
 
-  /// Executes the script 'js' in a new thread.
+  /// Executes the script 'js' in a new thread. The scripts is the server part.
   public function new(js:String) {
     jsWorker = untyped __js__("new Worker(js)");
   }
 
-  /// Prepares funcion 'f' to be executed when client send a "postRequest".
-  public function onmessage(f:Dynamic->Void) {
+  /// Prepares funcion 'f' to be executed when the server send a response.
+  public function onResponse(f:Dynamic->Void) {
     jsWorker.onmessage = f;
   }
 
-  /// Finalizes 'this'.
+  /// Finalizes thread from client.
   public function terminate() {
     jsWorker.terminate();
   }
 
-  /// Sends a response to client.
-  public function postMessage(rp:Dynamic) {
+  /// Sends a request to the server.
+  public function sendRequest(rp:Dynamic) {
     jsWorker.postMessage(rp);
   }
 
-  /// Prepares function 'f' to be executed when server send a 'postMessage()'.
+  /// Prepares function 'f' to be executed when the client send a request.
   public static function onRequest(f:Dynamic->Void) {
     untyped __js__("onmessage=f");
   }
 
-  /// Sends a request to Server.
-  public static function postRequest(rp:Dynamic) {
+  /// Sends a response to the client.
+  public static function sendResponse(rp:Dynamic) {
     untyped __js__("postMessage(rp)");
   }
 
-  /// Finalizes thread.
+  /// Finalizes thread from server.
   public static function close() {
     untyped __js__("close()");
   }

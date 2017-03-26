@@ -17,7 +17,7 @@ class SudokuMaker {
         level      : rq.level,
         sudokuData : Sudoku.mkLevel(rq.level)
       }
-      Worker.postRequest(rp);
+      Worker.sendResponse(rp);
     });
   }
 }

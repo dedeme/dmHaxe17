@@ -103,7 +103,7 @@ class Model {
 
 }
 
-enum PageType { MainPage; CopyPage; LoadPage; SolvePage; WinPage; }
+enum PageType { MainPage; CopyPage; LoadPage; SolvePage; WinPagex; }
 
 enum CursorMove { CursorUp; CursorDown; CursorLeft; CursorRight; }
 

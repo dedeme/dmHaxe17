@@ -34,19 +34,6 @@ class Main {
 
   /// Entry point
   public static function main() {
-    sudokuMaker = new Worker("sudokuMaker.js");
-    sudokuMaker.onmessage(function(e) {
-      var rp : WorkerResponse = e.data;
-      if (rp.isCache) {
-        Model.data.cache[rp.level - 1] = rp.sudokuData;
-        saveData();
-      } else {
-        Model.last = rp.sudokuData;
-        saveLast();
-        View.mainShow();
-      }
-    });
-
     var storeVersion = Store.get(versionId);
     var versionOk = true;
     if (storeVersion == null || storeVersion != version) {
@@ -67,8 +54,6 @@ class Main {
     } else {
       Model.data = Json.to(jdata);
     }
-trace(versionOk);
-trace(jdata);
     var jlast = Store.get(lastId);
     if (!versionOk || jlast == null) {
       var sudoku = [
@@ -99,8 +84,24 @@ trace(jdata);
 //Store.del(lastId);Store.del(dataId);
     var dic = Model.data.lang == "es" ? I18nData.es() : I18nData.en();
     I18n.init(dic);
-
+    View.newLink.removeAll().add(Ui.link(Main.newSudoku)
+      .add(View.imgMenu("filenew", _("New"))));
     View.dom();
+
+    sudokuMaker = new Worker("sudokuMaker.js");
+    sudokuMaker.onResponse(function(e) {
+      var rp : WorkerResponse = e.data;
+      if (rp.isCache) {
+        Model.data.cache[rp.level - 1] = rp.sudokuData;
+        saveData();
+        View.newLink.removeAll().add(Ui.link(Main.newSudoku)
+          .add(View.imgMenu("filenew", _("New"))));
+      } else {
+        Model.last = rp.sudokuData;
+        saveLast();
+        View.mainShow();
+      }
+    });
 
     js.Browser.document.addEventListener('keydown', function(event) {
       var sData:SudokuData = switch (Model.page) {
@@ -140,11 +141,14 @@ trace(jdata);
     var cache = Model.data.cache;
     for (i in 0...5) {
       if (cache[i] == null) {
+        if (i == Model.data.level - 1) {
+          View.newLink.removeAll().add(View.imgMenu("filenew", _("New"), true));
+        }
         var rq:WorkerRequest = {
           isCache : true,
           level   : i + 1
         }
-        sudokuMaker.postMessage(rq);
+        sudokuMaker.sendRequest(rq);
       }
     }
   }
@@ -152,12 +156,21 @@ trace(jdata);
   // Main menu ---------------------------------------------
 
   public static function newSudoku(ev) {
-    var rq:WorkerRequest = {
-      isCache : false,
-      level   : Model.data.level
+    var cache = Model.data.cache[Model.data.level - 1];
+    if (cache == null) {
+      var rq:WorkerRequest = {
+        isCache : false,
+        level   : Model.data.level
+      }
+      sudokuMaker.sendRequest(rq);
+      View.newShow();
+    } else {
+      Model.last = Sudoku.mkDef(cache);
+      saveLast();
+      Model.data.cache[Model.data.level - 1] = null;
+      saveData();
+      main();
     }
-    sudokuMaker.postMessage(rq);
-    View.newShow();
   }
 
   public static function copySudoku(ev) {

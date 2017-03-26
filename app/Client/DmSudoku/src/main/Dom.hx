@@ -6,6 +6,8 @@
 import dm.DomObject;
 import dm.Ui;
 import dm.Ui.Q;
+import dm.I18n._;
+import Model;
 
 class Dom {
   public static function show(o:DomObject) {
@@ -18,9 +20,8 @@ class Dom {
           .add(Q("tr")
             .add(Q("td")
               .add(Q("a")
-                .att("href", "../doc/about.html")
-                .att("target", "blank")
-                .html("<small>Help & Credits</small>")))
+                .att("href", "doc_" + Model.data.lang + "/about.html")
+                .html("<small>" + _("Help & Credits") + "</small>")))
             .add(Q("td")
               .style("text-align: right;font-size: 10px;" +
                 "color:#808080;font-size:x-small;")
