@@ -205,12 +205,26 @@ class Main {
   public static function upLevel(ev) {
     if (Model.data.level < 5) ++Model.data.level;
     saveData();
+
+    if (Model.data.cache[Model.data.level - 1] == null) {
+      View.newLink.removeAll().add(View.imgMenu("filenew", _("New"), true));
+    } else {
+      View.newLink.removeAll().add(Ui.link(Main.newSudoku)
+        .add(View.imgMenu("filenew", _("New"))));
+    }
     View.mkMainMenu();
   }
 
   public static function downLevel(ev) {
     if (Model.data.level > 1) --Model.data.level;
     saveData();
+
+    if (Model.data.cache[Model.data.level - 1] == null) {
+      View.newLink.removeAll().add(View.imgMenu("filenew", _("New"), true));
+    } else {
+      View.newLink.removeAll().add(Ui.link(Main.newSudoku)
+        .add(View.imgMenu("filenew", _("New"))));
+    }
     View.mkMainMenu();
   }
 
