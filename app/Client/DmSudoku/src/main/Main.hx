@@ -18,6 +18,7 @@ import Model;
 /// Entry class
 class Main {
   public static var version = "0.0.1";
+  static var timer:haxe.Timer = null;
   static var alert = dm.Ui.alert;
   static var versionId = "__Sudoku_store_version";
   static var lastId = "__Sudoku_store_last";
@@ -131,11 +132,13 @@ class Main {
 
     View.mainShow();
 
-    var timer = new haxe.Timer(1000);
-    timer.run = function() {
-      ++Model.last.time;
-      saveLast();
-      View.timeCell.html(Model.formatScs(Model.last.time));
+    if (timer == null) {
+      timer = new haxe.Timer(1000);
+      timer.run = function() {
+        ++Model.last.time;
+        saveLast();
+        View.timeCell.html(Model.formatScs(Model.last.time));
+      }
     }
 
     var cache = Model.data.cache;
