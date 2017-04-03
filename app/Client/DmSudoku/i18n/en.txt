@@ -23,13 +23,13 @@ Change to pencil = Change to pencil
 # main/View.hx : 80
 Clear all = Clear all
 
-# main/Main.hx : 226
+# main/Main.hx : 243
 Clear all.\nContinue? = Clear all.\nContinue?
 
 # main/View.hx : 79
 Clear pencil = Clear pencil
 
-# main/Main.hx : 225
+# main/Main.hx : 242
 Clear pencil.\nContinue? = Clear pencil.\nContinue?
 
 # main/View.hx : 153
@@ -44,9 +44,16 @@ Copy external sudoku = Copy an external sudoku
 # main/View.hx : 63
 Down level = Down level
 
-# main/Main.hx : 88
-# main/Main.hx : 98
-# main/Main.hx : 145
+# main/Dom.hx : 24
+Help & Credits = Help & Credits
+
+# main/Main.hx : 89
+# main/Main.hx : 99
+# main/Main.hx : 148
+# main/Main.hx : 213
+# main/Main.hx : 216
+# main/Main.hx : 226
+# main/Main.hx : 229
 New = New
 
 # main/View.hx : 99
@@ -67,25 +74,22 @@ Search mistakes = Search mistakes
 # main/View.hx : 87
 Solve = Solve
 
-# main/Main.hx : 244
+# main/Main.hx : 261
 Solve sudoku.\nContinue? = Solve sudoku.\nContinue?
 
 # main/View.hx : 136
 Solved sudoku = Solved sudoku
 
-# main/Main.hx : 270
-Sudoku has %0 numbers and the (minimun-maximun) allowed is (25-50) = Sudoku has %0 numbers and the (minimun-maximun) allowed is (25-50)
-
-# main/Main.hx : 202
+# main/Main.hx : 205
 Sudoku has been saved = Sudoku has been saved
 
-# main/Main.hx : 281
+# main/Main.hx : 291
 Sudoku has more than one solution.\nContinue? = Sudoku has more than one solution.\nContinue?
 
-# main/Main.hx : 277
+# main/Main.hx : 287
 Sudoku has no sulution = Sudoku has no sulution
 
-# main/Main.hx : 262
+# main/Main.hx : 279
 There are %0 errors in data = There are %0 errors in data
 
 # main/View.hx : 67

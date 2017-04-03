@@ -282,13 +282,6 @@ class Main {
       return;
     }
     var cells = sudoku.cellsSet();
-    if (cells < 25 || cells > 50 ) {
-      alert(I18n.format(
-        _("Sudoku has %0 numbers and the (minimun-maximun) allowed is (25-50)"),
-        [Std.string(sudoku.cellsSet())]
-      ));
-      return;
-    };
     var sols = sudoku.solutions();
     if (sols == 0) {
       alert(_("Sudoku has no sulution"));
