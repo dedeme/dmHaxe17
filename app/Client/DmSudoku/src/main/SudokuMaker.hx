@@ -7,7 +7,6 @@ import dm.Worker;
 import Model;
 
 class SudokuMaker {
-
   /// Worker entry point
   public static function main() {
     Worker.onRequest(function (e) {
