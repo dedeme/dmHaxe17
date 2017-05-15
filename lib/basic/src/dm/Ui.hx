@@ -14,13 +14,13 @@ import dm.Cryp;
 /// Utilities to access to DOM elements.
 class Ui {
 
-  /**
-  Constructor for DomObjects
-    If 'str' is null returns a DmObject con element 'el' (e.g. Q(myTable))
-    Otherwise
-      - If 'str' starts with '#', returns element by id (e.g. Q("#myTable")
-      - Otherwise return the indicated object (e.g. Q("table"))
-  */
+  /// Constructor for DomObjects
+  ///   If 'str' is null returns a DmObject with element 'el' (e.g. Q(myTable))
+  ///   Otherwise
+  ///     - If 'str' starts with '#', returns element by id (e.g. Q("#myTable"))
+  ///     - If 'str' starts with '@', returns a querySelector
+  ///       (e.g. Q("@myTable"))
+  ///     - Otherwise creates the indicated object (e.g. Q("table"))
   public static function Q (?str:String, ?el:js.html.Element): dm.DomObject {
     if (str == null) {
       return new DomObject(el);
@@ -34,13 +34,11 @@ class Ui {
     }
   }
 
-  /**
-  Returns a DomObject It:
-    If 'str' is an empty string returns all elements of page.
-    If 'str' is of form "%xxx" returns elements with name "xxx".
-    If 'str' is of form ".xxx" returns elements of class 'xxx'.
-    If it is of form "xxx" returns elements with tag name 'xxx'.
-  */
+  /// Returns a DomObject It:
+  ///   If 'str' is an empty string returns all elements of page.
+  ///   If 'str' is of form "%xxx" returns elements with name "xxx".
+  ///   If 'str' is of form ".xxx" returns elements of class 'xxx'.
+  ///   If it is of form "xxx" returns elements with tag name 'xxx'.
   public static function QQ (?str:String):It<DomObject> {
     var toIt = function (list:Dynamic):It<DomObject> {
       var c = 0;
@@ -66,27 +64,21 @@ class Ui {
     return toIt(js.Browser.document.getElementsByTagName(str));
   }
 
-  /**
-  Shows a modal message.
-    msg: Message. It will be convereted to String
-  */
+  /// Shows a modal message.
+  ///   msg: Message. It will be convereted to String
   public static function alert (msg:Dynamic):Void {
     untyped __js__("alert")(Std.string(msg));
   }
 
-  /**
-  Shows a modal message and retuns a confirmation.
-    msg: Message. It will be convereted to String
-  */
+  /// Shows a modal message and retuns a confirmation.
+  ///   msg: Message. It will be convereted to String
   public static function confirm (msg:Dynamic):Bool {
     return untyped __js__("confirm")(Std.string(msg));
   }
 
-  /**
-  Shows a modal message and retuns a value.
-    msg: Message. It will be convereted to String
-    def: Default value. It will be convereted to String
-  */
+  /// Shows a modal message and retuns a value.
+  ///   msg: Message. It will be convereted to String
+  ///   def: Default value. It will be convereted to String
   public static function prompt (msg:Dynamic, ?def:Dynamic):String {
     if (def == null) {
       return untyped __js__("prompt")(Std.string(msg));
@@ -95,15 +87,13 @@ class Ui {
     }
   }
 
-  /**
-  Extracts variables of URL. Returns a map with next rules:
-    Expresions 'key = value' are changed in ["key" => "value"]
-    Expresion only with value are changes by ["its-order-number" => "value"].
-      (order-number is zero based)
-  Example:
-    foo.com/bar?v1&k1=v2&v3 -> {"0" => v1, "k1" => v2, "2" => v3}
-  NOTE: <i>keys and values are not trimized.</i>
-  */
+  /// Extracts variables of URL. Returns a map with next rules:
+  ///   Expresions 'key = value' are changed in ["key" => "value"]
+  ///   Expresion only with value are changes by ["its-order-number" => "value"].
+  ///     (order-number is zero based)
+  /// Example:
+  ///   foo.com/bar?v1&k1=v2&v3 -> {"0" => v1, "k1" => v2, "2" => v3}
+  /// NOTE: <i>keys and values are not trimized.</i>
   public static function url ():Map<String, String> {
     var search = js.Browser.location.search;
     if (search == "") {
@@ -170,15 +160,12 @@ class Ui {
     lload();
   }
 
-  /**
-  Management of Drag and Drop of files over an object.
-    o      : Object over whom is going to make Drag and Drop. It is supposse
-             it has white background
-    action : Action to make with files.
-
-  NOTE: <i>For accessing to single files use <tt>fileList.item(n)</tt>. You
-  can know the file number of files with <tt>fileList.length</tt>.</i>
-  */
+  /// Management of Drag and Drop of files over an object.
+  ///   o      : Object over whom is going to make Drag and Drop. It has a
+  ///            white background.
+  ///   action : Action to make with files.
+  /// NOTE: <i>For accessing to single files use <tt>fileList.item(n)</tt>. You
+  /// can know the file number of files with <tt>fileList.length</tt>.</i>
   public static function ifiles (
     o:DomObject, action:js.html.FileList->Void
   ):DomObject {
@@ -287,15 +274,13 @@ class Ui {
     return Q("span").att("style", "cursor:pointer").on(CLICK, f);
   }
 
-  /**
-  Create a select with list as entries. Every option has an id formed with
-  'idPrefix' + "_" + 'its list name' and a name equals to 'idPrefix'.
-
-  Also select widget has name 'idPrefix' too.
-    idPrefix : Prefix to make option id.
-    list     : Entries of select. Default selected goes marked with '+'
-      (e.g. ["1", "+2", "3"])
-  */
+  /// Create a 'select' with a list if entries. Every option has an id formed
+  /// with 'idPrefix' + "_" + 'its list name' and a name equals to 'idPrefix'.
+  /// <p>
+  /// Also the 'select' widget has then name 'idPrefix'.
+  ///   idPrefix : Prefix to build the option id.
+  ///   list     : Entries of select. Default selected is marked with '+'
+  ///     (e.g. ["1", "+2", "3"])
   public static function select(
     idPrefix:String,
     list:Array<String>

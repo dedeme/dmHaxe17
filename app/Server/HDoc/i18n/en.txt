@@ -1,5 +1,8 @@
 # File generated file by haxe_maker
 
+# ORPHAN
+Logout-message%0 = <p>%0 has finished.</p><p><b>Good by!</b></p>
+
 # auth/AuthView.hx : 64
 # chpass/ChpassView.hx : 71
 # chpass/ChpassView.hx : 129
