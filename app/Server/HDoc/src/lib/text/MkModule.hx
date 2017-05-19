@@ -92,7 +92,7 @@ class MkModule {
       case "function": {
         var subs = ["(", "<"];
         var left = Util.leftMin(code2, subs);
-        if (Util.existsWord(left, "public")) {
+        if (Util.existsWord(left, "public") && currentHelp != null) {
           var hf = new HelpFinal(Util.lastWord(left), h, code);
           if (Util.existsWord(left, "static")) {
             if (Util.existsWord(left, "macro")) {
@@ -112,7 +112,7 @@ class MkModule {
       case "var": {
         var subs = ["=", ";", "("];
         var left = Util.leftMin(code2, subs);
-        if (Util.existsWord(left, "public")) {
+        if (Util.existsWord(left, "public") && currentHelp != null) {
           var hf = new HelpFinal(Util.lastWord(left), h, code);
           if (Util.existsWord(left, "static")) {
             currentHelp.addVariable(hf);

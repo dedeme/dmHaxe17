@@ -37,7 +37,7 @@ class Client {
 
   /// Sets a new page identifier
   ///   action : Action to do if 'controlPageId' fails
-  public function setPageId(action:Void->Void) {
+  public function setPageIdAction(action:Void->Void) {
     pageId = Cryp.genK(250);
     pageIdAction = action;
     Store.put(pageIdStore, pageId);

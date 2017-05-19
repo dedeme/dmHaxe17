@@ -27,7 +27,7 @@ class Conf {
       var table = cp.paths;
 
       Global.setLanguage(conf.lang);
-      client.setPageId(function () {
+      client.setPageIdAction(function () {
         alert(_("Current page is expired.\nPress [Accept] to reload."));
         Dom.go("");
       });

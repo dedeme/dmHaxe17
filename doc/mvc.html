@@ -1,0 +1,123 @@
+<!doctype html>
+<html>
+<head>
+<title>DmSudoku</title>
+<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
+<meta http-equiv='Pragma' content='no-cache' />
+<meta name='lang' content='es' />
+<meta name='author' content='ºDeme.' />
+<link rel='icon' type='image/png' href='img/favicon.png' />
+<link rel='stylesheet' href='styles.css' type='text/css' />
+</head>
+<body style="font-family:sans;font-size:small;background-color:#404040;">
+<table align="center" width="600px"><tr>
+<td style="border:solid 1px;padding:4px;background-color:#f0f0f0;">
+
+<!------------------------------------------------>
+<h2>General scheme</h2>
+<p>In the root directory we have two files:</p>
+<dl>
+  <dt><tt>haxe_maker</tt></dt>
+    <dd>Utility to manage applications.</dd>
+  <dt><tt>xxx.geany</tt></dt>
+    <dd>Editor</dd>
+</dl>
+<p>Also there are four directories:</p>
+<dl>
+  <dt><tt>i18n</tt></dt>
+    <dd>Used to manage internationalization</dd>
+  <dt><tt>www</tt><dt>
+    <dd>Target for client compilation.</dd>
+  <dt><tt>scripts</tt></dt>
+    <dd>Target for server compilation.</dd>
+  <dt><tt>src</tt></dt>
+    <dd>Source code.</dd>
+
+<!------------------------------------------------>
+<h2>src</h2>
+<p>Source code is split in several directories. Every directory  has is
+correlative in <tt>www</tt> and <tt>scripts</tt>.</p>
+
+<h3><tt>main</tt> directory</h3>
+<!----------------------------->
+<p>Entry point of application. The page generates by the code in this
+directory will be called from the root <tt>www</tt> page.</p>
+<p>Client can access pages in any directory, but if he is not authorized
+to read it, he will be redirected here.</p>
+
+<h3><tt>lib</tt>directory</h3>
+<!--------------------------->
+<p>Usualy this directory will only generate relevean code for server. On the
+client side will make a page which redirect to the <tt>main</tt> page.</p>
+
+<!------------------------------------------------>
+<h2>www</h2>
+<p>Directory to be copied to the http server.</p>
+<p>In the top directory there are two files:</p>
+<dl>
+  <dt><tt>index.html</tt></dt>
+    <dd>Page with redirect to <tt>main/index.html</tt></dd>
+  <dt><tt>styles.css</tt></dt>
+    <dd>Styles page placed here for convenience.</dd>
+</dl>
+<p>There are several directories as well. There is one for each in <tt>src</tt>.
+However there usually will be more (e.g. <tt>img</tt>).</p>
+
+<!------------------------------------------------>
+<h2>scripts</h2>
+<p>Directory to be accessed by server.</p>
+<p>It contains javascript code to be executed by nashorn (java).</p>
+<p>Each subdirectory match the correlative in <tt>src</tt>, although it is
+possible that some one of src is not matched.</p>
+
+<!------------------------------------------------>
+<h2>Processing for each subdirectory in <tt>src</tt></h2>
+<p>It fallow the scheme MVC to generate and manage a web page.</p>
+<p>There are three files for the client side:</p>
+<dl>
+  <dt><tt>'xxx.hx'</tt></dt>
+    <dd>It makes functions of controler.</dd>
+  <dt><tt>'xxxModel.hx'</tt></dt>
+    <dd>It is the model. It may have other files with data and functions.</dd>
+  <dt><tt>'xxxView.hx'</tt><dt>
+    <dd>It shows the web page. It may be completed with other files.</dd>
+</dl>
+<p>On the server side the file 'xxxS.hx' acts. This file mainly store and
+retrieve data in and from server. It may be completed with other files.</p>
+<p>When there is a 'xxxS.hx' file, also there is a 'xxxCm.hx' which povides
+the interface cliente-server to interchage of data.</p>
+
+<h3>Entry point (controler) </h3>
+<!------------------------------>
+<p>It is in a file 'xxx.hx' that match the directory name.</p>
+<p>This file has a static <tt>main()</tt> function which intializes the
+model.</p>
+<p>Besides, it has a function show(controler (this), model) which calls the
+correlative function 'show()' in 'xxxView.hx'.</p>
+<p>Finally, there are several functions which are called when some event
+happens in a page widget. This functions, after modify the model, can call
+'show()' or occasionally redirect to other page.</p>
+
+<h3>Initialization</h3>
+<!-------------------->
+<p>It fallows next steps:</p>
+<ol>
+  <li>Read the URL if a get request is expected.</li>
+  <li>Read local storage for authentication data.</li>
+  <li>Read server data</li>
+  <li>Verify if the page can be accessed (fail -> main page).</li>
+  <li>Read local storage</li>
+  <li>Initialize the model</li>
+  <li>Call show(this, model)</li>
+</ol>
+
+<h3>Authentication</h3>
+<!-------------------->
+<p>Authencation is carried out by class 'Client'.</p>
+<p>This class controls if client is authentified and if page access is
+correct. The control is done when data are send.</p>
+
+</td></tr></table>
+</body>
+</html>
+
