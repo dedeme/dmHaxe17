@@ -27,29 +27,104 @@ import dm.Rnd;
 
 /// System for controling authomatized login
 class Captcha {
-  /// Captcha 0-1 distribution. Its order will be changed by make()
-  public var value(default, default):String = "11110000";
-  /// Color of squares with value 1
+  // Model -----------------------------
+
+  /// Error counter
+  public var counter(default, null):Int;
+  /// Maximun error number without captcha
+  public var counterLimit(default, null):Int = 2;
+
+  var storeId = "Hconta__Captcha";
+  var captcha:OCaptcha;
+
+  // View ------------------------------
+
+  /// Return captcha object
+  public function make():DomObject {
+    return captcha.make();
+  }
+
+  // Control ---------------------------
+  /// Constructor:
+  ///   storeId     : Identifier for store Captcha data in local store.
+  ///   counterLimit: Maximun error number without captcha.
+  ///   zeroColor   : Color cells to not mark (Default: "#f0f0f0")
+  ///   oneColor    : Color cells to mark (Default: "#c0c0c0")
+  public function new(
+    storeId:String,
+    counterLimit:Int,
+    zeroColor = "#f0f0f0",
+    oneColor = "#c0c0c0"
+  ) {
+    this.storeId = storeId;
+    this.counterLimit = counterLimit;
+    captcha = new OCaptcha();
+    captcha.zeroColor = zeroColor;
+    captcha.oneColor = oneColor;
+    counter = getCounter();
+  }
+
+  function getCounter():Int {
+    function ret(n) {
+      Store.put(storeId + "_counter", n);
+      Store.put(storeId + "_time", Std.string(DateDm.now().toTime()));
+      return Std.parseInt(n);
+    }
+
+    var c = Store.get(storeId + "_counter");
+    if (c == null) return ret("0");
+
+    var t = Std.parseInt(Store.get(storeId + "_time"));
+    if (DateDm.now().toTime() - t > 900000) return ret("0");
+
+    return Std.parseInt(c);
+  }
+
+  /// Increments counter
+  public function incCounter() {
+    var c = Std.parseInt(Store.get(storeId + "_counter"));
+    Store.put(storeId + "_counter", Std.string(c + 1));
+    Store.put(storeId + "_time", Std.string(DateDm.now().toTime()));
+  }
+
+  /// Restores counter value to zero
+  public function resetCounter() {
+    Store.del(storeId + "_counter");
+    Store.del(storeId + "_time");
+  }
+
+  /// Indicates if user selection is valid
+  public function match():Bool {
+    return captcha.match();
+  }
+}
+
+
+private class OCaptcha {
+  // Captcha 0-1 distribution. Its order will be changed by make()
+  var value(default, default):String = "11110000";
+  // Color of squares with value 1
   public var oneColor(default, default):String = "#6060d0";
-  /// Color of squares with value 0
+  // Color of squares with value 0
   public var zeroColor(default, default):String = "#d06060";
 
   var checks:Array<DomObject>;
 
   public function new () {}
 
-  /// Returns code selected by user
-  public function selection ():String {
+  // Returns code selected by user
+  function selection ():String {
     return It.join(It.from(checks).map(function (c) {
       return cast(c.e, js.html.InputElement).checked ? "1" : "0";
     }));
   }
 
-  /// Returns true if selection() == value
+  // Returns true if selection() == value
   public function match ():Bool {
     return selection() == value;
   }
 
+  // Make captcha object
   public function make ():DomObject {
     checks = [];
     var tds = [];

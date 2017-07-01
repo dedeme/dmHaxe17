@@ -1,0 +1,128 @@
+# File generated file by haxe_maker
+
+# ORPHAN
+Cancel = Cancelar
+
+# ORPHAN
+Change Language to %0 = Change Language to %0
+
+# ORPHAN
+Change Password = Cambiar la contraseña
+
+# ORPHAN
+Confirm password = Confirmar la contraseña
+
+# ORPHAN
+Confirm password is missing = Falta la confirmación de la contraseña
+
+# ORPHAN
+Current page is expired.\nPress [Accept] to reload. = La página actual ha expirado.\nPulse [Aceptar] para recargarla.
+
+# ORPHAN
+Current password = Contraseña actual
+
+# ORPHAN
+Current password is missing = Falta por indicar la contraseña actual
+
+# ORPHAN
+Delete %0? = ¿Eliminar %0?
+
+# ORPHAN
+Fail trying to change password = Fallo intentando cambiar la contraseña
+
+# ORPHAN
+Libraries = Librerías
+
+# ORPHAN
+Name = Nombre
+
+# ORPHAN
+Name '%0' contains '%1' = El nombre '%0' contiene '%1'
+
+# ORPHAN
+Name '%0' contains blanks = El nombre '%0' contiene espacios en blanco
+
+# ORPHAN
+Name '%0' is repeated = El nombre está repetido
+
+# ORPHAN
+Name is missing = Falta el nombre
+
+# ORPHAN
+New password = Nueva contraseña
+
+# ORPHAN
+New password and confirm password do not match = La nueva contraseña y su confirmación no coinciden.
+
+# ORPHAN
+New password is missing = Falta por indicar la nueva contraseña
+
+# ORPHAN
+Password successfully changed = La contraseña se cambió adecuadamente
+
+# ORPHAN
+Path = Ruta
+
+# ORPHAN
+Path can not end with '/' = La ruta no puede terminar con '/'
+
+# ORPHAN
+Path is missing = Falta la ruta
+
+# ORPHAN
+There are no libraries = No hay librerías
+
+# ORPHAN
+This source can not be selected, because it does not exist = Esta fuente no puede ser seleccionada por que no existe
+
+# Authentication.hx : 148
+Accept = Aceptar
+
+# lib/Dom1.hx : 28
+Cash = Caja
+
+# Authentication.hx : 101
+Check gray squares = Marcar los cuadrados grises
+
+# Expired.hx : 41
+Click %0 to continue. = Hacer click %0 para continuar.
+
+# Authentication.hx : 152
+Grey squares checks are wrong = Las casillas grises están mal marcadas
+
+# Expired.hx : 23
+here = aquí
+
+# Authentication.hx : 64
+Keep connected = Mantenerse conectado
+
+# Authentication.hx : 121
+Login = Identificación
+
+# By.hx : 34
+Logout-message = <p>%0 ha terminado.</p><p><b>¡Hasta pronto!</b></p>
+
+# Authentication.hx : 49
+Password = Contraseña
+
+# Authentication.hx : 174
+Password is missing = Falta por indicar la contraseña
+
+# lib/Dom1.hx : 30
+Plan = Plan
+
+# Expired.hx : 39
+Session is expired. = La sesión ha expirado.
+
+# lib/Dom1.hx : 32
+Settings = Configuración
+
+# Authentication.hx : 44
+User = Usuario
+
+# Authentication.hx : 170
+User name is missing = Falta por indicar el nombre del usuario
+
+# Authentication.hx : 86
+Wrong password = La contraseña es incorrecta
+

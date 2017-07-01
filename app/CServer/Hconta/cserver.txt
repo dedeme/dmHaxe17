@@ -1,0 +1,124 @@
+Main
+====
+client = Cclient.connect
+    if !ok
+      authentication page
+    else
+      client.request configuration
+        Main.start conf
+    endif
+
+Main.start (conf)
+
+
+Cclient.connect
+===============
+Params:
+appPath:String
+appName:String
+fexpired:Void->Void
+callback: Params: null<CClient>->Void
+
+Read sessionId
+Create pageId
+Send to server: {
+  page: "_ClientConnection"
+  sessionId:String
+  pageId:String
+}
+Receive from server: {
+  sessionOk: Bool
+  error:String
+}
+if (error != "")
+  throws
+else if (sessionOk)
+  create CClient
+  returns CClient
+else
+  returns null
+endif
+
+Server connect
+==============
+Filter expired sessions
+Control sessionId -> fail returns {sessionOk: false}
+Set sessionId with new time and new pageId
+returns {sessionOk: true}
+
+
+CClient.request [Synchronized]
+===============
+params:
+  data: {
+    page:String
+    ...
+  }
+
+add to data appPath, appName, sessionId and pageId
+send
+receive: {
+    sessionOk:Bool
+    error:String
+    ...
+  }
+if (error != "")
+  throw
+else if (!sessionOk)
+  call fexpired
+else
+  return data
+endif
+
+CClient.send [Synchronized]
+============
+Call CClient.send with calback:
+if (error != "")
+  throw
+else if (!sessionOk)
+  call fexpired
+else
+  DO NOTHING
+endif
+
+Server.request
+==============
+Control sessionId and pageId
+if fail
+  Return sessionOk = false
+else
+  Process request
+  add to data sessionOk = true
+  return data
+
+static CClient.authentication
+=============================
+Params:
+appPath:String
+appName:String
+
+send to server: {
+  appPath:String
+  appName:String
+  page:"_ClientAuthentication"
+  user:String
+  pass:String -> key
+  expiration:Int (Increment time)
+}
+
+Receive from server: {
+  sessionId
+  level
+}
+localStore sessionId
+go main
+
+SYNCHRONIZATION
+===============
+++lckix
+while (lockix > unlockIx + 1) {
+  wait
+}
+exec
+++unlockIx
+

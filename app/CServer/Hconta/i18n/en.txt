@@ -1,0 +1,131 @@
+# File generated file by haxe_maker
+
+# ORPHAN
+Cancel = Cancel
+
+# ORPHAN
+Change Language to %0 = Cambiar el idioma a %0
+
+# ORPHAN
+Change Password = Change Password
+
+# ORPHAN
+Confirm password = Confirm password
+
+# ORPHAN
+Confirm password is missing = 'Confirm password' is missing
+
+# ORPHAN
+Current page is expired.\nPress [Accept] to reload. = Current page is expired.\nPress [Accept] to reload.
+
+# ORPHAN
+Current password = Current password
+
+# ORPHAN
+Current password is missing = 'Current password' is missing
+
+# ORPHAN
+Delete %0? = Delete %0?
+
+# ORPHAN
+Fail trying to change password = Fail trying to change password
+
+# ORPHAN
+Libraries = Libraries
+
+# ORPHAN
+Logout-message%0 = <p>%0 has finished.</p><p><b>Good by!</b></p>
+
+# ORPHAN
+Name = Name
+
+# ORPHAN
+Name '%0' contains '%1' = Name '%0' contains '%1'
+
+# ORPHAN
+Name '%0' contains blanks = Name '%0' contains blanks
+
+# ORPHAN
+Name '%0' is repeated = Name '%0' is repeated
+
+# ORPHAN
+Name is missing = Name is missing
+
+# ORPHAN
+New password = New password
+
+# ORPHAN
+New password and confirm password do not match = New password and confirm password do not match
+
+# ORPHAN
+New password is missing = 'New password' is missing
+
+# ORPHAN
+Password successfully changed = Password successfully changed
+
+# ORPHAN
+Path = Path
+
+# ORPHAN
+Path can not end with '/' = Path can not end with '/'
+
+# ORPHAN
+Path is missing = Path is missing
+
+# ORPHAN
+There are no libraries = There are no libraries
+
+# ORPHAN
+This source can not be selected, because it does not exist = This source can not be selected, because it does not exist
+
+# Authentication.hx : 148
+Accept = Accept
+
+# lib/Dom1.hx : 28
+Cash = Cash
+
+# Authentication.hx : 101
+Check gray squares = Check gray squares
+
+# Expired.hx : 41
+Click %0 to continue. = Click %0 to continue.
+
+# Authentication.hx : 152
+Grey squares checks are wrong = Grey squares checks are wrong
+
+# Expired.hx : 23
+here = here
+
+# Authentication.hx : 64
+Keep connected = Keep connected
+
+# Authentication.hx : 121
+Login = Login
+
+# By.hx : 34
+Logout-message = <p>%0 has finished.</p><p><b>Good by!</b></p>
+
+# Authentication.hx : 49
+Password = Password
+
+# Authentication.hx : 174
+Password is missing = Password is missing
+
+# lib/Dom1.hx : 30
+Plan = Plan
+
+# Expired.hx : 39
+Session is expired. = Session is expired.
+
+# lib/Dom1.hx : 32
+Settings = Settings
+
+# Authentication.hx : 44
+User = User
+
+# Authentication.hx : 170
+User name is missing = User name is missing
+
+# Authentication.hx : 86
+Wrong password = Wrong password
+

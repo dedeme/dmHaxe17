@@ -17,7 +17,7 @@ class Json {
     var r = untyped __js__ ("{}");
     for (k in m.keys()) {
       var v = m.get(k);
-      untyped __js__ ("r[k] = v");
+      untyped __js__ ("r[k1] = v");
     }
     return untyped __js__ ("JSON.stringify(r)");
   }

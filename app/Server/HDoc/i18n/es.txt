@@ -21,7 +21,7 @@ Change Password = Cambiar la contraseña
 Check gray squares = Marcar los cuadrados grises
 
 # lib/Expired.hx : 36
-Click %0 to continue. = Hacer click en %0 para continuar.
+Click %0 to continue. = Hacer click %0 para continuar.
 
 # chpass/ChpassView.hx : 114
 Confirm password = Confirmar la contraseña

@@ -15,7 +15,7 @@ class Tracker {
 
   /**
    * Load images in background. It create a dictionary
-   * {id:String, img:DomObject} where the id is the name of the image without
+   * {id:String, img:DomObject} where 'id' is the name of the image without
    * the extension.
    * Parameters:
    *  dir  : Relative path of images. By default is "img"

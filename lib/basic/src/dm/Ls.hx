@@ -3,6 +3,7 @@
  * GNU General Public License - V3 <http://www.gnu.org/licenses/>
  */
 
+/// Immutable list
 package dm;
 
 import dm.It;
@@ -20,8 +21,8 @@ class Ls<T> {
     return new Ls(e, this);
   }
 
-  /// If ix is null, returns this ++ l
-  inline public function add(l:Ls<T>, ?ix:Int) {
+  /// If ix is null, returns (this ++ l)
+  inline public function add(l:Ls<T>, ?ix:Int):Ls<T> {
     return from(to().addIt(l.to(), ix));
   }
 

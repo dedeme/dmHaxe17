@@ -153,6 +153,8 @@ class MkModule {
       var subs = ["{", ";", "="];
       if (search == "enum" || search == "typedef") {
         subs = ["}"];
+      } else if (search == "function") {
+        subs = ["{", ";"];
       }
       var ixs = It.from(subs).map(It.f(l.indexOf(_1))).to();
       var min = Util.min(ixs);
