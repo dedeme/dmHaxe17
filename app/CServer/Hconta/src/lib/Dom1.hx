@@ -16,10 +16,10 @@ class Dom1 {
 
   // View ------------------------------
 
-  public static function show(client:CClient, page:String, o:DomObject) {
+  public static function show(model:Model, page:String, o:DomObject) {
     function entry(id, target) {
       return Ui.link(function (ev) {
-          go(client, target);
+          go(model, target);
         }).klass(target == page ? "frame" : "link").html(id);
     }
     function separator() {
@@ -35,7 +35,7 @@ class Dom1 {
         .add(entry(_("Settings"), "settings"))
         .add(separator())
         .add(Ui.link(function (ev) {
-            new By(client);
+            new By(model.client);
           }).add(Ui.img("cross").style("vertical-align:bottom")))))
     ;
 
@@ -49,11 +49,12 @@ class Dom1 {
 
   // Control ---------------------------
 
-  static function go(client:CClient, page: String) {
+  static function go(model:Model, page: String) {
     var rq = new Map();
     rq.set(CClient.PAGE, "menu");
     rq.set("go", page);
-    client.request(rq, function (rp) {
+    model.client.request(rq, function (rp) {
+      model.page = page;
       Main.start();
     });
   }

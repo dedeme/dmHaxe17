@@ -1,131 +1,96 @@
 # File generated file by haxe_maker
 
-# ORPHAN
-Cancel = Cancel
-
-# ORPHAN
-Change Language to %0 = Cambiar el idioma a %0
-
-# ORPHAN
-Change Password = Change Password
-
-# ORPHAN
-Confirm password = Confirm password
-
-# ORPHAN
-Confirm password is missing = 'Confirm password' is missing
-
-# ORPHAN
-Current page is expired.\nPress [Accept] to reload. = Current page is expired.\nPress [Accept] to reload.
-
-# ORPHAN
-Current password = Current password
-
-# ORPHAN
-Current password is missing = 'Current password' is missing
-
-# ORPHAN
-Delete %0? = Delete %0?
-
-# ORPHAN
-Fail trying to change password = Fail trying to change password
-
-# ORPHAN
-Libraries = Libraries
-
-# ORPHAN
-Logout-message%0 = <p>%0 has finished.</p><p><b>Good by!</b></p>
-
-# ORPHAN
-Name = Name
-
-# ORPHAN
-Name '%0' contains '%1' = Name '%0' contains '%1'
-
-# ORPHAN
-Name '%0' contains blanks = Name '%0' contains blanks
-
-# ORPHAN
-Name '%0' is repeated = Name '%0' is repeated
-
-# ORPHAN
-Name is missing = Name is missing
-
-# ORPHAN
-New password = New password
-
-# ORPHAN
-New password and confirm password do not match = New password and confirm password do not match
-
-# ORPHAN
-New password is missing = 'New password' is missing
-
-# ORPHAN
-Password successfully changed = Password successfully changed
-
-# ORPHAN
-Path = Path
-
-# ORPHAN
-Path can not end with '/' = Path can not end with '/'
-
-# ORPHAN
-Path is missing = Path is missing
-
-# ORPHAN
-There are no libraries = There are no libraries
-
-# ORPHAN
-This source can not be selected, because it does not exist = This source can not be selected, because it does not exist
-
-# Authentication.hx : 148
+# Authentication.hx : 42
+# Chpass.hx : 43
 Accept = Accept
 
-# lib/Dom1.hx : 28
+# Chpass.hx : 37
+Cancel = Cancel
+
+# lib/Dom1.hx : 31
 Cash = Cash
 
-# Authentication.hx : 101
+# Settings.hx : 28
+Change language to = Change language to
+
+# Settings.hx : 35
+Change password = Change password
+
+# Chpass.hx : 144
+Change Password = Change Password
+
+# Authentication.hx : 124
+# Chpass.hx : 124
 Check gray squares = Check gray squares
 
-# Expired.hx : 41
+# Expired.hx : 42
 Click %0 to continue. = Click %0 to continue.
 
-# Authentication.hx : 152
+# Chpass.hx : 80
+Confirm password = Confirm password
+
+# Chpass.hx : 179
+Confirm password is missing = 'Confirm password' is missing
+
+# Chpass.hx : 68
+Current password = Current password
+
+# Chpass.hx : 169
+Current password is missing = 'Current password' is missing
+
+# Chpass.hx : 109
+Fail trying to change password = Fail trying to change password
+
+# Authentication.hx : 46
+# Chpass.hx : 47
 Grey squares checks are wrong = Grey squares checks are wrong
 
-# Expired.hx : 23
+# Expired.hx : 24
 here = here
 
-# Authentication.hx : 64
+# Authentication.hx : 87
 Keep connected = Keep connected
 
-# Authentication.hx : 121
+# Authentication.hx : 148
 Login = Login
 
-# By.hx : 34
+# By.hx : 32
 Logout-message = <p>%0 has finished.</p><p><b>Good by!</b></p>
 
-# Authentication.hx : 49
+# Chpass.hx : 74
+New password = New password
+
+# Chpass.hx : 174
+New password is missing = 'New password' is missing
+
+# Authentication.hx : 72
 Password = Password
 
-# Authentication.hx : 174
+# Chpass.hx : 184
+Password and Confirm password do not match = Password and Confirm password do not match
+
+# Authentication.hx : 182
 Password is missing = Password is missing
 
-# lib/Dom1.hx : 30
+# Chpass.hx : 192
+Password successfully changed = Password successfully changed
+
+# lib/Dom1.hx : 33
 Plan = Plan
 
-# Expired.hx : 39
+# Expired.hx : 40
 Session is expired. = Session is expired.
 
-# lib/Dom1.hx : 32
+# lib/Dom1.hx : 35
+# Settings.hx : 25
 Settings = Settings
 
-# Authentication.hx : 44
+# Authentication.hx : 67
 User = User
 
-# Authentication.hx : 170
+# Authentication.hx : 177
 User name is missing = User name is missing
 
-# Authentication.hx : 86
+# Authentication.hx : 109
 Wrong password = Wrong password
 

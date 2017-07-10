@@ -1,5 +1,5 @@
 /*
- * Copyright 04-Mar-2016 ºDeme7
+ * Copyright 04-Mar-2016 ºDeme
  * GNU General Public License - V3 <http://www.gnu.org/licenses/>
  */
 
@@ -246,6 +246,14 @@ class ItTest {
     t.eq("", It.join(It.flat(It.from ([]))));
     t.eq("", It.join(It.flatStr(It.from (["", "", ""]))));
     t.eq("acba", It.join(It.flatStr(It.from (["", "a", "cba"]))));
+    t.eq("", It.join(It.from (["", "", ""])));
+    t.eq("acba", It.join(It.from (["", "a", "cba"])));
+    t.eq(It.join(It.from (["", "a", "cba"]), ";"), ";a;cba");
+
+    t.eq(It.split("", ";").to(), [""]);
+    t.eq(It.split("a", ";").to(), ["a"]);
+    t.eq(It.split("a;", ";").to(), ["a", ""]);
+    t.eq(It.split("a;b;cd", ";").to(), ["a", "b", "cd"]);
 
     var sum = 0;
     It.from(i0).each (function (e) { sum += e; });

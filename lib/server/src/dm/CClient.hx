@@ -76,17 +76,19 @@ class CClient {
     var request = js.Browser.createXMLHttpRequest();
     request.onreadystatechange = function (e) {
       if (request.readyState == 4) {
-        var rp = null;
         try {
           var rp = Json.toMap(B41.decompress(request.responseText));
-          var error = rp.get(ERROR);
-          if (error == "") {
-            f(rp);
-          } else {
-            throw (error);
+          try {
+            var error = rp.get(ERROR);
+            if (error == "") {
+              f(rp);
+            } else {
+              throw (error);
+            }
+          } catch(e:Dynamic) {
+            trace(e);
           }
         } catch (e:Dynamic) {
-          trace(e);
           trace(B41.decompress(request.responseText));
         }
       }
@@ -162,7 +164,7 @@ class CClient {
     appName:String,
     user:String,
     pass:String,
-    expirationTime: Int,
+    expirationTime: Float,
     callback: Bool -> Void
   ) {
     var client = new CClient(executable, appName, user, null);
@@ -183,6 +185,7 @@ class CClient {
     );
   }
 
+  /// Changes password
   public function chpass(
     oldPass:String,
     newPass:String,
@@ -204,7 +207,7 @@ class CClient {
     });
   }
 
-  /// Send a request to server.
+  /// Sends a request to server.
   ///   data    : Jsonizable values. Keys "sessionId" and "pageId" are reserved.
   ///   callback: Function which receives Jsonizable values from server. It
   ///             has to have an "Ok" field, which indicate if session is

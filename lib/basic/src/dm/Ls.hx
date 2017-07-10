@@ -1,5 +1,5 @@
 /*
- * Copyright 13-Mar-2016 ºDeme7
+ * Copyright 13-Mar-2016 ºDeme
  * GNU General Public License - V3 <http://www.gnu.org/licenses/>
  */
 
@@ -172,7 +172,9 @@ class Ls<T> {
 
   /// Returns a string joining elements of [it] whit [separator].
   /// If [separator] is null its value is ""
-  inline public static function join(l:Ls<String>, ?separator:String):String {
+  inline public static function join(
+    l:Ls<String>, ?separator = ""
+  ):String {
     return It.join(l.to(), separator);
   }
 

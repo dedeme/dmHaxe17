@@ -1,0 +1,6 @@
+#!/bin/bash
+DIR=$(pwd)
+cd /deme/dmHaxe17/lib/cbasic/tests
+haxe build.hxml
+cd $DIR
+

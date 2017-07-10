@@ -1,5 +1,5 @@
 /*
- * Copyright 04-Mar-2016 ºDeme7
+ * Copyright 04-Mar-2016 ºDeme
  * GNU General Public License - V3 <http://www.gnu.org/licenses/>
  */
 
@@ -639,6 +639,31 @@ class It<T> {
 
   public static function keys<T>(map:Map<T, Dynamic>) : It<T> {
     return fromIterator(map.keys());
+  }
+
+  /// Divides 's' by 'separator'. If 'separator' is null o blank, it throws
+  /// an exception.
+  public static function split(s:String, separator:String) : It<String> {
+    if (separator == null || separator == "") {
+      throw ("Separator can not be null o blank");
+    }
+    var len = separator.length;
+    var ix = 0;
+    return new It (
+      function () { return ix != -1; },
+      function () {
+        var i = s.indexOf(separator, ix);
+        if (i == -1) {
+          var r = s.substring(ix);
+          ix = -1;
+          return r;
+        } else {
+          var r = s.substring(ix, i);
+          ix = i + len;
+          return r;
+        }
+      }
+    );
   }
 
   /// Returns a string joining elements of [it] whit [separator]. If

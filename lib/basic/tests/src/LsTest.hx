@@ -1,5 +1,5 @@
 /*
- * Copyright 13-Mar-2016 ºDeme7
+ * Copyright 13-Mar-2016 ºDeme
  * GNU General Public License - V3 <http://www.gnu.org/licenses/>
  */
 

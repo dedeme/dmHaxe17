@@ -1,0 +1,7 @@
+#!/bin/bash
+DIR=$(pwd)
+cd /deme/dmHaxe17/app/CServer/Hconta/server/bin
+#haxe build.hxml 2>&1
+/home/deme/bin/neko Main.n $1 2>&1
+cd $DIR
+

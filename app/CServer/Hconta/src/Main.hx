@@ -3,25 +3,25 @@
  * GNU General Public License - V3 <http://www.gnu.org/licenses/>
  */
 
-/// Application entry
 import dm.Ui;
 import dm.B41;
 import dm.Store;
 import dm.I18n;
 import dm.CClient;
-import lib.Configuration;
+import lib.Model;
+import lib.Action;
 import lib.Dom0;
 import Authentication;
 import Expired;
 import By;
 
-/// Entry class
+/// Client entry point
 class Main {
-  static var executable = "/deme/dmC17/app/hconta/bin/hconta";
+  static var executable = "/deme/dmHaxe17/app/CServer/Hconta/server/Hconta";
   static var appName = "Hconta";
   static var version = "0.0.1";
   static var languageKey = "Hconta__language";
-  static var client:CClient = null;
+  static var model:Model = null;
 
   /// Entry point
   public static function main() {
@@ -43,32 +43,25 @@ class Main {
         if (c == null) {
           new Authentication(executable, appName, languageKey);
         } else {
-          client = c;
-          start();
+          var rq = new Map();
+          rq.set(CClient.PAGE, "main");
+          c.request(rq, function (rp) {
+            model = new Model(c, rp);
+            start();
+          });
         }
       }
     );
   }
 
   public static function start() {
-    var rq = new Map();
-    rq.set(CClient.PAGE, "main");
-    client.request(rq, function (rp) {
-      var conf:Configuration = {
-        client: client,
-        language: rp.get("language"),
-        page: rp.get("page"),
-        subPage: rp.get("subPage")
-      }
-
-      var dic = conf.language == "en" ? I18nData.en() : I18nData.es();
-      I18n.init(dic);
-
-      switch(conf.page) {
-        case "plan" : new Plan(client, conf);
-        case "settings" : new Settings(client, conf);
-        default : trace("page unknown in Main.start()");
-      }
-    });
+    var dic = model.language == "en" ? I18nData.en() : I18nData.es();
+    I18n.init(dic);
+    switch(model.page) {
+      case "plan" : new Plan(model);
+      case "settings" : new Settings(model);
+      default : trace("page unknown in Main.start()");
+    }
   }
+
 }

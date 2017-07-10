@@ -118,3 +118,12 @@ table tr td dt code {
 sup {
     font-size:6px;
 }
+#hlist {
+  max-height:0;
+  overflow:hidden;
+  transition:0.5s linear;
+}
+a:focus + #hlist {
+  max-height:15em;
+}
+

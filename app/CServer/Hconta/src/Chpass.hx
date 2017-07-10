@@ -190,7 +190,7 @@ class Chpass {
       if (ok) {
         captcha.resetCounter();
         Ui.alert(_("Password successfully changed"));
-        Main.main();
+        Main.start();
       } else {
         captcha.incCounter();
         new Chpass(client);

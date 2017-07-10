@@ -171,7 +171,7 @@ class Authentication {
   }
 
   function faccept(u:String, p:String, persistent:Bool) {
-    var expiration = persistent ? 2592000 : 900;
+    var expiration:Float = persistent ? 2592000 : 900;
 
     if (u == "") {
       Ui.alert(_("User name is missing"));

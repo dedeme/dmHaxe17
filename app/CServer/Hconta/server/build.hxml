@@ -1,0 +1,6 @@
+-cp src
+-cp /deme/dmHaxe17/lib/cbasic_0.0.1/src
+
+-neko bin/Main.n
+
+-main SMain
