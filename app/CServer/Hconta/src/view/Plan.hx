@@ -4,22 +4,21 @@
  */
 
 /// Plan page
+package view;
+
 import dm.Ui;
 import dm.Ui.Q;
 import dm.I18n;
 import dm.I18n._;
 import dm.It;
-import dm.CClient;
-import lib.Model;
-import lib.Dom1;
-import lib.PyG;
-import lib.Balance;
+import model.PyG;
+import model.Balance;
 
 class Plan {
 
   // Model -----------------------------
 
-  var model:Model;
+  var control:Control;
   var group = "";
   var subgroup = "";
   var account = "";
@@ -114,7 +113,7 @@ class Plan {
     ;
   }
 
-  function showGroups(groups:Array<Array<String>>) {
+  function showGroups() {
     var left = isAccount() ? mkLeftHelp() : mkEmptyTd();
 
     var right = Q("td").style("text-align:center;vertical-align:top;")
@@ -134,13 +133,14 @@ class Plan {
     var table = Q("table").klass("main").add(Q("tr")
       .add(left)
       .add(right));
-    Dom1.show(model, "plan", table);
+    Dom1.show(control, "plan", table);
   }
 
   // Control ---------------------------
 
-  public function new(model:Model) {
-    this.model = model;
+  public function new(control:Control) {
+    this.control = control;
+    var model = control.model;
 
     var lg = model.subpage.length;
     title = _("Groups");
@@ -157,16 +157,7 @@ class Plan {
       title = _("Subaccounts");
     }
 
-    var rq = new Map();
-    rq.set(CClient.PAGE, "plan");
-    rq.set("year", model.year);
-    rq.set("group", group);
-    rq.set("subgroup", subgroup);
-    rq.set("account", account);
-    model.client.request(rq, function (rp:Map<String,Dynamic>) {
-      var data = rp.get("data");
-      showGroups(data);
-    });
+    showGroups();
   }
 
   function go(page:String) {

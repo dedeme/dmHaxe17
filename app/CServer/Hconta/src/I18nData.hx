@@ -4,6 +4,7 @@ class I18nData {
   public static function en():Array<String> {
     return [
       "Accept = Accept",
+      "Accounts = Accounts",
       "Cancel = Cancel",
       "Cash = Cash",
       "Change language to = Change language to",
@@ -17,6 +18,7 @@ class I18nData {
       "Current password is missing = 'Current password' is missing",
       "Fail trying to change password = Fail trying to change password",
       "Grey squares checks are wrong = Grey squares checks are wrong",
+      "Groups = Groups",
       "here = here",
       "Keep connected = Keep connected",
       "Login = Login",
@@ -30,6 +32,8 @@ class I18nData {
       "Plan = Plan",
       "Session is expired. = Session is expired.",
       "Settings = Settings",
+      "Subaccounts = Subaccounts",
+      "Subgroups = Subgroups",
       "User = User",
       "User name is missing = User name is missing",
       "Wrong password = Wrong password",
@@ -39,6 +43,7 @@ class I18nData {
   public static function es():Array<String> {
     return [
       "Accept = Aceptar",
+      "Accounts = Cuentas",
       "Cancel = Cancelar",
       "Cash = Caja",
       "Change language to = Cambiar lenguaje a",
@@ -52,6 +57,7 @@ class I18nData {
       "Current password is missing = Falta por indicar la contraseña actual",
       "Fail trying to change password = Fallo intentando cambiar la contraseña",
       "Grey squares checks are wrong = Las casillas grises están mal marcadas",
+      "Groups = Grupos",
       "here = aquí",
       "Keep connected = Mantenerse conectado",
       "Login = Identificación",
@@ -65,6 +71,8 @@ class I18nData {
       "Plan = Plan",
       "Session is expired. = La sesión ha expirado.",
       "Settings = Configuración",
+      "Subaccounts = Subcuentas",
+      "Subgroups = Subgrupos",
       "User = Usuario",
       "User name is missing = Falta por indicar el nombre del usuario",
       "Wrong password = La contraseña es incorrecta",

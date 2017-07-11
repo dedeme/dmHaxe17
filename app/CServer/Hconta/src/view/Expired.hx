@@ -3,12 +3,14 @@
  * GNU General Public License - V3 <http://www.gnu.org/licenses/>
  */
 
+package view;
+
 import dm.Ui;
 import dm.Ui.Q;
 import dm.I18n._;
 import dm.I18n;
 import dm.Store;
-import lib.Dom0;
+import view.Dom0;
 
 /// Expired page.
 class Expired {

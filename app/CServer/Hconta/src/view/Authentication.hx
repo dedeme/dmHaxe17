@@ -4,6 +4,7 @@
  */
 
 /// Authentication page
+package view;
 
 import dm.Ui;
 import dm.Ui.Q;
@@ -15,7 +16,7 @@ import dm.I18n._;
 import dm.It;
 import dm.Cryp;
 import dm.CClient;
-import lib.Dom0;
+import view.Dom0;
 import I18nData;
 
 class Authentication {

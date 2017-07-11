@@ -8,12 +8,10 @@ import dm.B41;
 import dm.Store;
 import dm.I18n;
 import dm.CClient;
-import lib.Model;
-import lib.Action;
-import lib.Dom0;
-import Authentication;
-import Expired;
-import By;
+import model.Action;
+import view.Dom0;
+import view.Authentication;
+import view.Expired;
 
 /// Client entry point
 class Main {
@@ -43,25 +41,10 @@ class Main {
         if (c == null) {
           new Authentication(executable, appName, languageKey);
         } else {
-          var rq = new Map();
-          rq.set(CClient.PAGE, "main");
-          c.request(rq, function (rp) {
-            model = new Model(c, rp);
-            start();
-          });
+          new Control(c);
         }
       }
     );
-  }
-
-  public static function start() {
-    var dic = model.language == "en" ? I18nData.en() : I18nData.es();
-    I18n.init(dic);
-    switch(model.page) {
-      case "plan" : new Plan(model);
-      case "settings" : new Settings(model);
-      default : trace("page unknown in Main.start()");
-    }
   }
 
 }

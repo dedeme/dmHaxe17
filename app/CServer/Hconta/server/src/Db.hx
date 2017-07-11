@@ -43,7 +43,6 @@ class Db {
       c.set("dbVersion", "1");
       c.set("language", "es");
       c.set("page", "plan");
-      c.set("subpage", "");
       c.set("year", year);
       dbwrite(fconf(), Json.from(c));
       dbwrite(fyear(year),
@@ -69,13 +68,20 @@ class Db {
     return r;
   }
 
+  /// Sets configuration values (conf.db)
+  public static function setConf(rq:Map<String, Dynamic>):Map<String, Dynamic> {
+    var cf = read();
+    cf.set(rq.get("key"), rq.get("value"));
+    dbwrite(fconf(), Json.from(cf));
+    return new Map();
+  }
+
   /// Sets page values and returns conf.db data.
   public static function setPage(
     vpage:String, vsubpage:String
   ):Map<String,Dynamic> {
     var cf = read();
     cf.set("page", vpage);
-    cf.set("subpage", vsubpage);
     dbwrite(fconf(), Json.from(cf));
     return cf;
   }

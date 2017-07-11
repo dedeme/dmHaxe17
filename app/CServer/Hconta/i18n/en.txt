@@ -1,96 +1,108 @@
 # File generated file by haxe_maker
 
-# Authentication.hx : 42
-# Chpass.hx : 43
+# view/Authentication.hx : 43
+# view/Chpass.hx : 41
 Accept = Accept
 
-# Chpass.hx : 37
+# view/Plan.hx : 153
+Accounts = Accounts
+
+# view/Chpass.hx : 35
 Cancel = Cancel
 
-# lib/Dom1.hx : 31
+# view/Dom1.hx : 32
 Cash = Cash
 
-# Settings.hx : 28
+# view/Settings.hx : 28
 Change language to = Change language to
 
-# Settings.hx : 35
+# view/Settings.hx : 35
 Change password = Change password
 
-# Chpass.hx : 144
+# view/Chpass.hx : 142
 Change Password = Change Password
 
-# Authentication.hx : 124
-# Chpass.hx : 124
+# view/Authentication.hx : 125
+# view/Chpass.hx : 122
 Check gray squares = Check gray squares
 
-# Expired.hx : 42
+# view/Expired.hx : 44
 Click %0 to continue. = Click %0 to continue.
 
-# Chpass.hx : 80
+# view/Chpass.hx : 78
 Confirm password = Confirm password
 
-# Chpass.hx : 179
+# view/Chpass.hx : 177
 Confirm password is missing = 'Confirm password' is missing
 
-# Chpass.hx : 68
+# view/Chpass.hx : 66
 Current password = Current password
 
-# Chpass.hx : 169
+# view/Chpass.hx : 167
 Current password is missing = 'Current password' is missing
 
-# Chpass.hx : 109
+# view/Chpass.hx : 107
 Fail trying to change password = Fail trying to change password
 
-# Authentication.hx : 46
-# Chpass.hx : 47
+# view/Authentication.hx : 47
+# view/Chpass.hx : 45
 Grey squares checks are wrong = Grey squares checks are wrong
 
-# Expired.hx : 24
+# view/Plan.hx : 146
+Groups = Groups
+
+# view/Expired.hx : 26
 here = here
 
-# Authentication.hx : 87
+# view/Authentication.hx : 88
 Keep connected = Keep connected
 
-# Authentication.hx : 148
+# view/Authentication.hx : 149
 Login = Login
 
-# By.hx : 32
+# view/By.hx : 33
 Logout-message = <p>%0 has finished.</p><p><b>Good by!</b></p>
 
-# Chpass.hx : 74
+# view/Chpass.hx : 72
 New password = New password
 
-# Chpass.hx : 174
+# view/Chpass.hx : 172
 New password is missing = 'New password' is missing
 
-# Authentication.hx : 72
+# view/Authentication.hx : 73
 Password = Password
 
-# Chpass.hx : 184
+# view/Chpass.hx : 182
 Password and Confirm password do not match = Password and Confirm password do not match
 
-# Authentication.hx : 182
+# view/Authentication.hx : 183
 Password is missing = Password is missing
 
-# Chpass.hx : 192
+# view/Chpass.hx : 190
 Password successfully changed = Password successfully changed
 
-# lib/Dom1.hx : 33
+# view/Dom1.hx : 34
 Plan = Plan
 
-# Expired.hx : 40
+# view/Expired.hx : 42
 Session is expired. = Session is expired.
 
-# lib/Dom1.hx : 35
-# Settings.hx : 25
+# view/Dom1.hx : 36
+# view/Settings.hx : 25
 Settings = Settings
 
-# Authentication.hx : 67
+# view/Plan.hx : 157
+Subaccounts = Subaccounts
+
+# view/Plan.hx : 149
+Subgroups = Subgroups
+
+# view/Authentication.hx : 68
 User = User
 
-# Authentication.hx : 177
+# view/Authentication.hx : 178
 User name is missing = User name is missing
 
-# Authentication.hx : 109
+# view/Authentication.hx : 110
 Wrong password = Wrong password
 

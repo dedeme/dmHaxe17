@@ -3,9 +3,9 @@
  * GNU General Public License - V3 <http://www.gnu.org/licenses/>
  */
 
-/**
- * Change password.<p>
- */
+/// Change password.
+package view;
+
 import dm.Ui;
 import dm.Ui.Q;
 import dm.DateDm;
@@ -14,13 +14,11 @@ import dm.Store;
 import dm.I18n._;
 import dm.It;
 import dm.Cryp;
-import dm.CClient;
-import lib.Dom0;
 
 class Chpass {
   // Model -----------------------------
 
-  var client:CClient;
+  var control:Control;
   var captcha:Captcha;
 
   // View ------------------------------
@@ -45,7 +43,7 @@ class Chpass {
           if (captcha.counter > captcha.counterLimit) {
             if (!captcha.match()) {
               Ui.alert(_("Grey squares checks are wrong"));
-              new Chpass(client);
+              new Chpass(control);
               return;
             }
           }
@@ -150,7 +148,7 @@ class Chpass {
     Dom0.show(
       Q("div")
         .add(Q("div").klass("title")
-          .html('&nbsp;<br>${client.appName}<br>&nbsp;'))
+          .html('&nbsp;<br>${control.client.appName}<br>&nbsp;'))
         .add(Q("div").add(body()))
     );
     Q("#pass").e.focus();
@@ -158,48 +156,48 @@ class Chpass {
 
   // Control ---------------------------
 
-  public function new(client:CClient) {
+  public function new(control:Control) {
     captcha = new Captcha("Hconta__Captcha_Chpass", 2);
-    this.client = client;
+    this.control = control;
     show();
   }
 
   function faccept(pass:String, newPass:String, newPass2:String) {
     if (pass == "") {
       Ui.alert(_("Current password is missing"));
-      new Chpass(client);
+      new Chpass(control);
       return;
     }
     if (newPass == "") {
       Ui.alert(_("New password is missing"));
-      new Chpass(client);
+      new Chpass(control);
       return;
     }
     if (newPass2 == "") {
       Ui.alert(_("Confirm password is missing"));
-      new Chpass(client);
+      new Chpass(control);
       return;
     }
     if (newPass != newPass2) {
       Ui.alert(_("Password and Confirm password do not match"));
-      new Chpass(client);
+      new Chpass(control);
       return;
     }
 
-    client.chpass(Cryp.key(pass, 120), Cryp.key(newPass, 120), function (ok) {
+    control.client.chpass(Cryp.key(pass, 120), Cryp.key(newPass, 120), function (ok) {
       if (ok) {
         captcha.resetCounter();
         Ui.alert(_("Password successfully changed"));
-        Main.start();
+        control.start();
       } else {
         captcha.incCounter();
-        new Chpass(client);
+        new Chpass(control);
       }
     });
   }
 
   function fcancel(ev) {
-    Main.start();
+    control.start();
   }
 
 }

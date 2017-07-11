@@ -3,17 +3,18 @@
  * GNU General Public License - V3 <http://www.gnu.org/licenses/>
  */
 
+package view;
+
 import dm.Ui;
 import dm.Ui.Q;
 import dm.I18n._;
 import dm.I18n;
-import dm.CClient;
-import lib.Dom0;
 
 /// Good By page.
 class By {
   ///
-  public function new(client:CClient):Void {
+  public function new(control:Control):Void {
+    var client = control.client;
     var appName = client.appName;
     client.close();
     Dom0.show(

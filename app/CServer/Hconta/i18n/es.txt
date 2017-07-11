@@ -1,96 +1,108 @@
 # File generated file by haxe_maker
 
-# Authentication.hx : 42
-# Chpass.hx : 43
+# view/Authentication.hx : 43
+# view/Chpass.hx : 41
 Accept = Aceptar
 
-# Chpass.hx : 37
+# view/Plan.hx : 153
+Accounts = Cuentas
+
+# view/Chpass.hx : 35
 Cancel = Cancelar
 
-# lib/Dom1.hx : 31
+# view/Dom1.hx : 32
 Cash = Caja
 
-# Settings.hx : 28
+# view/Settings.hx : 28
 Change language to = Cambiar lenguaje a
 
-# Settings.hx : 35
+# view/Settings.hx : 35
 Change password = Cambiar contraseña
 
-# Chpass.hx : 144
+# view/Chpass.hx : 142
 Change Password = Cambiar la contraseña
 
-# Authentication.hx : 124
-# Chpass.hx : 124
+# view/Authentication.hx : 125
+# view/Chpass.hx : 122
 Check gray squares = Marcar los cuadrados grises
 
-# Expired.hx : 42
+# view/Expired.hx : 44
 Click %0 to continue. = Hacer click %0 para continuar.
 
-# Chpass.hx : 80
+# view/Chpass.hx : 78
 Confirm password = Confirmar la contraseña
 
-# Chpass.hx : 179
+# view/Chpass.hx : 177
 Confirm password is missing = Falta la confirmación de la contraseña
 
-# Chpass.hx : 68
+# view/Chpass.hx : 66
 Current password = Contraseña actual
 
-# Chpass.hx : 169
+# view/Chpass.hx : 167
 Current password is missing = Falta por indicar la contraseña actual
 
-# Chpass.hx : 109
+# view/Chpass.hx : 107
 Fail trying to change password = Fallo intentando cambiar la contraseña
 
-# Authentication.hx : 46
-# Chpass.hx : 47
+# view/Authentication.hx : 47
+# view/Chpass.hx : 45
 Grey squares checks are wrong = Las casillas grises están mal marcadas
 
-# Expired.hx : 24
+# view/Plan.hx : 146
+Groups = Grupos
+
+# view/Expired.hx : 26
 here = aquí
 
-# Authentication.hx : 87
+# view/Authentication.hx : 88
 Keep connected = Mantenerse conectado
 
-# Authentication.hx : 148
+# view/Authentication.hx : 149
 Login = Identificación
 
-# By.hx : 32
+# view/By.hx : 33
 Logout-message = <p>%0 ha terminado.</p><p><b>¡Hasta pronto!</b></p>
 
-# Chpass.hx : 74
+# view/Chpass.hx : 72
 New password = Nueva contraseña
 
-# Chpass.hx : 174
+# view/Chpass.hx : 172
 New password is missing = Falta por indicar la nueva contraseña
 
-# Authentication.hx : 72
+# view/Authentication.hx : 73
 Password = Contraseña
 
-# Chpass.hx : 184
+# view/Chpass.hx : 182
 Password and Confirm password do not match = La contraseña y su confirmación no coinciden
 
-# Authentication.hx : 182
+# view/Authentication.hx : 183
 Password is missing = Falta por indicar la contraseña
 
-# Chpass.hx : 192
+# view/Chpass.hx : 190
 Password successfully changed = La contraseña se cambió adecuadamente
 
-# lib/Dom1.hx : 33
+# view/Dom1.hx : 34
 Plan = Plan
 
-# Expired.hx : 40
+# view/Expired.hx : 42
 Session is expired. = La sesión ha expirado.
 
-# lib/Dom1.hx : 35
-# Settings.hx : 25
+# view/Dom1.hx : 36
+# view/Settings.hx : 25
 Settings = Configuración
 
-# Authentication.hx : 67
+# view/Plan.hx : 157
+Subaccounts = Subcuentas
+
+# view/Plan.hx : 149
+Subgroups = Subgrupos
+
+# view/Authentication.hx : 68
 User = Usuario
 
-# Authentication.hx : 177
+# view/Authentication.hx : 178
 User name is missing = Falta por indicar el nombre del usuario
 
-# Authentication.hx : 109
+# view/Authentication.hx : 110
 Wrong password = La contraseña es incorrecta
 

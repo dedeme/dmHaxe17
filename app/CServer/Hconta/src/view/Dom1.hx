@@ -3,7 +3,8 @@
  * GNU General Public License - V3 <http://www.gnu.org/licenses/>
  */
 
-package lib;
+/// Internal DOM
+package view;
 
 import dm.CClient;
 import dm.DomObject;
@@ -16,10 +17,10 @@ class Dom1 {
 
   // View ------------------------------
 
-  public static function show(model:Model, page:String, o:DomObject) {
+  public static function show(control:Control, page:String, o:DomObject) {
     function entry(id, target) {
       return Ui.link(function (ev) {
-          go(model, target);
+          control.go(target);
         }).klass(target == page ? "frame" : "link").html(id);
     }
     function separator() {
@@ -35,7 +36,7 @@ class Dom1 {
         .add(entry(_("Settings"), "settings"))
         .add(separator())
         .add(Ui.link(function (ev) {
-            new By(model.client);
+            control.by();
           }).add(Ui.img("cross").style("vertical-align:bottom")))))
     ;
 
@@ -45,18 +46,6 @@ class Dom1 {
         .add(Q("hr"))
         .add(o)
     );
-  }
-
-  // Control ---------------------------
-
-  static function go(model:Model, page: String) {
-    var rq = new Map();
-    rq.set(CClient.PAGE, "menu");
-    rq.set("go", page);
-    model.client.request(rq, function (rp) {
-      model.page = page;
-      Main.start();
-    });
   }
 
 }

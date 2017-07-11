@@ -3,7 +3,8 @@
  * GNU General Public License - V3 <http://www.gnu.org/licenses/>
  */
 
-package lib;
+/// Root DOM
+package view;
 
 import dm.DomObject;
 import dm.Ui;

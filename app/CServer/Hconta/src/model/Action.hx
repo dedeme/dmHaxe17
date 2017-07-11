@@ -3,7 +3,7 @@
  * GNU General Public License - V3 <http://www.gnu.org/licenses/>
  */
 
-package lib;
+package model;
 
 using StringTools;
 

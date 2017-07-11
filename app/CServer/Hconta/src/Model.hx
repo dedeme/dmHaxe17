@@ -4,11 +4,9 @@
  */
 
 /// Global data for all pages
-package lib;
-
 import dm.It;
 import dm.CClient;
-import lib.Action;
+import model.Action;
 
 class Model {
   public var client:CClient;

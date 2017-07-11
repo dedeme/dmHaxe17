@@ -3,6 +3,7 @@
  * GNU General Public License - V3 <http://www.gnu.org/licenses/>
  */
 
+import dm.It;
 import dm.B41;
 import dm.Json;
 import dm.Cgi;
@@ -68,13 +69,15 @@ class SMain {
             return rp;
           });
         }
-        case "main": reply(rq, PageMain.response);
-        case "menu": reply(rq, SMenu.response);
-        case "plan": {
-          rp.set(Cgi.OK, true);
-          Cgi.ok(rp);
+        case "control": {
+          switch (rq.get("action")) {
+            case "init": reply(rq, It.f(Db.read()));
+            case "setConf": reply(rq, Db.setConf);
+            case s:
+              throw('Unexpected value "$s" in field "control-action"');
+
+          }
         }
-        case "settings": reply(rq, PageSettings.response);
         default:                                            // ANYTHING
           throw('Unexpected value "$page" in field "${Cgi.PAGE}"');
       }
