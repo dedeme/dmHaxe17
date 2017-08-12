@@ -29,6 +29,8 @@ class Dom1 {
 
     var menu = Q("table").klass("main").add(Q("tr")
       .add(Q("td")
+        .add(entry(_("Diary"), "diary"))
+        .add(separator())
         .add(entry(_("Cash"), "cash"))
         .add(separator())
         .add(entry(_("Plan"), "plan")))

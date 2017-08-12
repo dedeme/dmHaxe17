@@ -29,6 +29,10 @@ class Db {
     Io.write(file, data);
   }
 
+  static function dbappend(file:String, data:String) {
+    Io.append(file, data);
+  }
+
   static function dbread(file:String):String {
     return Io.read(file);
   }
@@ -47,7 +51,7 @@ class Db {
       dbwrite(fconf(), Json.from(c));
       dbwrite(fyear(year),
         "SGA57Tesorería" + "\n" +
-        "AA574ABVI;Bancos, ctas. de ahorro" + "\n" +
+        "AA574BABVI;Bancos, ctas. de ahorro" + "\n" +
         "SAA57401Bankia"
       );
     }
@@ -68,8 +72,12 @@ class Db {
     return r;
   }
 
+  // Conf ------------------------------
+
   /// Sets configuration values (conf.db)
-  public static function setConf(rq:Map<String, Dynamic>):Map<String, Dynamic> {
+  public static function setConf(
+    rq:Map<String, Dynamic>
+  ):Map<String, Dynamic> {
     var cf = read();
     cf.set(rq.get("key"), rq.get("value"));
     dbwrite(fconf(), Json.from(cf));
@@ -87,11 +95,21 @@ class Db {
   }
 
   /// Switchs language between "en" and "es" and returns conf.db data.
-  public static function chageLang() {
+  public static function chageLang():Map<String,Dynamic> {
     var cf = read();
     cf.set("language", cf.get("language") == "es" ? "en" : "es");
     dbwrite(fconf(), Json.from(cf));
     return cf;
+  }
+
+  // ac$year ---------------------------
+
+  /// Adds an action
+  public static function action(
+    rq:Map<String,Dynamic>
+  ):Map<String,Dynamic> {
+    dbappend(fyear(rq.get("year")), "\n" + rq.get("note"));
+    return new Map();
   }
 
 }

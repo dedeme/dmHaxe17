@@ -4,7 +4,7 @@
 # view/Chpass.hx : 41
 Accept = Aceptar
 
-# view/Plan.hx : 153
+# view/Plan.hx : 224
 Accounts = Cuentas
 
 # view/Chpass.hx : 35
@@ -41,6 +41,9 @@ Current password = Contraseña actual
 # view/Chpass.hx : 167
 Current password is missing = Falta por indicar la contraseña actual
 
+# view/Plan.hx : 159
+Description = Descripción
+
 # view/Chpass.hx : 107
 Fail trying to change password = Fallo intentando cambiar la contraseña
 
@@ -48,7 +51,10 @@ Fail trying to change password = Fallo intentando cambiar la contraseña
 # view/Chpass.hx : 45
 Grey squares checks are wrong = Las casillas grises están mal marcadas
 
-# view/Plan.hx : 146
+# view/Plan.hx : 161
+Group = Grupo
+
+# view/Plan.hx : 214
 Groups = Grupos
 
 # view/Expired.hx : 26
@@ -68,6 +74,9 @@ New password = Nueva contraseña
 
 # view/Chpass.hx : 172
 New password is missing = Falta por indicar la nueva contraseña
+
+# view/Plan.hx : 158
+Nº = Nº
 
 # view/Authentication.hx : 73
 Password = Contraseña
@@ -91,10 +100,10 @@ Session is expired. = La sesión ha expirado.
 # view/Settings.hx : 25
 Settings = Configuración
 
-# view/Plan.hx : 157
+# view/Plan.hx : 230
 Subaccounts = Subcuentas
 
-# view/Plan.hx : 149
+# view/Plan.hx : 218
 Subgroups = Subgrupos
 
 # view/Authentication.hx : 68

@@ -1,0 +1,32 @@
+x *= 1.38;
+x = Math.abs(x);
+
+return Math.cos(
+  Math.pow(x, x) * 3
+) + 2 / 4;
+
+/------------------------------------
+
+x *= 1.55;
+y *= 1.55;
+x = Math.abs(x);
+y = Math.abs(y);
+return (
+  Math.sin(Math.pow(y, 0.5))
++ Math.cos(
+    Math.pow(x, y) * 3
+  ) + 2
+) / 4;
+
+/------------------------------------
+
+x *= 1.55;
+y *= 1.55;
+x = Math.abs(x);
+y = Math.abs(y);
+return (
+  Math.sin(y * 3)
++ Math.cos(
+    Math.pow(x, y) * 3
+  ) + 2
+) / 4;

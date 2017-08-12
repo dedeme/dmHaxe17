@@ -73,6 +73,7 @@ class SMain {
           switch (rq.get("action")) {
             case "init": reply(rq, It.f(Db.read()));
             case "setConf": reply(rq, Db.setConf);
+            case "annotate": reply(rq, Db.action);
             case s:
               throw('Unexpected value "$s" in field "control-action"');
 

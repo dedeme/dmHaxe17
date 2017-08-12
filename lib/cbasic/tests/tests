@@ -1,6 +1,6 @@
 #!/bin/bash
 DIR=$(pwd)
-cd /deme/dmHaxe17/lib/cbasic/tests
+cd /deme/dmHaxe17/lib/cbasic_0.0.1/tests
 haxe build.hxml
 cd $DIR
 

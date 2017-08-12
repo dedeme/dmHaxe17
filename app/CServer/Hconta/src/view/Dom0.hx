@@ -33,4 +33,26 @@ class Dom0 {
               .html('- © ºDeme. $appName ($version) -'))))
     );
   }
+
+  /// Returns text width of a text of type "14px sans"
+  public static function textWidth(tx:String):Int {
+    var c = Q("canvas");
+    var e:Dynamic = c.e;
+    var ctx = e.getContext("2d");
+    ctx.font = "14px sans";
+    return ctx.measureText(tx).width;
+  }
+
+  /// Adjusts tx to 'px' pixels. Font family must be "14px sans"
+  public static function textAdjust(tx:String, px:Int):String {
+    if (textWidth(tx) < px) {
+      return tx;
+    }
+
+    tx = tx.substring(0, tx.length - 3) + "...";
+    while (textWidth(tx) >= px) {
+      tx = tx.substring(0, tx.length - 4) + "...";
+    }
+    return tx;
+  }
 }
