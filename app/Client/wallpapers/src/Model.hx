@@ -63,21 +63,26 @@ class Model {
     } else if (canvasSize == 7) {
       canvaspx = canvaspy = 8;
     } else if (canvasSize == 8) {
+      canvaspx = canvaspy = 8;
       canvaspw = 128;
       canvasph = 96;
     } else if (canvasSize == 9) {
       canvaspx = canvaspy = 10;
       canvaspw = 128;
-      canvasph = 96;
+      canvasph = 80;
     } else if (canvasSize == 10) {
+      canvaspx = canvaspy = 10;
+      canvaspw = 128;
+      canvasph = 96;
+    } else if (canvasSize == 11) {
       canvaspx = 10;
       canvaspy = 8;
       canvaspw = canvasph = 128;
-    } else if (canvasSize == 11) {
+    } else if (canvasSize == 12) {
       canvaspx = canvaspy = 10;
       canvaspw = 140;
       canvasph = 105;
-    } else if (canvasSize == 12) {
+    } else if (canvasSize == 13) {
       canvaspx = canvaspy = 10;
       canvaspw = 160;
       canvasph = 120;

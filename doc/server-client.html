@@ -1,0 +1,176 @@
+<!doctype html>
+<html>
+<head>
+<title>server-client</title>
+<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
+<meta http-equiv='Pragma' content='no-cache' />
+<meta name='lang' content='es' />
+<meta name='author' content='ºDeme.' />
+</head>
+<body style="font-family:sans;font-size:small;background-color:#404040;">
+<table align="center" width="600px"><tr>
+<td style="border:solid 1px;padding:4px;background-color:#f0f0f0;">
+
+<hr>
+<!------------------------------------------------>
+<h2>Package</h2> <!------------------------------->
+<!------------------------------------------------>
+
+<h3>Client Request</h3> <!------------------------>
+
+<p><u>Creation process</u>:</p>
+
+<p><i>Authentication</i></p>
+<ol>
+  <li>'o' is a javascript map that must be a 'JSONizable object'</li>
+  <li>o2 = JSON.from(o)</li>
+  <li>o3.sessionId = "" and o3.data = o2</li>
+  <li>Send B64.encode(o3)</li>  
+</ol>
+
+<p><i>Not Authentication</i></li>
+<ol>
+  <li>'o' is a javascript map that must be a 'JSONizable object'</li>
+  <li>o2 = Cryp.cryp(JSON.from(o))</li>
+  <li>o3.sessionId = sessionId and o3.data = o2</li>
+  <li>Send B64.encode(o3)</li>  
+</ol>
+
+<p><u>Reading process</u>:</p>
+<ol>
+  <li>'o' is a String sent by client.</li>
+  <li>o2 = B64.decode(o)</li>
+  <li>Test if o2.sessionId == ""
+    <ul>
+      <li>If o2.sessionId == "" then o3 = o2.data</li>
+      <li>Otherwise o3 = Cryp.decrip(o2.data)</li>
+    </ul>
+  </li>
+  <li>o4 = JSON.toMap(o3)</li>
+</ol>
+
+<h3>Server response</h3> <!------------------------>
+
+<p><u>Creation process</u></p>
+
+<p><i>Authentication</i></p>
+<ol>
+  <li>'o' is a javascript map that must be a 'JSONizable object'</li>
+  <li>o2 = JSON.from(o)</li>
+  <li>Send B64.encode(o2)</li>  
+</ol>
+
+<p><i>Not Authentication</i></li>
+<ol>
+  <li>'o' is a javascript map that must be a 'JSONizable object'</li>
+  <li>o2 = Cryp.cryp(o)</li>
+  <li>Send B64.encode(o2)</li>  
+</ol>
+
+<p><u>Reading process</u></p>
+
+<p><i>Authentication</i></p>
+<ol>
+  <li>'o' is a String sent by server.</li>
+  <li>o2 = B64.decode(o)</li>
+  <li>o3 = JSON.toMap(o2)</li>
+</ol>
+
+<p><i>Not Authentication</i></li>
+<ol>
+  <li>'o' is a String sent by server.</li>
+  <li>o2 = Cryp.decryp(o)</li>
+  <li>o3 = JSON.toMap(o2)</li>
+</ol>
+
+<hr>
+<!------------------------------------------------>
+<h2>Authentication</h2> <!------------------------>
+<!------------------------------------------------>
+
+<h3>Data bases</h3> <!----------------------------->
+
+<p><u><b>users.db</b></u></p>
+<p>JSON-array[array[String]] text file auto-encrypted with <i>Cryp.autoCryp</i>
+and next fields:</p>
+<pre>
+  user / [0] 
+  pass / [1]
+  level / [2]
+</pre>
+<p>It is initialized:</p>
+<pre>
+  user = "admin"
+  pass = Cryp.key("deme")
+  level = "0"
+</pre>
+
+<p><u><b>sessions.db</b></u></p>
+<p>JSON-array[array[String]] text file auto-encrypted with <i>Cryp.autoCryp</i>
+and next fields:</p>
+<pre>
+  sessionId / [0]
+  pageId / [1]
+  key / [2]
+  expirationStep / [3]
+  expirationTime / [4]
+  user / [5]
+  level / [6]
+</pre>
+
+<h3>Request</h3> <!------------------------------->
+<p>Client save a copy of user name.</p>
+<dl>
+  <dt><tt>user : String</tt></dt>
+    <dd>User name in plain text.</dd>
+  <dt><tt>pass : String</tt><dt>
+    <dd>Cryp.key(password). <i>Irreversible encryption</i>.</dd>
+  <dt><tt>expirationStep : Number</tt></dt>
+    <dd>Seconds to session expire. If its value is 0 the expiration step will be
+    31536000000 seconds.</dd>
+</dl>
+
+<p>Server validate user-pass in <b>users.db</b>.</p>
+
+<h3>Response</h3> <!------------------------------->
+<p>Server adds an entry to <b>sessions.db</b>:</p>
+<pre>
+  sessionId = Cryp.genK(128)
+  pageId = ""
+  key = Cryp.getK(2048)
+  expirationStep = request value
+  expirationTime = Date.now().getTime() + expirationStep
+  user = request value
+  level = Read from users.db
+</pre>
+<p>Then returns:</p>
+<dl>
+  <dt><tt>sessionId : String</tt></dt>
+    <dd>It will be used to authenticate next requests.</dd>
+  <dt><tt>key : String</tt></dt>
+    <dd>It will be used to encrypt and decript next request-responses.</dd>
+  <dt><tt>user : String</tt></dt><dd></dd>
+  <dt><tt>level : String</tt><dt><dd></dd>
+  <dt><tt>error : String</tt><dt>
+    <dd>Its value is an empty string unless a general error happen.</dd>
+</dl>
+<p>If authentication fails every field will have a blank string.</p>
+
+<hr>
+<!------------------------------------------------>
+<h2>Normal Request / Response</h2> <!------------->
+<!------------------------------------------------>
+
+<h3>Request</h3> <!------------------------------->
+<p>Fields:</p>
+<dl>
+  <dt><tt>sessionId : String</tt></dt><dd></dd>
+  <dt><tt>pageId : String</tt></dt>
+    <dd>Optional. It is used to control write/read operations.</dd>
+  <dt><tt>... Other fields ...</tt>
+</dl>
+
+</td></tr></table>
+</body>
+</html>
+
