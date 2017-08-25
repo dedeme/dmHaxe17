@@ -11,8 +11,6 @@ import dm.It;
 import dm.I18n._;
 
 class Menu {
-  static inline var BLANKS = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-
   var coorDiv = Q("div");
 
   var control:Control;
@@ -24,16 +22,13 @@ class Menu {
   }
 
   public function setCoor() {
-    function format(x:String) {
-      return x.length > 11
-        ? x.substring(0, 11) + "<br>" + BLANKS + x.substring(11, 26)
-        : x;
+    function format(x:Float):String {
+      var v = Std.string(Math.abs(x));
+      return (x < 0 ? "-= " : "+= ") + (v.length > 6 ? v.substring(0, 6) : v);
     }
 
-    var x = Std.string(model.lastx);
-    x = "x = " + format(x);
-    var y = Std.string(model.lasty);
-    y = "y = " + format(y);
+    var x = "x " + format(model.lastx - 0.5) + ";";
+    var y = "y " + format(model.lasty - 0.5) + ";";
 
     coorDiv.removeAll().add(Q("span").html('<code>$x<br>$y</code>'));
   }
@@ -89,7 +84,8 @@ class Menu {
     ];
     return mkTd()
       .add(Q("ul").style("list-style:none;padding-left:0px;margin-top:0px;")
-        .add(Q("li").html('<a href="#" onclick="return false;">Download</a>')
+        .add(Q("li")
+          .html("<a href='#' onclick='return false;'>" + _("Download") + "</a>")
           .add(Q("ul").att("id", "hlist")
             .style("list-style:none;padding-left:10px;")
             .addIt(It.from(sizes).map(function (sz) {
@@ -107,7 +103,9 @@ class Menu {
   }
 
   function mkPrecode() {
-    var act = model.precodeShow ? _("On") : _("Off");
+    var act = model.precodeShow
+      ? _("On")
+      : _("Off");
     return mkOptions(act, [_("On"), _("Off")], function (v) {
       control.setPrecodeShow(v == _("On"));
     });
@@ -166,7 +164,7 @@ class Menu {
       .add(Q("tr").add(mkLabel(_("Load Functions"))))
       .add(Q("tr").add(mkLoad()))
       .add(separator())
-      .add(Q("tr").add(mkLabel(_("Language:"))))
+      .add(Q("tr").add(mkLabel(_("Language"))))
       .add(Q("tr").add(mkLang()))
     ;
   }

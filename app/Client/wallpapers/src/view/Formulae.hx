@@ -43,5 +43,4 @@ class Formulae {
       mkTd().add(fcs[2])
     ];
   }
-
 }

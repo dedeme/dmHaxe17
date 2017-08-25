@@ -1,53 +1,40 @@
 # File generated file by haxe_maker
 
-# ORPHAN
-Blue = Azul
+# view/Menu.hx : 159
+Coordinates = Coordenadas
 
-# ORPHAN
-Green = Verde
+# view/Menu.hx : 89
+Download = Descargar
 
-# ORPHAN
-Red = Rojo
+# view/Menu.hx : 71
+Draw = Dibujar
 
-# TODO
-# view/Menu.hx : 160
-Coordinates = 
+# Control.hx : 52
+File name = Nombre del archivo
 
-# TODO
-# view/Menu.hx : 75
-Draw = 
+# view/Menu.hx : 168
+Language = Lenguaje
 
-# TODO
-# Control.hx : 51
-File name: = 
+# view/Menu.hx : 165
+Load Functions = Cargar Funciones
 
-# TODO
-# view/Menu.hx : 169
-Language: = 
+# view/Menu.hx : 109
+Off = Off
 
-# TODO
-# view/Menu.hx : 166
-Load Functions = 
-
-# TODO
+# view/Menu.hx : 108
 # view/Menu.hx : 110
 # view/Menu.hx : 111
-# view/Menu.hx : 112
-On = 
+On = On
 
-# TODO
-# Control.hx : 63
-Only can be upload one file = 
+# Control.hx : 64
+Only can be uploaded one file = Solo se puede subir un arhivo
 
-# TODO
-# view/Menu.hx : 162
-Precode = 
+# view/Menu.hx : 161
+Precode = Precódigo
 
-# TODO
-# view/Menu.hx : 156
-Preview = 
+# view/Menu.hx : 155
+Preview = Vista Previa
 
-# TODO
-# view/Menu.hx : 119
-Save Functions = 
+# view/Menu.hx : 118
+Save Functions = Guardar funciones
 

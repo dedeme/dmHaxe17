@@ -49,7 +49,7 @@ class Control {
   }
 
   public function save() {
-    var file = Ui.prompt(_("File name:"), "");
+    var file = Ui.prompt(_("File name") + ":", "");
     if (file != null && file != "") {
       var hidden = dm.Ui.Q("a")
         .att("href", "data:text/csv;charset=utf-8," + model.saveFs())

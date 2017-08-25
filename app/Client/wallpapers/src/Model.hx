@@ -244,11 +244,6 @@ class Model {
     return new Model(s[0], s[1], s[2], s[3], s[4], s[5]);
   }
 
-/*
-  static function readx():Model {
-    return restore(Json.to(Store.get(StorePrefix + "data")));
-  }
-*/
   public static function mk():Model {
 //    Store.del(StorePrefix + "data");
 
