@@ -21,6 +21,9 @@ class View {
   public var menu:Menu;
   public var precode:Precode;
 
+  var title = Q("div").style("text-align:center;font-size:35px;")
+    .html("Wallpapers");
+
   public function new(control:Control) {
     this.control = control;
     model = control.model;
@@ -31,8 +34,6 @@ class View {
 
   public function show() {
     var menu = this.menu.mk();
-    var title = Q("div").style("text-align:center;font-size:35px;")
-      .html("Wallpapers");
     var buttons = new Buttons(control).mk();
     var formulae = new Formulae(control).mk();
     Ui.QQ("body").next().removeAll().add(Q("table").klass("main")
@@ -53,6 +54,14 @@ class View {
       .add(Q("tr")
         .add(Q("td").att("colspan", 5).style("vertical-align:top;")
           .add(viewer.mk())))
+    );
+  }
+
+  public function showGalery() {
+    Ui.QQ("body").next().removeAll().add(Q("table").klass("main")
+      .add(Q("tr").add(Q("td").att("colspan", 6).add(title)))
+      .add(Q("tr").add(Q("td").att("colspan", 6).html("<hr>")))
+      .add(Q("tr").add(Q("td").html(_("Go back"))))
     );
   }
 }

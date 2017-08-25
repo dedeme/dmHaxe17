@@ -107,4 +107,9 @@ class Control {
     view.menu.setCoor();
   }
 
+  /// Show Galery page
+  public function galery() {
+    view.showGalery();
+  }
+
 }

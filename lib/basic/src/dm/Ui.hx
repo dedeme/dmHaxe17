@@ -160,6 +160,23 @@ class Ui {
     lload();
   }
 
+  /// Loads a text file from the server which hosts the current page.
+  ///   path   : Path of file. Must be absolute, but without protocol and name
+  ///            server (e.g. http://server.com/dir/file.txt, must be written
+  ///            "/dir/file.txt")
+  ///   action : Callback which receives the text.
+  public static function loadData(path:String, action:String->Void) {
+    var url = "http://" + js.Browser.location.host + path;
+    var request = js.Browser.createXMLHttpRequest();
+    request.onreadystatechange = function (e) {
+      if (request.readyState == 4) {
+        action(request.responseText);
+      }
+    };
+    request.open("GET", url, true);
+    request.send();
+  }
+
   /// Management of Drag and Drop of files over an object.
   ///   o      : Object over whom is going to make Drag and Drop. It has a
   ///            white background.

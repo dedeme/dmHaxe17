@@ -117,6 +117,12 @@ class Menu {
         .html(_("Save Functions")));
   }
 
+  function mkGalery() {
+    return mkTd()
+      .add(Ui.link(It.f(control.galery())).klass("link")
+        .html(_("Galery")));
+  }
+
   function mkLoad() {
     function drag(e) {
       e.stopPropagation();
@@ -163,6 +169,7 @@ class Menu {
       .add(Q("tr").add(mkSave()))
       .add(Q("tr").add(mkLabel(_("Load Functions"))))
       .add(Q("tr").add(mkLoad()))
+      .add(Q("tr").add(mkGalery()))
       .add(separator())
       .add(Q("tr").add(mkLabel(_("Language"))))
       .add(Q("tr").add(mkLang()))
