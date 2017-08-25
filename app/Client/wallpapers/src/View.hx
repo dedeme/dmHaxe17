@@ -12,6 +12,7 @@ import view.Buttons;
 import view.Formulae;
 import view.Viewer;
 import view.Precode;
+import view.Gallery;
 
 class View {
   public var control:Control;
@@ -57,11 +58,15 @@ class View {
     );
   }
 
-  public function showGalery() {
+  public function showGallery() {
+    var gallery = new Gallery(control);
     Ui.QQ("body").next().removeAll().add(Q("table").klass("main")
-      .add(Q("tr").add(Q("td").att("colspan", 6).add(title)))
-      .add(Q("tr").add(Q("td").att("colspan", 6).html("<hr>")))
-      .add(Q("tr").add(Q("td").html(_("Go back"))))
+      .add(Q("tr").add(Q("td").add(title)))
+      .add(Q("tr").add(Q("td").html("<hr>")))
+      .add(Q("tr").add(Q("td").add(gallery.mkGoBack())))
+      .add(Q("tr").add(Q("td").html("<hr>")))
+      .add(Q("tr").add(Q("td").add(gallery.mk())))
+      .add(Q("tr").add(Q("td").html("<hr>")))
     );
   }
 }

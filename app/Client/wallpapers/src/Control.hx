@@ -108,8 +108,16 @@ class Control {
   }
 
   /// Show Galery page
-  public function galery() {
-    view.showGalery();
+  public function gallery() {
+    view.showGallery();
+  }
+
+  // Load a gallery image
+  public function getGallery(path:String) {
+    Ui.loadData(path, function (data) {
+      model.loadFs(data);
+      run();
+    });
   }
 
 }
