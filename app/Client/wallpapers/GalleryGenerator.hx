@@ -18,11 +18,9 @@ class GalleryGenerator {
       "  public static function getData():Map<String, Array<String>> {\n" +
       "    var r = new Map<String, Array<String>>();\n";
 
-    It.from(Io.dir(source)).sort(function (s1, s2) {
-      var ss1 = s1.toUpperCase();
-      var ss2 = s2.toUpperCase();
-      return ss1 == ss2 ? 0 : ss1 < ss2 ? -1 : 1;
-    }).each(function (d) {
+    It.from(Io.dir(source)).sort(It.f2(
+      return _1.toUpperCase() < _2.toUpperCase() ? -1 : 1
+    )).each(function (d) {
       var dir = Io.cat([source, d]);
       if (Io.isDirectory(dir)) {
         tx += "" +
@@ -31,11 +29,9 @@ class GalleryGenerator {
 
         It.from(Io.dir(dir)).filter(function (f) {
           return Io.exists(Io.cat([dir, f + ".png"]));
-        }).sort(function (s1, s2) {
-          var ss1 = s1.toUpperCase();
-          var ss2 = s2.toUpperCase();
-          return ss1 == ss2 ? 0 : ss1 < ss2 ? -1 : 1;
-        }).each(function (f) {
+        }).sort(It.f2(
+          return _1.toUpperCase() < _2.toUpperCase() ? -1 : 1
+        )).each(function (f) {
           if (first) {
             first = false;
           } else {

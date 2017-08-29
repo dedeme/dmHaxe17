@@ -38,7 +38,7 @@ class Gallery {
             .addIt(It.from(map.get(k)).map(function (e) {
               var p = "stock/" + k + "/" + e;
               return span().add(Ui.link(It.f(
-                  control.getGallery("/wallpapers/" + p)
+                  control.getGallery(p)
                 )).add(Q("img")
                   .klass("frame")
                   .att("src", p + ".png")));

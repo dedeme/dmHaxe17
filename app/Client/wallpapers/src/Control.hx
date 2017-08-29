@@ -114,7 +114,7 @@ class Control {
 
   // Load a gallery image
   public function getGallery(path:String) {
-    Ui.loadData(path, function (data) {
+    Ui.upload(path, function (data) {
       model.loadFs(data);
       run();
     });

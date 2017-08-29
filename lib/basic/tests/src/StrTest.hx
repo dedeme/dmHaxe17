@@ -13,11 +13,6 @@ class StrTest {
   public static function run () {
     var t = new Test("Str");
 
-    t.eq("", Str.fromB41(Str.toB41("")));
-    t.eq("a", Str.fromB41(Str.toB41("a")));
-    t.eq("RRbRRa1ghRRx0i", Str.toB41("\n\tab c"));
-    t.eq("ab cñ€ç", Str.fromB41(Str.toB41("ab cñ€ç")));
-    t.eq("RRbRRa0gVFR0hRRx0i", Str.toB41("\n\ta€b c"));
     t.tests([
       new Tp2("  ", ""),
       new Tp2(" a", "a"),

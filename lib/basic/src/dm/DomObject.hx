@@ -6,8 +6,8 @@
 /// Utilities to access to DOM
 package dm;
 
-/// Actions types to use with DomObject.on
-enum ActionType {
+/// Actions to use with DomObject.on
+enum DomAction {
   BLUR; CHANGE; CLICK; DBLCLICK; FOCUS; KEYDOWN; KEYPRESS; KEYUP;
   LOAD; MOUSEDOWN; MOUSEMOVE; MOUSEOUT; MOUSEOVER; MOUSEUP; MOUSEWHEEL;
   SELECT; SELECTSTART; SUBMIT;
@@ -145,7 +145,7 @@ class DomObject {
   }
 
   ///
-  public function on (type:ActionType, action:Dynamic -> Void):DomObject {
+  public function on (type:DomAction, action:Dynamic -> Void):DomObject {
     var act = switch type {
       case BLUR: "blur";
       case CHANGE: "change";

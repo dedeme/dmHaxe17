@@ -5,11 +5,8 @@
 
 class Main {
   static public function main():Void {
-/*
-    B41Test.run();
-   */
+    B64Test.run();
     ItTest.run();
-    /*
     CrypTest.run();
     RndTest.run();
     JsonTest.run();
@@ -18,7 +15,6 @@ class Main {
     LsTest.run();
     CgiTest.run();
     DateDmTest.run();
-    */
   }
 }
 

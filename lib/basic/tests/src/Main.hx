@@ -7,9 +7,7 @@ import dm.Ui;
 
 class Main {
   public static function main() {
-    /*
     JsonTest.run();
-    B41Test.run();
     CrypTest.run();
     StrTest.run();
     ItTest.run();
@@ -19,7 +17,6 @@ class Main {
     MTableTest.run();
     StoreTest.run();
     LsTest.run();
-*/
     B64Test.run();
   }
 }

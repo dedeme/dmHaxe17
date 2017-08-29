@@ -161,12 +161,14 @@ class Ui {
   }
 
   /// Loads a text file from the server which hosts the current page.
-  ///   path   : Path of file. Must be absolute, but without protocol and name
+  ///   path   : Path of file. Can be absolute, but without protocol and name
   ///            server (e.g. http://server.com/dir/file.txt, must be written
-  ///            "/dir/file.txt")
+  ///            "/dir/file.txt"), or relative to page.
   ///   action : Callback which receives the text.
-  public static function loadData(path:String, action:String->Void) {
-    var url = "http://" + js.Browser.location.host + path;
+  public static function upload(path:String, action:String->Void) {
+    var url = path.charAt(0) == "/"
+      ? "http://" + js.Browser.location.host + path
+      : path;
     var request = js.Browser.createXMLHttpRequest();
     request.onreadystatechange = function (e) {
       if (request.readyState == 4) {
@@ -175,6 +177,16 @@ class Ui {
     };
     request.open("GET", url, true);
     request.send();
+  }
+
+  /// Allows user to download a text in a file called 'fileName'.
+  public static function download(fileName:String, text:String) {
+    var a = Q("a").att("href", "data:text/plain;plain," + text)
+      .att("download", fileName);
+    var body = js.Browser.document.body;
+    body.appendChild(a.e);
+    a.e.click();
+    body.removeChild(a.e);
   }
 
   /// Management of Drag and Drop of files over an object.

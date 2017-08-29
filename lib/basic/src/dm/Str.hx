@@ -61,16 +61,6 @@ class Str {
     return StringTools.htmlEscape (text, true);
   }
 
-  /// Decodes [code] codified with 'toB41()'
-  inline public static function fromB41 (code : String) : String {
-    return Cryp.b2s(code);
-  }
-
-  /// Encode [text] in B41
-  inline public static function toB41 (text : String) : String {
-    return Cryp.s2b(text);
-  }
-
   /// Indicates if text[0] is a space. if text length is 0, returns false.
   public static function isSpace (text : String) : Bool {
     return (text.length == 0)? false : StringTools.isSpace (text, 0);

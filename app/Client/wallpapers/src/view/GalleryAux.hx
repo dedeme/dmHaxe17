@@ -38,6 +38,17 @@ class GalleryAux{
       "motherboard-4",
       "semiface"
     ]);
+    r.set("MultiscrollAttractor-2", [
+      "car-0",
+      "ghost-0",
+      "ghost-1",
+      "ghost-2",
+      "ghost-3",
+      "masks-1",
+      "organic",
+      "tower-0",
+      "tower-1"
+    ]);
     return r;
   }
 }

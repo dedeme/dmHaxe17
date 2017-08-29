@@ -53,7 +53,7 @@ class Tracker {
     return r == null ? null : r.img.style("opacity:0.4");
   }
 
-  /// Equals to 'get()' but retrieves a bright image.
+  /// Equals to 'get()' but retrieves a gray image.
   public function grey(id:String):Null<DomObject> {
     var r = It.from(imgs).find(It.f(_1.id == id));
     return r == null ? null : r.img.style("filter: grayscale(100%)");
