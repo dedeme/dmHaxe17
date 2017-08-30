@@ -31,8 +31,10 @@ class View {
   var control:Control;
   public var dom(default, null):Dom;
 
-  var hexval = Q("div").att("style", "text-align:center;");
-  var decval = Q("div").att("style", "text-align:center;");
+  var hexval = Q("div").att("style", "text-align:center;")
+    .att("title", "Hexadecimal Value");
+  var decval = Q("div").att("style", "text-align:center;")
+    .att("title", "Dexadecimal Value");
   var cvalue = Q("div").att("style", "text-align:center;");
   var hvalue = Q("div").att("style", "text-align:center;");
   var symbol = Q("div").att("style", "text-align:center;font-size:x-large;");
@@ -104,7 +106,7 @@ class View {
         .add(Q("td").att("align", "center").html("<b><tt>Code</tt</b>")))
       .add(Q("tr")
         .add(Q("td").add(makeLeftTable()))
-        .add(Q("td").add(makeRigthTable()))
+        .add(Q("td").style("vertical-align:top;").add(makeRigthTable()))
     );
   }
 

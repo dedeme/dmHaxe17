@@ -1,7 +1,6 @@
 -cp ../../src/lib
 -cp ../../src/main
--cp /deme/dmHaxe17/lib/basic_0.1.0/src
--cp /deme/dmHaxe17/lib/server_2.0.0/src
+-cp /deme/dmHaxe17/lib/basic_201708/src
 -cp /deme/dmHaxe17/lib/widgets_0.0.1/src
 
 -js ../../www/index.js
