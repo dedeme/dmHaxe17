@@ -4,7 +4,7 @@
  */
 
 import dm.It;
-import dm.B41;
+import dm.B64;
 import dm.Json;
 import dm.Cgi;
 import dm.App;
@@ -41,7 +41,7 @@ class SMain {
       if (args.length != 1) {
         throw("Request is missing");
       }
-      rq = Json.toMap(B41.decompress(args[0]));
+      rq = Json.toMap(B64.decode(args[0]));
       var page = rq.get(Cgi.PAGE);
 
       var rp = new Map<String, Dynamic>();
@@ -76,7 +76,6 @@ class SMain {
             case "annotate": reply(rq, Db.action);
             case s:
               throw('Unexpected value "$s" in field "control-action"');
-
           }
         }
         default:                                            // ANYTHING

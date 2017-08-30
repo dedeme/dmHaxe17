@@ -4,7 +4,7 @@
  */
 
 import dm.I18n;
-import dm.CClient;
+import dm.Client;
 import view.Chpass;
 import view.By;
 import view.Diary;
@@ -14,13 +14,13 @@ import model.Action;
 
 class Control {
 
-  public var client(default, null):CClient;
+  public var client(default, null):Client;
   public var model(default, null):Model;
 
-  public function new (client:CClient) {
+  public function new (client:Client) {
     this.client = client;
     var rq = new Map();
-    rq.set(CClient.PAGE, "control");
+    rq.set(Client.PAGE, "control");
     rq.set("action", "init");
     client.request(rq, function (rp) {
       model = new Model(client, rp);
@@ -43,7 +43,7 @@ class Control {
 
   // Sends a request to server and descards its response.
   function request(rq:Map<String, Dynamic>, action:Void->Void) {
-    rq.set(CClient.PAGE, "control");
+    rq.set(Client.PAGE, "control");
     model.client.request(rq, function (rp) {
       action();
     });

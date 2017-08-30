@@ -15,7 +15,7 @@ import dm.I18n;
 import dm.I18n._;
 import dm.It;
 import dm.Cryp;
-import dm.CClient;
+import dm.Client;
 import view.Dom0;
 import I18nData;
 
@@ -186,8 +186,7 @@ class Authentication {
     }
 
     p = Cryp.key(p, 120);
-
-    CClient.authentication(
+    Client.authentication(
       executable,
       appName,
       u,

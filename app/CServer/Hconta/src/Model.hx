@@ -7,12 +7,12 @@
 using StringTools;
 import dm.It;
 import dm.Tuple;
-import dm.CClient;
+import dm.Client;
 import model.Action;
 import model.Dentry;
 
 class Model {
-  public var client:CClient;
+  public var client:Client;
   public var language:String;
   /// Manu option
   public var page:String;
@@ -33,7 +33,7 @@ class Model {
   var diaryIx:Int;
 
   /// Creates a client from server reponse ('rp')
-  public function new(client:CClient, rp:Map<String, Dynamic>) {
+  public function new(client:Client, rp:Map<String, Dynamic>) {
     this.client = client;
     language = rp.get("language");
     page = rp.get("page");

@@ -15,6 +15,7 @@ class B64Test {
     t.eq(B64.encode("Cañónç世界"), "Q2HDscOzbsOn5LiW55WM");
     t.eq(B64.encodeBytes(B64.decodeBytes("AQIDBA==")), "AQIDBA==");
     t.eq(B64.decode(B64.encode("Cañón")), "Cañón");
+
     t.log();
   }
 }

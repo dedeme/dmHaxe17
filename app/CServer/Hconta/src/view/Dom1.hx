@@ -6,7 +6,7 @@
 /// Internal DOM
 package view;
 
-import dm.CClient;
+import dm.Client;
 import dm.DomObject;
 import dm.Ui;
 import dm.Ui.Q;

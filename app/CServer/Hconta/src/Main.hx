@@ -4,10 +4,9 @@
  */
 
 import dm.Ui;
-import dm.B41;
 import dm.Store;
 import dm.I18n;
-import dm.CClient;
+import dm.Client;
 import model.Action;
 import view.Dom0;
 import view.Authentication;
@@ -31,7 +30,7 @@ class Main {
     var dic = lang == "en" ? I18nData.en() : I18nData.es();
     I18n.init(dic);
 
-    CClient.connect(
+    Client.connect(
       executable,
       appName,
       function () {
@@ -46,5 +45,4 @@ class Main {
       }
     );
   }
-
 }

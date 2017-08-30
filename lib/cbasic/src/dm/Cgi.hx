@@ -12,6 +12,13 @@
 ///   Cgi.init();
 ///   trace(App.home); // -> /home/me/wwwcgi/App
 ///   trace(Cgi.app);  // -> App
+/// Cgi receives request codified with B64, but send request in plain text.<p>
+/// There are a bunch of variables synchronized with dm.Client (class of
+/// library 'basic'). PAGE_ID, SESSION_ID, EXPIRATION, USER, PASS, OLD_PASS,
+/// ERROR, OK and CHPASS_OK should not be used as field name.<p>
+/// PAGE is used to identify the origin page of a request. It can be set as
+/// long as not receives values either PAGE_CONNECTION, PAGE_AUTHENTICATION
+/// or PAGE_CHPASS.
 package dm;
 
 import dm.Io;
@@ -63,11 +70,11 @@ class Cgi {
   /// Application name (it is the last subdirectory of home path)
   public static var app(default, null):String;
 
-  inline static function b41write(file:String, tx:String) {
+  inline static function b64write(file:String, tx:String) {
     Io.write(file, Cryp.cryp(K, tx));
   }
 
-  inline static function b41read(file:String):String {
+  inline static function b64read(file:String):String {
     return Cryp.decryp(K, Io.read(file));
   }
 
@@ -83,23 +90,22 @@ class Cgi {
     if (!Io.exists(fusers)) {
       var userdb = new Map<String, Array<String>>();
       userdb.set("admin", [
-        "fSgDcpwfgvsZBhxcWqwavjrkeadfnenvRCEcnTxpcdWVgvkrywRgl" +
-        "BTWuwoSstqtsvzvpYkSnywUDxwiXsTpuVaVDuxhBsWstgYZudXssa" +
-        "hztWaqqwuUXBDy",
+        "CaZkw7OHNkp618+7zWhasQcHYc/BBWNV+zeyqVPQjwU982S4/d1PwvSWtVPFE4upqI" +
+        "kuvFYlQ9IZnCdI80vN8iid54Xn/3Cwki/SDVYNWFvKXsTIs8Z0Z/v+",
         "0"
       ]);
-      b41write(fusers, Json.from(userdb));
+      b64write(fusers, Json.from(userdb));
     }
     if (!Io.exists(fsessions)) {
       var sessiondb = new Map<String, String>();
-      b41write(fsessions, Json.from(sessiondb));
+      b64write(fsessions, Json.from(sessiondb));
     }
   }
 
   /// Sets pageId and returns trueo if sessionId is correct.
   public static function connect(sessionId:String, pageId:String):Bool {
     var fsessions = Io.cat([App.home, SS_DB]);
-    var sessionsOld = Json.toMap(b41read(fsessions));
+    var sessionsOld = Json.toMap(b64read(fsessions));
 
     var now = Date.now().getTime();
     var sessions = new Map<String, Dynamic>();
@@ -117,7 +123,7 @@ class Cgi {
     ssData[SS_PAGE_ID] = pageId;
     ssData[SS_TIME] = ssData[SS_INC_TIME] + now;
 
-    b41write(fsessions, Json.from(sessions));
+    b64write(fsessions, Json.from(sessions));
     return true;
   }
 
@@ -126,7 +132,7 @@ class Cgi {
     user:String, pass:String, incTime:Float
   ):String {
     incTime = incTime * 1000.0;
-    var users = Json.toMap(b41read(Io.cat([App.home, U_DB])));
+    var users = Json.toMap(b64read(Io.cat([App.home, U_DB])));
     var uData = users.get(user);
 
     if (uData == null) {
@@ -137,7 +143,7 @@ class Cgi {
     }
 
     var fsessions = Io.cat([App.home, SS_DB]);
-    var sessions = Json.toMap(b41read(fsessions));
+    var sessions = Json.toMap(b64read(fsessions));
 
     var sessionId = Std.string(Rnd.i(9999999));
     var time = Date.now().getTime() + incTime;
@@ -150,7 +156,7 @@ class Cgi {
     ssData[SS_PAGE_ID] = "";
 
     sessions.set(sessionId, ssData);
-    b41write(fsessions, Json.from(sessions));
+    b64write(fsessions, Json.from(sessions));
 
     return sessionId;
   }
@@ -160,7 +166,7 @@ class Cgi {
     user:String, oldPass:String, newPass:String
   ):Bool {
     var fusers = Io.cat([App.home, U_DB]);
-    var users = Json.toMap(b41read(fusers));
+    var users = Json.toMap(b64read(fusers));
     var uData = users.get(user);
 
     if (uData == null) {
@@ -172,7 +178,7 @@ class Cgi {
 
     uData[U_PASS] = newPass;
 
-    b41write(fusers, Json.from(users));
+    b64write(fusers, Json.from(users));
     return true;
   }
 
@@ -181,7 +187,7 @@ class Cgi {
     var now = Date.now().getTime();
 
     var fsessions = Io.cat([App.home, SS_DB]);
-    var sessions = Json.toMap(b41read(fsessions));
+    var sessions = Json.toMap(b64read(fsessions));
     var ssData:Array<Dynamic> = sessions.get(sessionId);
 
     if (ssData == null) {
@@ -190,12 +196,12 @@ class Cgi {
 
     if (ssData[SS_PAGE_ID] == pageId && ssData[SS_TIME] > now) {
       ssData[SS_TIME] = ssData[SS_INC_TIME] + now;
-      b41write(fsessions, Json.from(sessions));
+      b64write(fsessions, Json.from(sessions));
       return true;
     }
 
     sessions.remove(sessionId);
-    b41write(fsessions, Json.from(sessions));
+    b64write(fsessions, Json.from(sessions));
     return false;
   }
 
