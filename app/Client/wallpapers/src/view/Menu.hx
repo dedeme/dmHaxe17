@@ -46,7 +46,8 @@ class Menu {
       if (value == active) {
         return Q("span").html("<b>" + value + "</b>");
       }
-      return Ui.link(It.f(f(value))).klass("link").html(value);
+      return Ui.link(function (ev) { return f(value); })
+        .klass("link").html(value);
     }
 
     var r = mkTdc();
@@ -67,7 +68,9 @@ class Menu {
 
   function mkDraw() {
     return mkTd()
-      .add(Ui.link(It.f(control.draw())).klass("link").html(_("Draw")));
+      .add(Ui.link(function (e) {
+          return control.draw();
+        }).klass("link").html(_("Draw")));
   }
 
   function mkCanvasSize() {
@@ -113,13 +116,13 @@ class Menu {
 
   function mkSave() {
     return mkTd()
-      .add(Ui.link(It.f(control.save())).klass("link")
+      .add(Ui.link(function (ev) { return control.save(); }).klass("link")
         .html(_("Save Functions")));
   }
 
   function mkGallery() {
     return mkTd()
-      .add(Ui.link(It.f(control.gallery())).klass("link")
+      .add(Ui.link(function (ev) { return control.gallery(); }).klass("link")
         .html(_("Gallery")));
   }
 

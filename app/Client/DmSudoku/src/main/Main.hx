@@ -185,7 +185,9 @@ class Main {
       sudoku : Sudoku.mkEmpty().board,
       base : Sudoku.mkEmpty().board,
       user : Sudoku.mkEmpty().board,
-      pencil : It.range(9).map(It.f(It.range(9).map(It.f(false)).to())).to()
+      pencil : It.range(9).map(function (i) {
+          return It.range(9).map(function (j) { return false; }).to();
+        }).to()
     }
     View.copyShow();
   }
@@ -197,7 +199,7 @@ class Main {
   public static function saveSudoku(ev) {
     var data:SudokuData = Json.to(Json.from(Model.last));
     Model.data.memo = It.from(Model.data.memo)
-      .filter(It.f(data.id != _1.id))
+      .filter(function (e) { return data.id != e.id; })
       .add0(data)
       .take(9)
       .to();
@@ -303,9 +305,13 @@ class Main {
       time : 0,
       cell : [0, ix],
       sudoku : sudoku.solve().board,
-      base : It.from(s).map(It.f(It.from(_1).map(It.f(_1)).to())).to(),
+      base : It.from(s).map(function (a) {
+          return It.from(a).map(function (e) { return e; }).to();
+        }).to(),
       user : s,
-      pencil : It.range(9).map(It.f(It.range(9).map(It.f(false)).to())).to()
+      pencil : It.range(9).map(function (i) {
+          return It.range(9).map(function (j) { return false; }).to();
+        }).to()
     }
     saveLast();
     View.mainShow();
@@ -320,7 +326,7 @@ class Main {
   public static function loadSelect(data:SudokuData) {
     Model.last = Json.to(Json.from(data));
     Model.data.memo = It.from(Model.data.memo)
-      .filter(It.f(_1.id != data.id))
+      .filter(function (e) { return e.id != data.id; })
       .add0(data)
       .to();
     saveLast();
@@ -360,9 +366,9 @@ class Main {
   public static function controlEnd() {
     var finished = It.zip(
       It.from(Model.last.sudoku),
-      It.from(Model.last.user)).all(It.f(
-        It.from(_1._1).eq(It.from(_1._2))
-      ));
+      It.from(Model.last.user)).all(function (e) {
+        return It.from(e._1).eq(It.from(e._2));
+      });
     if (finished) {
       View.endShow();
     }

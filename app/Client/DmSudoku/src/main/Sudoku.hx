@@ -207,19 +207,19 @@ class Sudoku {
   }
 
   public static function mkEmpty():Sudoku {
-    return new Sudoku(It.range(9).map(It.f(
-      It.range(9).map(It.f(-1)).to()
-    )).to());
+    return new Sudoku(It.range(9).map(function (i) {
+      return It.range(9).map(function (j) { return -1;}).to();
+    }).to());
   }
 
   public static function mkRandom():Sudoku {
     var c = new BiCounter(9, 9);
     var su = mkEmpty();
-    var boxes = It.range(9).map(It.f(
-      It.range(9).map(It.f(
-        It.from([1, 2, 3, 4, 5, 6, 7, 8, 9]).shuffle()
-      )).to()
-    )).to();
+    var boxes = It.range(9).map(function (i) {
+      return It.range(9).map(function (j) {
+        return It.from([1, 2, 3, 4, 5, 6, 7, 8, 9]).shuffle();
+      }).to();
+    }).to();
 
     function backward():Bool {
       su.board[c.row][c.col] = -1;
@@ -247,7 +247,9 @@ class Sudoku {
 
   /// Make a sudoku from a SudokuDefinition
   public static function mkDef(def:SudokuDef):SudokuData {
-    var user = It.from(def.base).map(It.f(It.from(_1).to())).to();
+    var user = It.from(def.base).map(function (a) {
+      return It.from(a).to();
+    }).to();
 
     var ix = 0;
     while (user[0][ix] != -1) {
@@ -261,7 +263,9 @@ class Sudoku {
       sudoku : def.sudoku,
       base : def.base,
       user : user,
-      pencil : It.range(9).map(It.f(It.range(9).map(It.f(false)).to())).to()
+      pencil : It.range(9).map(function (i) {
+          return It.range(9).map(function (j) { return false; }).to();
+        }).to()
     }
   }
 
@@ -335,7 +339,9 @@ class Sudoku {
       sudoku : s.board,
       base : base.board,
       user : user.board,
-      pencil : It.range(9).map(It.f(It.range(9).map(It.f(false)).to())).to()
+      pencil : It.range(9).map(function (i) {
+          return It.range(9).map(function (j) { return false; }).to();
+        }).to()
     }
   }
 

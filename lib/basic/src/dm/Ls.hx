@@ -118,7 +118,9 @@ class Ls<T> {
 
   /// Returns [this] in reverse order
   public function reverse():Ls<T> {
-    return to().reduce(empty(), It.f2(return _1.cons(_2)));
+    return to().reduce(empty(), function (seed, e) {
+      return seed.cons(e);
+    });
   }
 
   /// Returns the number of elements of [this].
@@ -162,7 +164,9 @@ class Ls<T> {
 
   /// Returns a Ls from an iterator
   inline public static function from<T>(it:It<T>):Ls<T> {
-    return it.reduce(empty(), It.f2(return _1.cons(_2))).reverse();
+    return it.reduce(empty(), function (seed, e) {
+      return seed.cons(e);
+    }).reverse();
   }
 
   /// Returns a Ls from an array

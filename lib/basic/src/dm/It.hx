@@ -789,20 +789,4 @@ class It<T> {
       }
     );
   }
-
-  /// Simple lambda with one argurment
-  macro public static function f(e:Expr) {
-    return macro function (?_1) { return $e; };
-  }
-
-  /// Simple lambda with two argurment
-  macro public static function f2(e:Expr) {
-    return macro function (?_1, ?_2) { return $e; };
-  }
-
-  /// Simple lambda with three argurment
-  macro public static function f3(e:Expr) {
-    return macro function (?_1, ?_2, ?_3) { return $e; };
-  }
-
 }

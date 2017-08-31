@@ -43,19 +43,19 @@ class Tracker {
 
   /// Retrieves the image with the name 'id' or 'null' if 'id' does not exist.
   public function get(id:String):Null<DomObject> {
-    var r = It.from(imgs).find(It.f(_1.id == id));
+    var r = It.from(imgs).find(function (i) { return i.id == id; });
     return r == null ? null : r.img;
   }
 
   /// Equals to 'get()' but retrieves a bright image.
   public function light(id:String):Null<DomObject> {
-    var r = It.from(imgs).find(It.f(_1.id == id));
+    var r = It.from(imgs).find(function (i) { return i.id == id; });
     return r == null ? null : r.img.style("opacity:0.4");
   }
 
   /// Equals to 'get()' but retrieves a gray image.
   public function grey(id:String):Null<DomObject> {
-    var r = It.from(imgs).find(It.f(_1.id == id));
+    var r = It.from(imgs).find(function (i) { return i.id == id; });
     return r == null ? null : r.img.style("filter: grayscale(100%)");
   }
 

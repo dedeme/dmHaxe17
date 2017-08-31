@@ -27,11 +27,11 @@ class Precode {
       return Q("span").html("&nbsp;");
     }
     function mkUndo() {
-      return Ui.link(It.f(control.undoPrecode()))
+      return Ui.link(function (ev) { return control.undoPrecode(); })
         .add(Ui.img("undo"));
     }
     function mkRedo() {
-      return Ui.link(It.f(control.redoPrecode()))
+      return Ui.link(function (ev) { return control.redoPrecode(); })
         .add(Ui.img("redo"));
     }
 

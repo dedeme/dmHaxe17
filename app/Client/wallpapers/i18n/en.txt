@@ -1,40 +1,48 @@
 # File generated file by haxe_maker
 
-# view/Menu.hx : 159
+# TODO
+# view/Menu.hx : 123
+Gallery = 
+
+# TODO
+# view/Gallery.hx : 23
+Go back = 
+
+# view/Menu.hx : 164
 Coordinates = Coordinates
 
-# view/Menu.hx : 89
+# view/Menu.hx : 88
 Download = Download
 
-# view/Menu.hx : 71
+# view/Menu.hx : 70
 Draw = Draw
 
 # Control.hx : 52
 File name = File name
 
-# view/Menu.hx : 168
+# view/Menu.hx : 174
 Language = Language
 
-# view/Menu.hx : 165
+# view/Menu.hx : 170
 Load Functions = Load Functions
 
-# view/Menu.hx : 109
+# view/Menu.hx : 108
 Off = Off
 
-# view/Menu.hx : 108
+# view/Menu.hx : 107
+# view/Menu.hx : 109
 # view/Menu.hx : 110
-# view/Menu.hx : 111
 On = On
 
 # Control.hx : 64
 Only can be uploaded one file = Only can be uploaded one file
 
-# view/Menu.hx : 161
+# view/Menu.hx : 166
 Precode = Precode
 
-# view/Menu.hx : 155
+# view/Menu.hx : 160
 Preview = Preview
 
-# view/Menu.hx : 118
+# view/Menu.hx : 117
 Save Functions = Save Functions
 

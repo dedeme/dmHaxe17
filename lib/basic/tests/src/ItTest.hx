@@ -422,12 +422,12 @@ class ItTest {
     t.eq (1, It.from (i2).finds(function (n) { return n % 2 == 1; })[0]);
 
     // find
-    t.eq (null, It.from (i0).find(It.f(_1 % 2 == 1)));
-    t.eq (1, It.from (i2).find(It.f(_1 % 2 == 1)));
+    t.eq (null, It.from (i0).find(function (i) { return i % 2 == 1; }));
+    t.eq (1, It.from (i2).find(function (i) { return i % 2 == 1; }));
 
     // findLast
-    t.eq (null, It.from (i0).findLast(It.f(_1 % 2 == 1)));
-    t.eq (3, It.from (i2).findLast (It.f(_1 % 2 == 1)));
+    t.eq (null, It.from (i0).findLast(function (n) { return n % 2 == 1; }));
+    t.eq (3, It.from (i2).findLast (function (n) { return n % 2 == 1; }));
 
     // folder
     t.eq (It.from (i0).reduce (0, function (r, n) {

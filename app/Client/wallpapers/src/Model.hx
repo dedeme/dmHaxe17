@@ -44,7 +44,9 @@ class Model {
     this.precodeShow = precodeShow;
     this.precode = precode;
     this.fcs = fcs;
-    fcs2 = It.range(3).map(It.f(fcNormalize(fcs[_1][0]))).to();
+    fcs2 = It.range(3).map(function (i) {
+      return fcNormalize(fcs[i][0]);
+    }).to();
     lastx = lastCoor[0];
     lasty = lastCoor[1];
 
@@ -251,10 +253,14 @@ class Model {
     if (data == null) {
       var language = "es";
       var precodeShow = false;
-      var precode = It.range(MAX_FUNCTIONS).map(It.f("")).to();
-      var fcs = It.range(3).map(It.f(
-        It.range(MAX_FUNCTIONS).map(It.f(EMPTY_INSTRUCTION)).to()
-      )).to();
+      var precode = It.range(MAX_FUNCTIONS).map(function (i) {
+        return("");
+      }).to();
+      var fcs = It.range(3).map(function (i) {
+        return It.range(MAX_FUNCTIONS).map(function (j) {
+          return EMPTY_INSTRUCTION;
+        }).to();
+      }).to();
       var canvasSize = 1;
       var lastCoor = [0.0, 0.0];
       var model = new Model(

@@ -22,12 +22,12 @@ class Buttons {
   }
 
   function mkUndo(color:Int) {
-    return Ui.link(It.f(control.undoColor(color)))
+    return Ui.link(function (ev) { return control.undoColor(color); })
       .add(Ui.img("undo"));
   }
 
   function mkRedo(color:Int) {
-    return Ui.link(It.f(control.redoColor(color)))
+    return Ui.link(function (ev) { return control.redoColor(color); })
       .add(Ui.img("redo"));
   }
 
@@ -38,8 +38,9 @@ class Buttons {
   }
 
   function mkLed(source:Int, target:Int) {
-    return Ui.link(It.f(control.changeColor(source, target)))
-      .add(Ui.img(
+    return Ui.link(function (ev) {
+        return control.changeColor(source, target);
+      }).add(Ui.img(
         target == 0 ? "redPin" : target == 1 ? "greenPin" : "bluePin"
       ));
   }

@@ -92,8 +92,8 @@ var Sudoku = function(board) {
 };
 Sudoku.__name__ = true;
 Sudoku.mkEmpty = function() {
-	return new Sudoku(dm_It.range(9).map(function(_1) {
-		return dm_It.range(9).map(function(_11) {
+	return new Sudoku(dm_It.range(9).map(function(i) {
+		return dm_It.range(9).map(function(j) {
 			return -1;
 		}).to();
 	}).to());
@@ -101,8 +101,8 @@ Sudoku.mkEmpty = function() {
 Sudoku.mkRandom = function() {
 	var c = new BiCounter(9,9);
 	var su = Sudoku.mkEmpty();
-	var boxes = dm_It.range(9).map(function(_1) {
-		return dm_It.range(9).map(function(_11) {
+	var boxes = dm_It.range(9).map(function(i) {
+		return dm_It.range(9).map(function(j) {
 			return dm_It.from([1,2,3,4,5,6,7,8,9]).shuffle();
 		}).to();
 	}).to();
@@ -202,8 +202,8 @@ Sudoku.mkLevel = function(l) {
 	while(base.board[0][ix] != -1) ++ix;
 	var tmp = new Date().getTime();
 	var _this = dm_DateDm.fromDate(new Date());
-	return { id : tmp, date : [_this.date.getDate(),_this.date.getMonth() + 1,_this.date.getFullYear()], time : 0, cell : [0,ix], sudoku : s.board, base : base.board, user : user.board, pencil : dm_It.range(9).map(function(_1) {
-		return dm_It.range(9).map(function(_11) {
+	return { id : tmp, date : [_this.date.getDate(),_this.date.getMonth() + 1,_this.date.getFullYear()], time : 0, cell : [0,ix], sudoku : s.board, base : base.board, user : user.board, pencil : dm_It.range(9).map(function(i3) {
+		return dm_It.range(9).map(function(j1) {
 			return false;
 		}).to();
 	}).to()};

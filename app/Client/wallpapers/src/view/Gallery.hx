@@ -20,7 +20,8 @@ class Gallery {
   public function mkGoBack() {
     return Q("table").att("align", "center").add(Q("tr")
       .add(Q("td").klass("frame")
-        .add(Ui.link(It.f(control.run())).klass("link").html(_("Go back")))));
+        .add(Ui.link(function (ev) { return control.run(); })
+          .klass("link").html(_("Go back")))));
   }
 
   public function mk() {
@@ -37,9 +38,9 @@ class Gallery {
           .add(Q("li").add(Q("div")
             .addIt(It.from(map.get(k)).map(function (e) {
               var p = "stock/" + k + "/" + e;
-              return span().add(Ui.link(It.f(
-                  control.getGallery(p)
-                )).add(Q("img")
+              return span().add(Ui.link(function (ev) {
+                  return control.getGallery(p);
+                }).add(Q("img")
                   .klass("frame")
                   .att("src", p + ".png")));
             })
