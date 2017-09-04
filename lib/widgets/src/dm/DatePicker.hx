@@ -181,7 +181,7 @@ class DatePicker {
   public function make():DomObject {
     function mkArrow(tx:String, f:Void->Void):DomObject {
       return Q("td").klass("arrow")
-        .add(Q("span").html(tx).on(CLICK, It.f(f())));
+        .add(Q("span").html(tx).on(CLICK, function (ev) { f(); }));
     }
     function mkHeader(colspan, txarr1, farr1, element, txarr2, farr2) {
       return Q("td").att("colspan", colspan)

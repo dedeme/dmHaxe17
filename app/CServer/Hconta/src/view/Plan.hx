@@ -130,11 +130,11 @@ class Plan {
   }
 
   function showGroups() {
-    var createdKeys = It.from(data).map(It.f(
-      isSubaccount
-      ? _1[0].substring(_1[0].length - 2)
-      : _1[0].substring(_1[0].length - 1)
-    )).to();
+    var createdKeys = It.from(data).map(function (e) {
+      return isSubaccount
+      ? e[0].substring(e[0].length - 2)
+      : e[0].substring(e[0].length - 1);
+    }).to();
     var usedKeys = [];
     var left = isAccount ? mkLeftHelp() : mkEmptyTd();
 
@@ -148,7 +148,7 @@ class Plan {
             var r = "0" + Std.string(n);
             return r.substring(r.length - 2);
           })
-        : It.range(0, 10).map(It.f(return Std.string(_1)))
+        : It.range(0, 10).map(function (i) { return Std.string(i); })
       ).filter(function (n) {
         return !It.from(createdKeys).contains(n);
       }).to()).on(CHANGE, function (ev) {
@@ -228,7 +228,9 @@ class Plan {
     // Data row
     It.from(data).each(function (r) {
       function mkLink(text) {
-        return Ui.link(It.f(control.planGo(r[0]))).klass("link").html(text);
+        return Ui.link(function (ev) {
+          control.planGo(r[0]);
+        }).klass("link").html(text);
       }
 
       tds = [];
@@ -267,10 +269,12 @@ class Plan {
       if (isAccount) {
         var isPyG = r[2].charAt(0) == "P";
         var keyName = isPyG
-          ? It.from(PyG.entries).find(It.f(
-              return _1[PyG.ENTRY_KEY] == r[2].substring(1)))
-          : It.from(Balance.entries).find(It.f(
-              return _1[Balance.ENTRY_KEY] == r[2].substring(1)));
+          ? It.from(PyG.entries).find(function(e) {
+              return e[PyG.ENTRY_KEY] == r[2].substring(1);
+            })
+          : It.from(Balance.entries).find(function(e) {
+              return e[Balance.ENTRY_KEY] == r[2].substring(1);
+            });
         var key = isPyG
           ? keyName[PyG.ENTRY_KEY]
           : keyName[Balance.ENTRY_KEY];
@@ -278,18 +282,17 @@ class Plan {
           ? keyName[PyG.ENTRY_NAME]
           : keyName[Balance.ENTRY_NAME];
         var group = isPyG
-          ? It.from(PyG.groups).find(It.f(
-              return _1[PyG.GROUP_KEY] == PyG.groupKey(key))
-            )[PyG.GROUP_NAME]
-          : It.from(Balance.groups).find(It.f(
-              return _1[Balance.GROUP_KEY] == Balance.groupKey(key))
-            )[Balance.GROUP_NAME];
+          ? It.from(PyG.groups).find(function(e) {
+              return e[PyG.GROUP_KEY] == PyG.groupKey(key);
+            })[PyG.GROUP_NAME]
+          : It.from(Balance.groups).find(function(e) {
+              return e[Balance.GROUP_KEY] == Balance.groupKey(key);
+            })[Balance.GROUP_NAME];
 
         tds.push(Q("td").style("text-align:center;")
-          .add(Ui.link(It.f(Ui.alert(
-              '$group\n$name'
-            )))
-            .att("title", name)
+          .add(Ui.link(function (ev) {
+              Ui.alert('$group\n$name');
+            }).att("title", name)
             .text(r[2])));
       }
       rows.push(Q("tr").addIt(It.from(tds)));
@@ -321,22 +324,25 @@ class Plan {
     if (lg > 0) {
       group = item.charAt(0);
       title = _("Subgroups");
-      data = It.from(model.subgroups)
-        .filter(It.f(_1[0].charAt(0) == item)).to();
+      data = It.from(model.subgroups).filter(function (s) {
+        return s[0].charAt(0) == item;
+      }).to();
     }
     if (lg > 1) {
       subgroup = item.charAt(1);
       title = _("Accounts");
-      data = It.from(model.accounts)
-        .filter(It.f(_1[0].substring(0, 2) == item)).to();
+      data = It.from(model.accounts).filter(function (a) {
+        return a[0].substring(0, 2) == item;
+      }).to();
     }
     if (lg > 2) {
       account = item.charAt(2);
       title = _("Subaccounts");
-      data = It.from(model.subaccounts)
-        .filter(It.f(_1[0].substring(0, 3) == item)).to();
+      data = It.from(model.subaccounts).filter(function (s) {
+        return s[0].substring(0, 3) == item;
+      }).to();
     }
-    data.sort(It.f2(dm.Str.compare(_1[0], _2[0])));
+    data.sort(function (e1, e2) { return dm.Str.compare(e1[0], e2[0]); });
 
     isAccount = account == "" && subgroup != "";
     isSubaccount = account != "";

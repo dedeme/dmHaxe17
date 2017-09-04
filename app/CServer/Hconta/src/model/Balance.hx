@@ -62,7 +62,7 @@ class Balance {
 
   /// Key must be type "BABIV" to be valid
   public static function validKey(key:String):Bool {
-    return It.from(entries).any(It.f(_1[ENTRY_KEY] == key));
+    return It.from(entries).any(function (e) { return e[ENTRY_KEY] == key; });
   }
 
   /// Returns group key of a entry key. Key is type "ABIV"

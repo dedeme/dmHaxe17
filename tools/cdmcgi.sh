@@ -7,6 +7,7 @@ CTRL=""
 CTRL=$CTRL$(echo $RQ | grep -e '^/deme/dmHaxe17/app/CServer/Hconta/server/Hconta')
 CTRL=$CTRL$(echo $RQ | grep -e '^/deme/dmHaxe17/app/CServer/News/server/News')
 CTRL=$CTRL$(echo $RQ | grep -e '^/deme/dmGo/bin/news')
+CTRL=$CTRL$(echo $RQ | grep -e '^/deme/dmGo/bin/hconta')
 
 if [ $CTRL="" ]
 then

@@ -14,7 +14,7 @@ import view.Expired;
 
 /// Client entry point
 class Main {
-  static var executable = "/deme/dmHaxe17/app/CServer/Hconta/server/Hconta";
+  static var executable = "/deme/dmGo/bin/hconta";
   static var appName = "Hconta";
   static var version = "0.0.1";
   static var languageKey = "Hconta__language";

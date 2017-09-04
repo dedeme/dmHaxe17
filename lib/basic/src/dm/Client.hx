@@ -102,6 +102,7 @@ class Client {
             trace(e);
           }
         } catch (e:Dynamic) {
+          trace(request.responseText);
           trace(B64.decode(request.responseText));
         }
       }

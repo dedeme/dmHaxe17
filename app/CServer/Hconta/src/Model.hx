@@ -55,7 +55,9 @@ class Model {
     accounts = [];
     subaccounts = [];
     diary = [];
-    Actions.restore(rp.get("actions")).each(It.f(processAction(_1)));
+    Actions.restore(rp.get("actions")).each(function (a) {
+      return processAction(a);
+    });
 
     var tmp = rp.get("planItem");
     planItem = tmp == null ? "" : tmp;
@@ -71,27 +73,43 @@ class Model {
       case AddAccount(id, name, summary): accounts.push([id, name, summary]);
       case AddSubaccount(id, name): subaccounts.push([id, name]);
       case ModSubgroup(id, name):
-        It.from(subgroups).find(It.f(_1[0] == id))[1] = name;
+        It.from(subgroups).find(function (s) {
+          return s[0] == id;
+        })[1] = name;
       case ModAccount(id, name, summary): {
-        var acc = It.from(accounts).find(It.f(_1[0] == id));
+        var acc = It.from(accounts).find(function (a) {
+          return a[0] == id;
+        });
         acc[1] = name;
         acc[2] = summary;
       }
       case ModSubaccount(id, name):
-        It.from(subaccounts).find(It.f(_1[0] == id))[1] = name;
+        It.from(subaccounts).find(function (s) {
+          return s[0] == id;
+        })[1] = name;
       case DelSubgroup(id): {
-        subgroups = It.from(subgroups).filter(It.f(_1[0] != id)).to();
-        accounts = It.from(accounts).filter(It.f(!_1[0].startsWith(id))).to();
-        subaccounts = It.from(subaccounts)
-          .filter(It.f(!_1[0].startsWith(id))).to();
+        subgroups = It.from(subgroups).filter(function (s) {
+          return s[0] != id;
+        }).to();
+        accounts = It.from(accounts).filter(function (a) {
+          return a[0].startsWith(id);
+        }).to();
+        subaccounts = It.from(subaccounts).filter(function (s) {
+          return s[0].startsWith(id);
+        }).to();
       }
       case DelAccount(id): {
-        accounts = It.from(accounts).filter(It.f(_1[0] != id)).to();
-        subaccounts = It.from(subaccounts)
-          .filter(It.f(!_1[0].startsWith(id))).to();
+        accounts = It.from(accounts).filter(function (a) {
+          return a[0] != id;
+        }).to();
+        subaccounts = It.from(subaccounts).filter(function (s) {
+          return !s[0].startsWith(id);
+        }).to();
       }
       case DelSubaccount(id):
-        subaccounts = It.from(subaccounts).filter(It.f(_1[0] != id)).to();
+        subaccounts = It.from(subaccounts).filter(function (s) {
+          return s[0] != id;
+        }).to();
       case AddDiary(entry): diary.push(entry);
     }
   }

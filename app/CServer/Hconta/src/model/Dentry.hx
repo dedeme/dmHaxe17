@@ -64,8 +64,12 @@ class Dentry {
         var cs:Array<Array<Dynamic>> = serial[3];
         return new Dentry(
           DateDm.fromStr(serial[0]), serial[1],
-          It.from(ds).map(It.f(return new Tp2(_1[0], Dec.restore(_1[2])))).to(),
-          It.from(cs).map(It.f(return new Tp2(_1[0], Dec.restore(_1[2])))).to()
+          It.from(ds).map(function (e) {
+            return new Tp2(e[0], Dec.restore(e[2]));
+          }).to(),
+          It.from(cs).map(function (e) {
+            return new Tp2(e[0], Dec.restore(e[2]));
+          }).to()
         );
       }
     }
